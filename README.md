@@ -8,4 +8,4 @@ To include this repository in your [Cardinal server](https://github.com/twizmwaz
 
 `- git:https://github.com/MCResourcePile/MapStack-LifeboatPC.git`
 
-Not all the maps included in this repository will work correctly with Cardinal, so if you do find an issue with any of the maps please [report an issue](https://github.com/MCResourcePile/MapStack-LifeboatPC/issues/new).
+Not all the maps included in this repository will work correctly with Cardinal, so if you do find an issue with any of the maps please [report an issue](https://github.com/MCResourcePile/MapStack-LifeboatPC/issues/new). 
