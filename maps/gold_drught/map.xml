@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<map proto="1.3.4">
+<name>gold drught 5</name>
+<version>6.9</version>
+<objective>be best team on best map</objective>
+<authors>
+    <author contribution="cool gameplay pvp">Reshif</author>
+    <author contribution="aesthetics">Reshief</author>
+    <author contribution="feedback">Reyshif</author>
+    <author contribution="monements">Reeshof</author>
+    <author contribution="bodner kontrol">Rishef</author>
+    <author contribution="xml">Royeshaf</author>
+    <author contribution="xml fix">Raishef</author>
+    <author contribution="xml fix again">Reshef</author>
+    <author contribution="morol supurt">Rishif</author>
+    <author contribution="gameplay">Rayshif</author>
+    <author contribution="height variation and cool terrain">Resheeeef</author>
+</authors>
+<score>
+    <time>900</time>
+    <limit>9001</limit>
+</score>
+<teams>
+    <team color="dark red" max="25">read tem</team>
+    <team color="blue" max="25">blu tem</team>
+    <team color="gold" max="25">oranj tem</team>
+    <team color="dark purple" max="25">purlp tem</team>
+</teams>
+    <kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" enchantment="durability:1;dig speed:3">iron pickaxe</item>
+        <item slot="3" amount="53">sandstone</item>
+        <item slot="4" amount="23" damage="2">wood</item>
+        <item slot="8" amount="7">raw chicken</item>
+        <item slot="7" amount="5">golden apple</item>
+        <item slot="6" amount="51">ladder</item>
+        <item slot="5" amount="9">web</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="21" amount="47">sandstone</item>
+        <item slot="30" amount="35">sandstone</item>
+        <potion duration="4" amplifier="5">damage resistance</potion>
+        <potion duration="4" amplifier="3">increase damage</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawns safe="true">
+        <spawn team="read" kit="spawn">
+            <cuboid min="-56,0,94" max="-76,15,85"/>
+        </spawn>
+        <spawn team="oranj" kit="spawn">
+            <cuboid min="-24,0,165" max="-38,15,149"/>
+        </spawn>
+        <spawn team="purlp" kit="spawn">
+            <cuboid min="-107,0,191" max="-97,15,177"/>
+        </spawn>
+        <spawn team="blu" kit="spawn">
+            <cuboid min="-125,0,103" max="-138,15,120"/>
+        </spawn>
+    </spawns>
+    <default yaw="90">
+        <cylinder base="-72,66,135" radius="8" height="10"/>
+    </default>
+</spawns>
+<mobs>
+    <filter name="allow-all"/>
+</mobs>
+<blockdrops>
+    <rule>
+        <region>
+            <cuboid min="-200,0,0" max="0,100,200"/>
+        </region>
+        <filter>
+            <block>obsidian</block>
+        </filter>
+        <drops>
+            <item amount="43">iron block</item>
+        </drops>
+        <wrongtool>false</wrongtool>
+    </rule>
+</blockdrops>
+<timelock>on</timelock>
+</map>
