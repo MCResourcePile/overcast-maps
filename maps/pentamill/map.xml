@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>PentaMill</name>
+<version>1.2.2</version>
+<objective>Destroy the monuments and leak the core to win!</objective>
+<authors>
+    <author uuid="715769c5-8c4c-4489-bdf8-f9cee2b2ae8a"/> <!-- amactus -->
+</authors>
+<!-- Monuments & Cores -->
+<destroyables materials="emerald_block" completion="100%">
+    <destroyable name="Left Monument" owner="purple">
+       <region><cuboid min="-11,20,13" max="-8,15,10"/></region>
+    </destroyable>
+    <destroyable name="Right Monument" owner="purple">
+       <region><cuboid min="9,20,13" max="12,15,10"/></region>
+    </destroyable>
+    <destroyable name="Left Monument" owner="cyan">
+       <region><cuboid min="12,20,-51" max="9,15,-48"/></region>
+    </destroyable>
+    <destroyable name="Right Monument" owner="cyan">
+       <region><cuboid min="-11,20,-51" max="-8,15,-48"/></region>
+    </destroyable>
+</destroyables>
+<cores material="obsidian" leak="5" mode-changes="true">
+    <core team="cyan">
+        <region><cuboid min="-2,12,-52" max="3,7,-47"/></region>
+    </core>
+    <core team="purple">
+        <region><cuboid min="3,12,14" max="-2,7,9"/></region>
+    </core>
+</cores>
+<modes>
+    <mode after="15m" material="gold_block"/> <!-- <mode after="15m" material="gold_block"/> -->
+    <mode after="25m" material="glass"/>
+</modes>
+<!-- Teams, Kits and Spawns -->
+<teams>
+   <team id="cyan" color="dark aqua" max="8" max-overfill="10">Cyan</team>
+   <team id="purple" color="light purple" max="8" max-overfill="10">Purple</team>
+</teams>
+<kits>
+    <kit id="spawn" force="true">
+        <item slot="0" material ="stone sword"/>
+        <item slot="1" material="bow">
+            <enchantment level="1">infinity</enchantment>
+        </item>
+        <item slot="2" material="diamond pickaxe"/>
+        <item slot="3" material="diamond axe"/>
+        <item slot="4" amount="48" material="log"/>
+        <item slot="5" amount="32" material="golden carrot"/>
+        <item slot="28" material="arrow"/>
+        <boots material="iron boots">
+            <enchantment level="3">feather_falling</enchantment>
+        </boots>
+    </kit>
+    <kit id="cyan-kit" parents="spawn">
+        <chestplate color="4C7F99" material="leather chestplate"/>
+    </kit>
+    <kit id="purple-kit" parents="spawn">
+        <chestplate color="7F3FB2" material="leather chestplate"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="cyan" kit="cyan-kit">
+        <regions yaw="0">
+            <cuboid min="2,20,-68" max="-2,20,-71"/>
+        </regions>
+    </spawn>
+    <spawn team="purple" kit="purple-kit">
+        <regions yaw="180">
+            <cuboid min="-1,20,30" max="2,20,33"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="-90">
+            <cuboid min="-56,31,-16" max="-59,31,-19"/>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <union id="cyanspawn">
+        <cuboid min="-12,19,30" max="13,0,36"/>
+        <cylinder base="0,15,-70" radius="6" height="9"/>
+    </union>
+    <apply block="never" region="cyanspawn"/>
+    <apply block="never" region="purplespawn"/>
+    <union id="purplespawn">
+        <cuboid min="13,19,-68" max="-12,0,-74"/>
+        <cylinder base="0,15,31" radius="6" height="9"/>
+    </union>
+</regions>
+<!-- Settings -->
+<tnt>
+    <yield>0</yield>
+</tnt>
+<toolrepair>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>diamond pickaxe</item>
+    <item>diamond axe</item>
+</toolrepair>
+<itemremove>
+	<item>golden carrot</item>
+    <item>iron boots</item>
+    <item>leather chestplate</item>
+    <item>emerald block</item>
+</itemremove>
+<kill-rewards>
+    <!-- Give two emeralds for all kills -->
+    <kill-reward>
+        <item amount="1" material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
+<timelock>on</timelock>
+<maxbuildheight>36</maxbuildheight>
+<respawn delay="5s" blackout="true" auto="true"/>
+</map>
