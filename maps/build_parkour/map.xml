@@ -1,6 +1,6 @@
 <map proto="1.4.2" game="Arenas Cleared">
 <name>Build: Parkour</name>
-<version>1.9.10</version>
+<version>1.9.11</version>
 <objective>Build your own parkour then race everyone else!</objective>
 <authors>
      <author uuid="7475c44e-3066-468f-a4c6-488fe9612097" contribution="Map concept and game design" /> <!-- Jc -->
@@ -80,7 +80,7 @@
     <give kit="build-kit" filter="build-spawn-kit"/>
     <kit id="build-kit">
         <game-mode>adventure</game-mode>
-        <item amount="64" slot="2"  material="ice"                lore="`r`5Renewable" />
+        <item amount="64" slot="2"  material="packed ice"         lore="`r`5Renewable" />
         <item amount="64" slot="3"  material="slime block"        lore="`r`5Renewable" />
         <item amount="64" slot="4"  material="trap door"          lore="`r`5Renewable" />
         <item amount="64" slot="5"  material="spruce fence"       lore="`r`5Renewable" />
@@ -128,7 +128,7 @@
         <chestplate    material="gold nugget"     locked="true" name="`rmagic_multitool.pickaxe" />
     </kit>
     <kit id="build-kit-renewable">
-        <item amount="64" material="ice"                lore="`r`5Renewable" />
+        <item amount="64" material="packed ice"         lore="`r`5Renewable" />
         <item amount="64" material="slime block"        lore="`r`5Renewable" />
         <item amount="64" material="trap door"          lore="`r`5Renewable" />
         <item amount="64" material="spruce fence"       lore="`r`5Renewable" />
@@ -1053,7 +1053,7 @@
         <material>anvil</material>
         <material>carpet</material>
         <material>iron fence</material>
-        <material>ice</material>
+        <material>packed ice</material>
         <material>soul sand</material>
         <material>sign</material>
         <material>step</material>
@@ -1135,11 +1135,11 @@
     <all id="save-teammates-8-if-testing-complete"><filter id="arena-8-active" /><filter id="only-player-8" /><filter id="testing-phase" /><region id="arena-8" /></all>
     <!-- Phase times -->
     <all id="build-spawn-kit"  ><not><time>3s</time></not><region id="all-arenas-whole" /><participating /><match-running /></all>
-    <all id="build-phase"      ><time>0s</time><not><time>240s</time></not></all>
-    <all id="build-phase-end"  ><time>240s</time><not><time>241s</time></not><region id="all-arenas-whole" /></all>
-    <all id="testing-phase"    ><time id="after-test-phase-start">240s</time><not><time>360</time></not></all>
-    <all id="testing-phase-end"><time>360s</time><not><time>361s</time></not><region id="all-arenas-whole" /></all>
-    <all id="race-started"     ><time id="race-phase">365s</time><not><time>366s</time></not></all>
+    <all id="build-phase"      ><time>0s</time><not><time>240s</time></not><participating /><match-running /></all>
+    <all id="build-phase-end"  ><time>240s</time><not><time>241s</time></not><region id="all-arenas-whole" /><participating /><match-running /></all>
+    <all id="testing-phase"    ><time id="after-test-phase-start">240s</time><not><time>360</time></not><participating /><match-running /></all>
+    <all id="testing-phase-end"><time>360s</time><not><time>361s</time></not><region id="all-arenas-whole" /><participating /><match-running /></all>
+    <all id="race-started"     ><time id="race-phase">365s</time><not><time>366s</time></not><participating /><match-running /></all>
     <!-- Trigger filters, build phase ended -->
     <all id="arena-1-build-phase-end"><filter id="only-player-1" /><filter id="build-phase-end" /><region id="arena-1" /></all>
     <all id="arena-2-build-phase-end"><filter id="only-player-2" /><filter id="build-phase-end" /><region id="arena-2" /></all>
@@ -1874,7 +1874,7 @@
                     <cause>mine</cause>
                 </any>
                 <any>
-                    <material>ice</material>
+                    <material>packed ice</material>
                     <material>stained clay</material>
                     <material>anvil</material>
                     <material>hopper</material>
@@ -1985,7 +1985,7 @@
     <item>anvil</item>
     <item>carpet</item>
     <item>iron fence</item>
-    <item>ice</item>
+    <item>packet ice</item>
     <item>soul sand</item>
     <item>sign</item>
     <item>step</item>
