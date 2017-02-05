@@ -7,3 +7,5 @@ All maps can be downloaded at https://mcresourcepile.github.io/mapstack/overcast
 These maps have not been tested on a [CardinalPGM server](https://github.com/twizmwazin/CardinalPGM) and it is not recommended that you include this repository as the maps are most likely broken. You can find a repository of maps that have been tested and work correctly with CardinalPGM [here](https://github.com/MCResourcePile/overcast-cardinal-maps) or by using our [website](https://mcresourcepile.github.io/mapstack/overcast?s=cardinal).
 
 You can find maps created for the Overcast Network that did not make it to the official repository [here](https://github.com/MCResourcePile/overcast-unofficial-maps) or by using our [website](https://mcresourcepile.github.io/mapstack/overcast?s=unofficial).
+
+Please submit your maps [here](https://mcresourcepile.github.io/forms/maps).
