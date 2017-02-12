@@ -1,6 +1,6 @@
 <map proto="1.4.2" game="Arenas Cleared">
 <name>Build: Parkour</name>
-<version>1.9.11</version>
+<version>1.9.12</version>
 <objective>Build your own parkour then race everyone else!</objective>
 <authors>
      <author uuid="7475c44e-3066-468f-a4c6-488fe9612097" contribution="Map concept and game design" /> <!-- Jc -->
@@ -85,14 +85,14 @@
         <item amount="64" slot="4"  material="trap door"          lore="`r`5Renewable" />
         <item amount="64" slot="5"  material="spruce fence"       lore="`r`5Renewable" />
         <item amount="64" slot="6"  material="ladder"             lore="`r`5Renewable" />
-        <if halloween="false" april-fools="false">
+        <if halloween="false" christmas="false">
             <item amount="64" slot="7"  material="stained clay"   lore="`r`7Applies `9Speed `7to the player!" name="`rSpeed Block" damage="3" />
         </if>
         <if halloween="true">
             <item amount="64" slot="7"  material="pumpkin"        lore="`r`7Applies `6mysterious effects `7to the player!" name="`rMysterious Pumpkin" />
         </if>
-        <if april-fools="true">
-            <item amount="3" slot="7"   material="dispenser"      lore="`r`7Turns the player into an|`cexplosive turret `7launcher!" name="`rGrenade Turret" />
+        <if christmas="true">
+            <item amount="3" slot="7"   material="quartz block"   lore="`r`7Turns the player into an|`cexplosive snowball turret`7!" name="`rSnowball Turret" />
         </if>
         <item amount="64" slot="10" material="end rod"            lore="`r`5Renewable" />
         <item amount="64" slot="11" material="hopper"                                  />
@@ -108,10 +108,10 @@
         <item amount="64" slot="22" material="iron trapdoor"      lore="`r`5Renewable" />
         <item amount="64" slot="23" material="nether fence"       lore="`r`5Renewable" />
         <item amount="64" slot="24" material="sign"                                    />
-        <unless halloween="true" april-fools="true">
+        <unless halloween="true" christmas="true">
             <item amount="64" slot="25" material="stained clay"   lore="`r`7Applies `8Slowness `7to the player!" name="`rSlowness Block" damage="8" />
         </unless>
-        <unless halloween="false" april-fools="false">
+        <unless halloween="false" christmas="false">
             <item amount="64" slot="25"  material="stained clay"  lore="`r`7Applies `9Speed `7to the player!" name="`rSpeed Block" damage="3" />
         </unless>
         <item amount="64" slot="26" material="water lily"                              />
@@ -541,7 +541,7 @@
         <match>
             <material>leather boots</material>
         </match>
-        <modify>
+        <modify show-attributes="false">
             <attribute operation="add" amount="362">generic.armor</attribute>
             <attribute operation="add" amount="362">generic.armorToughness</attribute>
         </modify>
@@ -554,7 +554,7 @@
             <material>cake block</material>
             <material>anvil</material>
             <material>hopper</material>
-            <material>dispenser</material>
+            <material>quartz block</material>
         </any>
     </not>
     <!-- Check if player is holding glowstone dust during build phase -->
@@ -960,6 +960,8 @@
     <all id="not-carrying-restart-potion">
         <region id="all-arenas-whole" />
         <filter id="after-test-phase-start" />
+        <participating />
+        <match-running />
     </all>
     <!-- Check if players are allowed to score at arena end points -->
     <any id="allow-arena-1-score">
@@ -1150,9 +1152,9 @@
     <all id="arena-7-build-phase-end"><filter id="only-player-7" /><filter id="build-phase-end" /><region id="arena-7" /></all>
     <all id="arena-8-build-phase-end"><filter id="only-player-8" /><filter id="build-phase-end" /><region id="arena-8" /></all>
     <!-- Trigger filters, testing phase ended -->
-    <all id="arena-0-testing-phase-end"><filter id="testing-phase-end" /><region id="all-arenas-whole" /></all>
+    <all id="arena-0-testing-phase-end"><filter id="testing-phase-end" /><region id="all-arenas-whole" /><participating /><match-running /></all>
     <!-- Trigger filters, race started -->
-    <all id="arena-0-race-started"><filter id="race-started" /><region id="arena-0" /></all>
+    <all id="arena-0-race-started"><filter id="race-started" /><region id="arena-0" /><participating /><match-running /></all>
     <!-- Teleport players back to the arena start during build phase when they sneak while in build net -->
     <all id="arena-1-build-net-active"><region id="arena-1-build-net" /><filter id="build-phase" /><crouching /></all>
     <all id="arena-2-build-net-active"><region id="arena-2-build-net" /><filter id="build-phase" /><crouching /></all>
@@ -1163,14 +1165,14 @@
     <all id="arena-7-build-net-active"><region id="arena-7-build-net" /><filter id="build-phase" /><crouching /></all>
     <all id="arena-8-build-net-active"><region id="arena-8-build-net" /><filter id="build-phase" /><crouching /></all>
     <!-- Check what arena player is inside during race phase -->
-    <all id="inside-arena-1-during-race"><region id="arena-1" /><filter id="race-phase" /></all>
-    <all id="inside-arena-2-during-race"><region id="arena-2" /><filter id="race-phase" /></all>
-    <all id="inside-arena-3-during-race"><region id="arena-3" /><filter id="race-phase" /></all>
-    <all id="inside-arena-4-during-race"><region id="arena-4" /><filter id="race-phase" /></all>
-    <all id="inside-arena-5-during-race"><region id="arena-5" /><filter id="race-phase" /></all>
-    <all id="inside-arena-6-during-race"><region id="arena-6" /><filter id="race-phase" /></all>
-    <all id="inside-arena-7-during-race"><region id="arena-7" /><filter id="race-phase" /></all>
-    <all id="inside-arena-8-during-race"><region id="arena-8" /><filter id="race-phase" /></all>
+    <all id="inside-arena-1-during-race"><region id="arena-1" /><filter id="race-phase" /><participating /><match-running /></all>
+    <all id="inside-arena-2-during-race"><region id="arena-2" /><filter id="race-phase" /><participating /><match-running /></all>
+    <all id="inside-arena-3-during-race"><region id="arena-3" /><filter id="race-phase" /><participating /><match-running /></all>
+    <all id="inside-arena-4-during-race"><region id="arena-4" /><filter id="race-phase" /><participating /><match-running /></all>
+    <all id="inside-arena-5-during-race"><region id="arena-5" /><filter id="race-phase" /><participating /><match-running /></all>
+    <all id="inside-arena-6-during-race"><region id="arena-6" /><filter id="race-phase" /><participating /><match-running /></all>
+    <all id="inside-arena-7-during-race"><region id="arena-7" /><filter id="race-phase" /><participating /><match-running /></all>
+    <all id="inside-arena-8-during-race"><region id="arena-8" /><filter id="race-phase" /><participating /><match-running /></all>
 </filters>
 <regions>
     <!-- Apply invis and blindness each time player enters a new tube -->
@@ -1837,12 +1839,12 @@
             </all>
         </filter>
     </rule>
-    <!-- Give player grenade kit when they trample on a dispenser -->
+    <!-- Give player grenade kit when they trample on a quartz block -->
     <rule trample="true" kit="grenade-turret-kit">
         <filter>
             <all>
                 <cause>trample</cause>
-                <material>dispenser</material>
+                <material>quartz block</material>
                 <not>
                     <wearing>
                         <item material="pumpkin pie" />
@@ -1852,7 +1854,7 @@
             </all>
         </filter>
     </rule>
-    <!-- Remove grenade lock when player isn't trampling on a dispenser -->
+    <!-- Remove grenade lock when player isn't trampling on a quartz block -->
     <rule trample="true" kit="remove-block-effects">
         <filter>
             <all>
@@ -1888,7 +1890,7 @@
                     <material>iron door block</material>
                     <material>iron trapdoor</material>
                     <material>obsidian</material>
-                    <material>dispenser</material>
+                    <material>quartz block</material>
                 </any>
                 <not>
                     <wearing>
@@ -1985,7 +1987,7 @@
     <item>anvil</item>
     <item>carpet</item>
     <item>iron fence</item>
-    <item>packet ice</item>
+    <item>packed ice</item>
     <item>soul sand</item>
     <item>sign</item>
     <item>step</item>
@@ -2023,7 +2025,7 @@
     <item>sulphur</item>
     <item>glowstone dust</item>
     <item>obsidian</item>
-    <item>dispenser</item>
+    <item>quartz block</item>
     <item>barrier</item>
     <item>pumpkin pie</item>
 </itemremove>
