@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Fracture</name>
-<version>0.2.2</version>
-<objective>Collect the most points in 10 minutes</objective>
+<version>0.2.3</version>
+<objective>Collect the most points in 7 minutes</objective>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" /> <!-- mitchiii_ -->
 </authors>
@@ -10,8 +10,8 @@
     <tip after="32s" every="5m">`bCapture the `9Middle `bto open the scorebox!</tip>
 </broadcasts>
 <teams>
-    <team id="blue-team" color="blue"     max="10" max-overfill="12">Blue</team>
-    <team id="red-team"  color="dark red" max="10" max-overfill="12">Red</team>
+    <team id="blue-team" color="blue"     max="12" max-overfill="12">Blue</team>
+    <team id="red-team"  color="dark red" max="12" max-overfill="12">Red</team>
 </teams>
 <kits>
     <kit id="main-kit">
@@ -45,16 +45,21 @@
         <helmet   unbreakable="true" color="cd0000" material="leather helmet" />
         <leggings unbreakable="true" color="cd0000" material="leather leggings" />
     </kit>
-    <kit id="hill-reward" lend="captured-hill">
-        <effect duration="8" amplifier="1">regeneration</effect>
-    </kit>
+    <lend filter="captured-hill">
+        <kit id="hill-reward">
+            <effect duration="8" amplifier="1">regeneration</effect>
+        </kit>
+    </lend>
 </kits>
 <spawns>
     <default region="default-spawn" yaw="180" />
     <spawn   region="blue-spawn"    yaw="90"  team="blue-team" kit="blue-kit" />
     <spawn   region="red-spawn"     yaw="-90" team="red-team"  kit="red-kit" />
 </spawns>
-<respawn delay="3s" />
+<respawns>
+    <respawn delay="4s" filter="captured-hill" />
+    <respawn delay="2s" />
+</respawns>
 <filters>
     <team id="only-blue">blue-team</team>
     <team id="only-red">red-team</team>
@@ -99,8 +104,10 @@
         <cuboid id="blue-spawn-protection" min="178,oo,205" max="171,0,198" />
         <cuboid id="red-spawn-protection"  min="59,oo,208"  max="66,0,215" />
     </union>
+    <cylinder id="reduce-center" base="118.5,13,206.5" radius="12" height="28" />
     <apply region="area-protection"          block="never"     message="You may not interact with that material here" />
     <apply region="bottom-layer"             block-break="deny-island-bottom-layer" block-physics="never" message="You may not interact with that material here" />
+    <apply region="reduce-center"            block-place="never"     message="You have reached the maximum build height for the center (`f13 `cblocks)" />
     <apply region="central-point-protection" block-break="deny-hill" message="You may not interact with that material here" />
     <apply                                   block="deny-void" message="You may not build in the void" />
     <apply region="blue-spawn-protection"    enter="only-blue" message="You may not enter Blue's spawn" />
@@ -150,10 +157,10 @@
     <dynamic structure="blue-side-bridge" offset="0,0,0"   trigger="blue-control" />
     <dynamic structure="red-side-bridge"  offset="0,0,0"   trigger="red-control" />
 </structures>
-<time>10m</time>
+<time>7m</time>
 <score>
-    <box region="blue-side-score" filter="only-red"  points="4" />
-    <box region="red-side-score"  filter="only-blue" points="4" />
+    <box region="blue-side-score" filter="only-red"  points="6" />
+    <box region="red-side-score"  filter="only-blue" points="6" />
 </score>
 <control-points required="false">
     <control-point id="central-point" name="Middle" neutral-state="true" capture-rule="majority" capture-time="4s" decay="0.4" points="0.4" capture="central-point-capture" progress="central-point-capture" captured="observer-spawn" />
