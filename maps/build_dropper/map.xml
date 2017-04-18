@@ -1,7 +1,7 @@
 <map proto="1.4.2" game="Arenas Cleared">
 <name>Build: Dropper</name>
-<version>1.0.0</version>
-<objective>Build your own dropper arena then race everyone else!</objective>
+<version>1.1.0</version>
+<objective>Build your own dropper puzzle then race everyone else!</objective>
 <authors>
      <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" /> <!-- mitchiii_ -->
 </authors>
@@ -63,7 +63,7 @@
         <item slot="4" amount="64" material="wood door"    lore="`r`5Renewable" />
         <item slot="5" amount="64" material="end rod"      lore="`r`5Renewable" />
         <item slot="6" amount="64" material="web"          lore="`r`5Renewable" />
-        <item slot="7"             material="iron helmet"        name="`r`bLoad Preset Puzzle"    locked="true" lore="`r`9`lEquip to activate|`r`7Generates a pre-designed|`r`7dropper puzzle" />
+        <item slot="7"             material="iron helmet"        name="`r`bLoad Dropper Template" locked="true" lore="`r`9`lEquip to activate|`r`7Generates a pre-designed|`r`7dropper puzzle template" />
         <item slot="8"             material="diamond pickaxe"    name="`r`bMagic Pickaxe"         locked="true" unbreakable="true" />
         <chestplate                material="gold nugget"        name="`rmagic_multitool.pickaxe" locked="true"  />
         <effect duration="oo" amplifier="127">fast digging</effect>
@@ -245,7 +245,7 @@
     <give kit="disable-preset" filter="player-7-preset" />
     <give kit="disable-preset" filter="player-8-preset" />
     <kit id="disable-preset" force="true">
-        <item slot="7" material="barrier" name="`aPreset puzzle loaded" locked="true" />
+        <item slot="7" material="barrier" name="`aDropper template loaded" locked="true" lore="`r`c`lYou have already loaded the template!" />
         <helmet material="air" />
     </kit>
 </kits>
@@ -312,7 +312,7 @@
     </carrying>
     <!-- Check if player is requesting preset puzzle -->
     <wearing id="preset-puzzle-request">
-        <item material="iron helmet" name="`r`bLoad Preset Puzzle" lore="`r`9`lEquip to activate|`r`7Generates a pre-designed|`r`7dropper puzzle" />
+        <item material="iron helmet" name="`r`bLoad Dropper Template" lore="`r`9`lEquip to activate|`r`7Generates a pre-designed|`r`7dropper puzzle template" />
     </wearing>
     <!-- Check if player used preset puzzle -->
     <all id="player-1-preset">
@@ -536,7 +536,46 @@
     <all id="inside-arena-6-during-race"><region id="arena-6" /><filter id="race-phase" /><participating /></all>
     <all id="inside-arena-7-during-race"><region id="arena-7" /><filter id="race-phase" /><participating /></all>
     <all id="inside-arena-8-during-race"><region id="arena-8" /><filter id="race-phase" /><participating /></all>
+    <!-- Phase group countdowns -->
+    <countdown duration="4m" message="Building phase ends in {0}">
+        <all>
+            <not>
+                <time>4m</time>
+            </not>
+            <match-running/>
+        </all>
+    </countdown>
+    <countdown duration="2m" message="Testing phase ends in {0}">
+        <all>
+            <time>4m</time>
+            <not>
+                <time>6m</time>
+            </not>
+            <match-running/>
+        </all>
+    </countdown>
+    <countdown duration="5s" message="The race will begin in {0}">
+        <all>
+            <time>6m</time>
+            <not>
+                <time>6m5s</time>
+            </not>
+            <match-running/>
+        </all>
+    </countdown>
+    <countdown duration="1m" message="The player with the most points will win in {0}">
+        <all>
+            <time>17m</time>
+            <match-running/>
+        </all>
+    </countdown>
 </filters>
+<modes>
+    <mode show-before="4m1s" after="4m"   material="air" name="`lBuild phase `r`3ends" />
+    <mode show-before="2m1s" after="6m"   material="air" name="`lTesting phase `r`3ends" />
+    <mode show-before="6s"   after="6m5s" material="air" name="`lRace starting" />
+    <mode show-before="1m1s" after="18m"  material="air" name="`lRace ending" />
+</modes>
 <regions>
     <!-- Apply invis and blindness each time player enters a new tube -->
     <apply region="arena-1-tube-award" kit="race-effects" filter="race-phase" />
@@ -561,14 +600,14 @@
     <apply block="never" message="You may not interact with that material here">
         <region>
             <above y="71" />
-            <below y="37" />
+            <below y="5" />
         </region>
     </apply>
     <apply block="placeable-blocks" message="You may not interact with that material here">
         <region>
             <intersect>
                 <below y="71" />
-                <above y="37" />
+                <above y="5" />
             </intersect>
         </region>
     </apply>
@@ -580,19 +619,19 @@
                 <union>
                     <region id="all-arenas-whole" />
                     <region id="arena-0" />
-                    <below x="92" />
+                    <below x="95" />
                 </union>
             </negative>
             <above y="86" />
         </region>
     </apply>
     <!-- Lobby enterance point -->
-    <block    id="lobby-point">104.5,78,34.5</block>
+    <block    id="lobby-point">104.5,78,38.5</block>
     <!-- Remove any items the player may have from testing phase -->
-    <cylinder id="lobby-kit-apply" base="104.5,76,34.5" radius="6" height="1" />
+    <cylinder id="lobby-kit-apply" base="104.5,76,38.5" radius="6" height="1" />
     <apply kit="clear-items" region="lobby-kit-apply" />
     <!-- Arena starting points -->
-    <block     id="race-finish"  >104.5,78,34.5</block>
+    <block     id="race-finish"  >104.5,78,38.5</block>
     <point     id="arena-1-start">104.5,76,4.5</point><!-- 34 block difference between rooms -->
     <translate id="arena-2-start" offset="0,0,-34"><region id="arena-1-start" /></translate>
     <translate id="arena-3-start" offset="0,0,-34"><region id="arena-2-start" /></translate>
@@ -624,7 +663,7 @@
     <apply kit="build-kit-renewable" region="arena-start-areas"  filter="build-phase" />
     <!-- Area bottoms -->
     <union id="arena-ends">
-        <cuboid id="arena-1-end" min="98,36,-2" max="111,37,11" />
+        <cuboid    id="arena-1-end" min="98,3,-2" max="111,4,11" />
         <translate id="arena-2-end" offset="0,0,-34"><region id="arena-1-end" /></translate>
         <translate id="arena-3-end" offset="0,0,-34"><region id="arena-2-end" /></translate>
         <translate id="arena-4-end" offset="0,0,-34"><region id="arena-3-end" /></translate>
@@ -634,7 +673,7 @@
         <translate id="arena-8-end" offset="0,0,-34"><region id="arena-7-end" /></translate>
     </union>
     <!-- Whole region coverage -->
-    <rectangle id="arena-0" min="98,28" max="111,41" />
+    <rectangle id="arena-0" min="98,32" max="111,45" />
     <union id="all-arenas-whole">
         <rectangle id="arena-1" min="98,-2" max="111,11" />
         <translate id="arena-2" offset="0,0,-34"><region id="arena-1" /></translate>
@@ -647,7 +686,7 @@
     </union>
     <!-- Arena buildable area -->
     <union id="rooms-union">
-        <cuboid    id="arena-1-build" min="98,37,-2" max="111,69,11" />
+        <cuboid    id="arena-1-build" min="98,4,-2" max="111,69,11" />
         <translate id="arena-2-build" offset="0,0,-34"><region id="arena-1" /></translate>
         <translate id="arena-3-build" offset="0,0,-34"><region id="arena-2" /></translate>
         <translate id="arena-4-build" offset="0,0,-34"><region id="arena-3" /></translate>
@@ -657,7 +696,7 @@
         <translate id="arena-8-build" offset="0,0,-34"><region id="arena-7" /></translate>
     </union>
     <!-- Arena tube enterance points -->
-    <point     id="arena-1-tube-enter">89,38,20</point>
+    <point     id="arena-1-tube-enter">92.5,4,15.5</point>
     <translate id="arena-2-tube-enter" offset="0,0,-34"><region id="arena-1-tube-enter" /></translate>
     <translate id="arena-3-tube-enter" offset="0,0,-34"><region id="arena-2-tube-enter" /></translate>
     <translate id="arena-4-tube-enter" offset="0,0,-34"><region id="arena-3-tube-enter" /></translate>
@@ -665,10 +704,10 @@
     <translate id="arena-6-tube-enter" offset="0,0,-34"><region id="arena-5-tube-enter" /></translate>
     <translate id="arena-7-tube-enter" offset="0,0,-34"><region id="arena-6-tube-enter" /></translate>
     <translate id="arena-8-tube-enter" offset="0,0,-34"><region id="arena-7-tube-enter" /></translate>
-    <translate id="arena-0-tube-enter" offset="0,0,23" ><region id="arena-1-tube-enter" /></translate>
+    <translate id="arena-0-tube-enter" offset="0,0,34" ><region id="arena-1-tube-enter" /></translate>
     <!-- Arena tube regions -->
     <union id="arena-end-points">
-        <cuboid    id="arena-1-tube" min="91,39,22" max="88,39.5,19" />
+        <cuboid    id="arena-1-tube" min="91,5,14" max="94,5.5,17" />
         <translate id="arena-2-tube" offset="0,0,-34"><region id="arena-1-tube" /></translate>
         <translate id="arena-3-tube" offset="0,0,-34"><region id="arena-2-tube" /></translate>
         <translate id="arena-4-tube" offset="0,0,-34"><region id="arena-3-tube" /></translate>
@@ -676,7 +715,7 @@
         <translate id="arena-6-tube" offset="0,0,-34"><region id="arena-5-tube" /></translate>
         <translate id="arena-7-tube" offset="0,0,-34"><region id="arena-6-tube" /></translate>
         <translate id="arena-8-tube" offset="0,0,-34"><region id="arena-7-tube" /></translate>
-        <translate id="arena-0-tube" offset="0,0,23" ><region id="arena-1-tube" /></translate>
+        <translate id="arena-0-tube" offset="0,0,34" ><region id="arena-1-tube" /></translate>
     </union>
     <!-- Area tube award regions -->
     <translate id="arena-1-tube-award" offset="0,-1,0"><region id="arena-1-tube" /></translate>
@@ -708,8 +747,8 @@
     <translate id="arena-8-tube-fail-safe" offset="0,-5,0"><region id="arena-8-tube" /></translate>
     <translate id="arena-0-tube-fail-safe" offset="0,-5,0"><region id="arena-0-tube" /></translate>
 </regions>
-<control-points required="false" points="0" capture-time="0s" permanent="true" show="true">
-    <!-- Check if player wants to load preset puzzle -->
+<control-points required="false" points="0" capture-time="0s" permanent="true" show="false">
+    <!-- Check if player wants to Load Dropper Template -->
     <control-point id="arena-1-preset" name="arena-1-preset" capture="arena-1" player-filter="preset-puzzle-request" />
     <control-point id="arena-2-preset" name="arena-2-preset" capture="arena-2" player-filter="preset-puzzle-request" />
     <control-point id="arena-3-preset" name="arena-3-preset" capture="arena-3" player-filter="preset-puzzle-request" />
@@ -792,16 +831,10 @@
     <control-point id="arena-7-passed-player-7" name="arena-7-passed-player-7" capture="arena-8-tube-award" player-filter="during-race-phase-player-7" />
     <control-point id="arena-7-passed-player-8" name="arena-7-passed-player-8" capture="arena-8-tube-award" player-filter="during-race-phase-player-8" />
 </control-points>
-<modes>
-    <mode show-before="4m1s" after="4m"   material="air" name="`lBuild phase `r`3ends" />
-    <mode show-before="2m1s" after="6m"   material="air" name="`lTesting phase `r`3ends" />
-    <mode show-before="6s"   after="6m5s" material="air" name="`lRace starting" />
-    <mode show-before="1m1s" after="18m"  material="air" name="`lRace ending" />
-</modes>
 <spawns>
     <default yaw="180" kit="observer-kit">
         <region>
-            <point>104.5,76,34.5</point>
+            <point>104.5,76,38.5</point>
         </region>
     </default>
     <!-- Building phase spawns (initial spawns) -->
@@ -1028,17 +1061,17 @@
 <structures>
     <structure id="preset-puzzle">
         <region>
-            <cuboid min="98,40,-2" size="13,30,13" />
+            <cuboid min="98,3,-2" size="13,67,13" />
         </region>
     </structure>
-    <dynamic structure="preset-puzzle" trigger="arena-1-preset-active" location="98,40,-2" />
-    <dynamic structure="preset-puzzle" trigger="arena-2-preset-active" location="98,40,-36" />
-    <dynamic structure="preset-puzzle" trigger="arena-3-preset-active" location="98,40,-70" />
-    <dynamic structure="preset-puzzle" trigger="arena-4-preset-active" location="98,40,-104" />
-    <dynamic structure="preset-puzzle" trigger="arena-5-preset-active" location="98,40,-138" />
-    <dynamic structure="preset-puzzle" trigger="arena-6-preset-active" location="98,40,-172" />
-    <dynamic structure="preset-puzzle" trigger="arena-7-preset-active" location="98,40,-206" />
-    <dynamic structure="preset-puzzle" trigger="arena-8-preset-active" location="98,40,-240" />
+    <dynamic structure="preset-puzzle" trigger="arena-1-preset-active" location="98,3,-2" />
+    <dynamic structure="preset-puzzle" trigger="arena-2-preset-active" location="98,3,-36" />
+    <dynamic structure="preset-puzzle" trigger="arena-3-preset-active" location="98,3,-70" />
+    <dynamic structure="preset-puzzle" trigger="arena-4-preset-active" location="98,3,-104" />
+    <dynamic structure="preset-puzzle" trigger="arena-5-preset-active" location="98,3,-138" />
+    <dynamic structure="preset-puzzle" trigger="arena-6-preset-active" location="98,3,-172" />
+    <dynamic structure="preset-puzzle" trigger="arena-7-preset-active" location="98,3,-206" />
+    <dynamic structure="preset-puzzle" trigger="arena-8-preset-active" location="98,3,-240" />
 </structures>
 <disabledamage>
     <damage>entity attack</damage>
@@ -1053,69 +1086,24 @@
     </deny>
 </damage>
 <itemremove>
-    <item>cobble wall</item>
-    <item>nether fence</item>
-    <item>piston base</item>
-    <item>redstone block</item>
-    <item>slime block</item>
-    <item>wool</item>
-    <item>anvil</item>
-    <item>carpet</item>
-    <item>iron fence</item>
-    <item>ice</item>
-    <item>soul sand</item>
-    <item>sign</item>
-    <item>step</item>
-    <item>trap door</item>
-    <item>iron trapdoor</item>
-    <item>vine</item>
-    <item>ladder</item>
-    <item>skull item</item>
-    <item>web</item>
-    <item>stained glass</item>
-    <item>stained glass pane</item>
-    <item>water lily</item>
-    <item>wood door</item>
-    <item>iron door</item>
-    <item>snow</item>
-    <item>cake</item>
-    <item>nether star</item>
-    <item>potion</item>
-    <item>spruce fence</item>
-    <item>spruce fence gate</item>
-    <item>spruce wood stairs</item>
     <item>stained clay</item>
-    <item>carrot item</item>
-    <item>potato item</item>
-    <item>baked potato</item>
+    <item>stained glass</item>
+    <item>spruce fence</item>
+    <item>skull item</item>
+    <item>wood door</item>
     <item>end rod</item>
-    <item>sea lantern</item>
-    <item>prismarine crystals</item>
+    <item>web</item>
+    <item>potion</item>
     <item>diamond pickaxe</item>
     <item>diamond axe</item>
     <item>diamond spade</item>
     <item>shears</item>
-    <item>hopper</item>
-    <item>pumpkin</item>
-    <item>sulphur</item>
-    <item>glowstone dust</item>
-    <item>obsidian</item>
-    <item>dispenser</item>
     <item>barrier</item>
-    <item>pumpkin pie</item>
 </itemremove>
 <itemkeep>
     <item>name tag</item>
     <item>leather boots</item>
-    <item>barrier</item>
 </itemkeep>
-<crafting>
-    <disable>wood button</disable>
-    <disable>redstone</disable>
-    <disable>workbench</disable>
-    <disable>wood plate</disable>
-    <disable>stick</disable>
-</crafting>
 <hunger>
     <depletion>off</depletion>
 </hunger>
