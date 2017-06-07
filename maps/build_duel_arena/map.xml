@@ -1,0 +1,1071 @@
+<map proto="1.4.2">
+<name>Build: Duel Arena</name>
+<version>0.3.5</version>
+<objective>Build a defensive base then fight the other team!</objective>
+<authors>
+     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" /> <!-- mitchiii_ -->
+</authors>
+<gamemode>arcade</gamemode>
+<blitz>
+    <lives>1</lives>
+    <broadcastLives>false</broadcastLives>
+</blitz>
+<time show="false">13m</time>
+<teams>
+   <team id="red-team"  color="dark red" min="1" max="4" max-overfill="6">Red</team>
+   <team id="blue-team" color="blue"     min="1" max="4" max-overfill="6">Blue</team>
+</teams>
+<spawns>
+    <default                region="default-spawn" yaw="0" />
+    <spawn team="red-team"  region="red-spawn"     yaw="-90" kit="building-kit" />
+    <spawn team="blue-team" region="blue-spawn"    yaw="90"  kit="building-kit" />
+</spawns>
+<broadcasts>
+    <!-- Building phase broadcasts -->
+    <alert after="1s">Build a defensive base on your side of the arena!</alert>
+    <alert after="16s">Make sure your structure reaches the central island...</alert>
+    <alert after="16.1s">You'll need to make your way to this island later!</alert>
+    <tip   after="48s">You can return to the starting point to restock on materials!</tip>
+    <!-- Testinging phase broadcasts -->
+    <alert after="4m">Reach the central island or risk pentaly during the duel!</alert>
+    <!-- Pre-fighting phase broadcasts -->
+    <alert after="5m" filter="red-failed-red">Red team failed to reach the central island and a pre-build structure will be generated instead.</alert>
+    <alert after="5m" filter="blue-failed-blue">Blue team failed to reach the central island and a pre-build structure will be generated instead.</alert>
+    <alert after="5m" filter="teams-switching-sides">Team sides are being switched for this duel!</alert>
+    <!-- Fighting phase broadcasts -->
+    <alert after="5m5s" filter="kit-default-selected">The DEFAULT kit has been selected for this duel!</alert>
+    <alert after="5m5s" filter="kit-bow-selected">The ARCHER kit has been selected for this duel!</alert>
+    <alert after="5m5s" filter="kit-uhc-selected">The UHC kit has been selected for this duel!</alert>
+    <alert after="5m5s" filter="kit-gold-selected">The GOLD kit has been selected for this duel!</alert>
+    <alert after="5m5s" filter="kit-tnt-selected">The BOMBER kit has been selected for this duel!</alert>
+    <alert after="5m5s" filter="kit-diamond-selected">The DIAMOND kit has been selected for this duel!</alert>
+    <alert after="5m5s" filter="kit-fish-selected">The SLAPPY FISH kit has been selected for this duel!</alert>
+    <alert after="5m15s">Eliminate the other team or capture the central point to win the game!</alert>
+</broadcasts>
+<kits>
+    <kit id="building-kit">
+        <item slot="0" amount="64" material="smooth brick"         lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
+        <item slot="1" amount="64" material="stained glass"        lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
+        <item slot="2" amount="64" material="wood" damage="1"      lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
+        <item slot="3" amount="64" material="spruce wood stairs"   lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
+        <item slot="4" amount="64" material="wood step" damage="1" lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
+        <item slot="5" amount="64" material="spruce fence"         lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
+        <item slot="6" amount="64" material="ladder"               lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
+        <item slot="7" amount="4"  material="web" />
+        <item slot="8"             material="diamond pickaxe" locked="true" name="`r`bMagic Pickaxe" unbreakable="true" />
+        <chestplate                material="gold nugget"     locked="true" name="`rmagic_multitool.pickaxe" />
+        <effect duration="oo" amplifier="127">fast digging</effect>
+        <game-mode>adventure</game-mode>
+        <fly flying="true" />
+    </kit>
+    <kit id="renewable-kit">
+        <item amount="64" material="smooth brick"         lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
+        <item amount="64" material="stained glass"        lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
+        <item amount="64" material="wood" damage="1"      lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
+        <item amount="64" material="spruce wood stairs"   lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
+        <item amount="64" material="wood step" damage="1" lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
+        <item amount="64" material="spruce fence"         lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
+        <item amount="64" material="ladder"               lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
+    </kit>
+    <kit id="multitool-pickaxe" force="true">
+        <item slot="8" material="diamond pickaxe" locked="true" name="`r`bMagic Pickaxe" unbreakable="true" />
+        <chestplate    material="gold nugget"     locked="true" name="`rmagic_multitool.pickaxe" />
+    </kit>
+    <kit id="multitool-axe" force="true">
+        <item slot="8" material="diamond axe"     locked="true" name="`r`bMagic Axe" unbreakable="true" />
+        <chestplate    material="gold nugget"     locked="true" name="`rmagic_multitool.axe" />
+    </kit>
+    <kit id="multitool-shears" force="true">
+        <item slot="8" material="shears"          locked="true" name="`r`bMagic Shears" unbreakable="true" />
+        <chestplate    material="gold nugget"     locked="true" name="`rmagic_multitool.shears" />
+    </kit>
+    <kit id="force-fly" force="true">
+        <fly flying="true" />
+    </kit>
+    <give kit="remove-fly" filter="remove-flight" />
+    <kit id="remove-fly" force="true">
+        <fly can-fly="false" />
+    </kit>
+    <give kit="clear-items" filter="testing-phase" />
+    <give kit="clear-items" filter="remove-random-token" />
+    <kit id="clear-items" force="true">
+        <clear />
+        <effect duration="0" amplifier="127">fast digging</effect>
+    </kit>
+    <!-- Kit that randomly gives a specific player two items which decide the arenas and duel kits -->
+    <kit id="random-kit">
+        <any count="1" unique="true">
+            <item slot="9" material="stained clay" damage="11" />
+            <item slot="9" material="stained clay" damage="14" />
+        </any>
+        <any count="1" unique="true">
+            <option weight="0.25">
+                <item slot="10" material="stone sword" />
+            </option>
+            <option weight="0.20">
+                <item slot="10" material="bow" />
+            </option>
+            <option weight="0.15">
+                <item slot="10" material="wood sword" />
+            </option>
+            <option weight="0.15">
+                <item slot="10" material="gold sword" />
+            </option>
+            <option weight="0.10">
+                <item slot="10" material="tnt" />
+            </option>
+            <option weight="0.10">
+                <item slot="10" material="diamond sword" />
+            </option>
+            <option weight="0.05">
+                <item slot="10" material="raw fish" />
+            </option>
+        </any>
+    </kit>
+    <!-- Team specific duel gear -->
+    <give kit="red-duel-gear" filter="apply-red-gear" />
+    <kit id="red-duel-gear">
+        <helmet     color="993333" material="leather helmet"     unbreakable="true" />
+        <chestplate color="993333" material="leather chestplate" unbreakable="true" />
+        <leggings   color="993333" material="leather leggings"   unbreakable="true" />
+        <boots      color="993333" material="leather boots"      unbreakable="true" />
+    </kit>
+    <give kit="blue-duel-gear" filter="apply-blue-gear" />
+    <kit id="blue-duel-gear">
+        <helmet     color="334cb2" material="leather helmet"     unbreakable="true" />
+        <chestplate color="334cb2" material="leather chestplate" unbreakable="true" />
+        <leggings   color="334cb2" material="leather leggings"   unbreakable="true" />
+        <boots      color="334cb2" material="leather boots"      unbreakable="true" />
+    </kit>
+    <!-- Possible duel kits -->
+    <!-- 25% chance -->
+    <give kit="default-kit" filter="apply-kit-default" />
+    <kit id="default-kit" force="true">
+        <item slot="0"             material="stone sword" unbreakable="true" />
+        <item slot="1"             material="bow"         unbreakable="true" />
+        <item slot="2" amount="48" material="arrow" />
+        <item slot="8" amount="2"  material="golden apple" />
+        <chestplate                material="gold chestplate" unbreakable="true" />
+        <boots                     material="iron boots"      unbreakable="true" />
+    </kit>
+    <!-- 20% chance -->
+    <give kit="bow-kit" filter="apply-kit-bow" />
+    <kit id="bow-kit" force="true">
+        <item slot="0" material="bow" unbreakable="true">
+            <enchantment>power</enchantment>
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="1"            material="arrow" />
+        <item slot="7"            material="potion" potion="swiftness" />
+        <item slot="8" amount="2" material="golden apple" />
+        <chestplate               material="chainmail chestplate" unbreakable="true" />
+        <boots                    material="gold boots"           unbreakable="true" />
+    </kit>
+    <!-- 15% chance -->
+    <give kit="uhc-kit" filter="apply-kit-uhc" />
+    <kit id="uhc-kit" force="true">
+        <item slot="0"             material="wood sword" unbreakable="true" />
+        <item slot="1"             material="bow"        unbreakable="true" />
+        <item slot="2" amount="16" material="arrow" />
+        <item slot="6"             material="potion" potion="healing" />
+        <item slot="7"             material="potion" potion="healing" />
+        <item slot="8"             material="potion" potion="healing" />
+        <chestplate                material="iron chestplate" unbreakable="true">
+            <enchantment>protection</enchantment>
+        </chestplate>
+        <boots                     material="gold boots"      unbreakable="true" />
+        <foodlevel>16</foodlevel>
+    </kit>
+    <!-- 15% chance -->
+    <give kit="gold-kit" filter="apply-kit-gold" />
+    <kit id="gold-kit" force="true">
+        <item slot="0"             material="gold sword" unbreakable="true" />
+        <item slot="1"             material="bow"        unbreakable="true" />
+        <item slot="2" amount="48" material="arrow" />
+        <item slot="8" amount="2"  material="golden apple" />
+        <helmet                    material="gold helmet"     unbreakable="true" />
+        <chestplate                material="gold chestplate" unbreakable="true">
+            <enchantment>protection</enchantment>
+        </chestplate>
+        <leggings                  material="gold leggings"   unbreakable="true" />
+        <boots                     material="gold boots"      unbreakable="true" />
+    </kit>
+    <!-- 10% chance -->
+    <give kit="tnt-kit" filter="apply-kit-tnt" />
+    <kit id="tnt-kit" force="true">
+        <item slot="0"              material="iron pickaxe" unbreakable="true" />
+        <item slot="1"  amount="16" material="snow ball" />
+        <item slot="2"  amount="64" material="quartz block" />
+        <item slot="3"              material="water bucket" />
+        <item slot="4"  amount="6"  material="stone button" />
+        <item slot="5"  amount="16" material="redstone" />
+        <item slot="6"  amount="16" material="nether fence" />
+        <item slot="7"  amount="48" material="tnt" />
+        <item slot="8"  amount="2"  material="golden apple" />
+        <item slot="22" amount="6"  material="stone plate" />
+        <item slot="29" amount="16" material="step" damage="7" />
+        <item slot="30"             material="water bucket" />
+        <item slot="31" amount="6"  material="lever" />
+        <chestplate                 material="gold chestplate" unbreakable="true">
+            <enchantment>protection explosions</enchantment>
+        </chestplate>
+        <boots                      material="diamond boots" unbreakable="true" />
+        <game-mode>survival</game-mode>
+    </kit>
+    <!-- 10% chance -->
+    <give kit="diamond-kit" filter="apply-kit-diamond" />
+    <kit id="diamond-kit" force="true">
+        <item slot="0"             material="diamond sword" unbreakable="true" />
+        <item slot="1"             material="bow"           unbreakable="true">
+            <enchantment level="3">power</enchantment>
+        </item>
+        <item slot="2" amount="48" material="arrow" />
+        <item slot="8" amount="2"  material="golden apple" />
+        <helmet                    material="diamond helmet"     unbreakable="true" />
+        <chestplate                material="diamond chestplate" unbreakable="true" />
+        <leggings                  material="diamond leggings"   unbreakable="true" />
+        <boots                     material="diamond boots"      unbreakable="true" />
+    </kit>
+    <!-- 5% chance -->
+    <give kit="fish-kit" filter="apply-kit-fish" />
+    <kit id="fish-kit" force="true">
+        <item slot="0" material="raw fish">
+            <enchantment level="4">sharpness</enchantment>
+        </item>
+        <item slot="8" amount="2" material="golden apple" />
+        <helmet material="air" />
+        <leggings material="air" />
+    </kit>
+    <!-- Give team negative effect if they don't complete their arena -->
+    <give kit="penalty-kit" filter="apply-penalty-kit" />
+    <kit id="penalty-kit" force="true">
+        <effect duration="4">nausea</effect>
+        <effect duration="16">weakness</effect>
+    </kit>
+    <give kit="glowing-kit" filter="enable-glow" />
+    <kit id="glowing-kit">
+        <effect duration="oo">glowing</effect>
+    </kit>
+</kits>
+<item-mods>
+    <rule>
+        <match>
+            <all-blocks/>
+        </match>
+        <modify show-can-destroy="false" show-can-place-on="false">
+            <can-destroy>
+                <material>smooth brick</material>
+                <material>stained glass:0</material>
+                <material>wood:1</material>
+                <material>spruce wood stairs</material>
+                <material>wood step</material>
+                <material>wood double step</material>
+                <material>spruce fence</material>
+                <material>ladder</material>
+                <material>web</material>
+                <material>gravel</material>
+            </can-destroy>
+            <can-place-on>
+                <all-blocks />
+            </can-place-on>
+        </modify>
+    </rule>
+    <rule>
+        <match>
+            <material>diamond pickaxe</material>
+            <material>diamond axe</material>
+            <material>diamond spade</material>
+            <material>shears</material>
+        </match>
+        <modify show-can-destroy="false" show-attributes="false" show-unbreakable="false">
+            <can-destroy>
+                <material>smooth brick</material>
+                <material>stained glass:0</material>
+                <material>wood:1</material>
+                <material>spruce wood stairs</material>
+                <material>wood step</material>
+                <material>wood double step</material>
+                <material>spruce fence</material>
+                <material>ladder</material>
+                <material>web</material>
+                <material>gravel</material>
+            </can-destroy>
+        </modify>
+    </rule>
+</item-mods>
+<kill-rewards>
+    <kill-reward>
+        <item amount="12" material="arrow" />
+        <item             material="golden apple" />
+        <filter>
+            <any>
+                <filter id="apply-kit-default" />
+                <filter id="apply-kit-gold" />
+                <filter id="apply-kit-diamond" />
+            </any>
+        </filter>
+    </kill-reward>
+    <kill-reward>
+        <item material="golden apple" />
+        <filter>
+            <any>
+                <filter id="apply-kit-bow" />
+            </any>
+        </filter>
+    </kill-reward>
+    <kill-reward>
+        <item amount="4" material="arrow" />
+        <item            material="potion" potion="healing" />
+        <filter>
+            <any>
+                <filter id="apply-kit-uhc" />
+            </any>
+        </filter>
+    </kill-reward>
+    <kill-reward>
+        <item amount="8"  material="snow ball" />
+        <item amount="12" material="quartz block" />
+        <item amount="2"  material="redstone" />
+        <item amount="2"  material="stone plate" />
+        <item amount="2"  material="stone button" />
+        <item amount="2"  material="lever" />
+        <item amount="6"  material="nether fence" />
+        <item amount="6"  material="step" damage="7" />
+        <item amount="12" material="tnt" />
+        <item             material="golden apple" />
+        <filter>
+            <any>
+                <filter id="apply-kit-tnt" />
+            </any>
+        </filter>
+    </kill-reward>
+</kill-rewards>
+<filters>
+    <team id="only-red">red-team</team>
+    <all  id="only-red-during-testing">
+        <filter id="only-red" />
+        <filter id="testing-phase" />
+    </all>
+    <team id="only-blue">blue-team</team>
+    <all  id="only-blue-during-testing">
+        <filter id="only-blue" />
+        <filter id="testing-phase" />
+    </all>
+    <!-- Phase time periods -->
+    <not id="not-building-phase">
+        <countdown id="building-phase" duration="4m" message="Building phase ends in {0}">
+            <all>
+                <match-running />
+                <time>0s</time>
+                <not>
+                    <time>4m</time>
+                </not>
+            </all>
+        </countdown>
+    </not>
+    <all id="testing-phase">
+        <participating />
+        <countdown duration="1m" message="Reach the central island in {0}">
+            <all>
+                <match-running />
+                <time>4m</time>
+                <not>
+                    <time>5m</time>
+                </not>
+            </all>
+        </countdown>
+    </all>
+    <countdown id="fighting-countdown" duration="5s" message="The duel will begin in {0}">
+        <all>
+            <match-running />
+            <time>5m</time>
+            <not>
+                <time>5m5s</time>
+            </not>
+        </all>
+    </countdown>
+    <time id="fighting-phase">5m5s</time>
+    <all id="enable-glow">
+        <participating />
+        <countdown duration="30s" message="All players will glow in {0}">
+            <all>
+                <match-running />
+                <time>10m</time>
+            </all>
+        </countdown>
+    </all>
+    <countdown id="ending-countdown" duration="1m" message="The team with the most players will win in {0}">
+        <all>
+            <match-running />
+            <time>12m</time>
+        </all>
+    </countdown>
+    <all id="remove-flight">
+        <match-running />
+        <participating />
+        <filter id="testing-phase" />
+    </all>
+    <!-- Check if teams have completed their arena -->
+    <any id="save-red-team">
+        <all>
+            <countdown duration="0.5s">
+                <objective team="red-team">red-arena-complete</objective>
+            </countdown>
+            <filter id="only-red" />
+        </all>
+        <all>
+            <filter id="fighting-countdown" />
+            <not>
+                <objective team="red-team">red-arena-complete</objective>
+            </not>
+            <filter id="only-red" />
+        </all>
+    </any>
+    <any id="save-blue-team">
+        <all>
+            <countdown duration="0.5s">
+                <objective team="blue-team">blue-arena-complete</objective>
+            </countdown>
+            <filter id="only-blue" />
+        </all>
+        <all>
+            <filter id="fighting-countdown" />
+            <not>
+                <objective team="blue-team">blue-arena-complete</objective>
+            </not>
+            <filter id="only-blue" />
+        </all>
+    </any>
+    <all id="give-random-kit">
+        <match-running />
+        <participating />
+        <filter id="testing-phase" />
+        <not>
+            <any>
+                <objective team="red-team">red-pick-red</objective>
+                <objective team="red-team">red-pick-blue</objective>
+                <objective team="blue-team">blue-pick-red</objective>
+                <objective team="blue-team">blue-pick-blue</objective>
+            </any>
+        </not>
+    </all>
+    <!-- Filter blocks which can be manipulated during the building phase -->
+    <any id="building-blocks">
+        <material>smooth brick</material>
+        <material>stained glass:0</material>
+        <material>wood:1</material>
+        <material>spruce wood stairs</material>
+        <material>wood step</material>
+        <material>wood double step</material>
+        <material>spruce fence</material>
+        <material>ladder</material>
+        <material>web</material>
+        <material>gravel</material>
+    </any>
+    <any id="allowed-building-blocks">
+        <all>
+            <filter id="building-phase" />
+            <filter id="building-blocks" />
+            <void />
+        </all>
+        <all>
+            <filter id="fighting-phase" />
+            <filter id="kit-tnt-selected" />
+            <void />
+            <any>
+                <filter id="building-blocks" />
+                <filter id="restricted-area-whitelist" />
+                <material>quartz block</material>
+                <material>nether fence</material>
+                <material>step:7</material>
+                <material>double step:7</material>
+            </any>
+        </all>
+    </any>
+    <!-- Allow certain blocks near the top of the arena -->
+    <any id="restricted-area-whitelist">
+        <material>web</material>
+        <material>tnt</material>
+        <material>redstone wire</material>
+        <material>stone button</material>
+        <material>stone plate</material>
+        <material>lever</material>
+        <material>water</material>
+        <material>stationary water</material>
+    </any>
+    <!-- Check if player is holding a random colour token -->
+    <all id="red-holding-red">
+        <filter id="only-red" />
+        <carrying>
+            <item material="stained clay" damage="14" />
+        </carrying>
+    </all>
+    <all id="red-holding-blue">
+        <filter id="only-red" />
+        <carrying>
+            <item material="stained clay" damage="11" />
+        </carrying>
+    </all>
+    <all id="blue-holding-red">
+        <filter id="only-blue" />
+        <carrying>
+            <item material="stained clay" damage="14" />
+        </carrying>
+    </all>
+    <all id="blue-holding-blue">
+        <filter id="only-blue" />
+        <carrying>
+            <item material="stained clay" damage="11" />
+        </carrying>
+    </all>
+    <!-- Remove token once teams have been decided -->
+    <countdown id="remove-random-token" duration="0.1s">
+        <any>
+            <objective team="red-team">red-pick-red</objective>
+            <objective team="red-team">red-pick-blue</objective>
+            <objective team="blue-team">blue-pick-red</objective>
+            <objective team="blue-team">blue-pick-blue</objective>
+        </any>
+    </countdown>
+    <!-- Decide team sides -->
+    <all id="allow-red-own-red">
+        <filter id="only-red" />
+        <filter id="fighting-countdown" />
+        <any>
+            <objective team="red-team">red-pick-red</objective>
+            <not>
+                <objective team="red-team">red-arena-complete</objective>
+            </not>
+            <all>
+                <objective team="red-team">red-pick-blue</objective>
+                <not>
+                    <objective team="blue-team">blue-arena-complete</objective>
+                </not>
+            </all>
+            <all>
+                <objective team="blue-team">blue-pick-blue</objective>
+                <objective team="red-team">red-arena-complete</objective>
+                <objective team="blue-team">blue-arena-complete</objective>
+            </all>
+        </any>
+    </all>
+    <all id="allow-red-own-blue">
+        <filter id="only-red" />
+        <filter id="fighting-countdown" />
+        <any>
+            <objective team="red-team">red-pick-blue</objective>
+            <objective team="blue-team">blue-pick-red</objective>
+        </any>
+        <objective team="red-team">red-arena-complete</objective>
+        <objective team="blue-team">blue-arena-complete</objective>
+    </all>
+    <all id="allow-blue-own-red">
+        <filter id="only-blue" />
+        <filter id="fighting-countdown" />
+        <any>
+            <objective team="red-team">red-pick-blue</objective>
+            <objective team="blue-team">blue-pick-red</objective>
+        </any>
+        <objective team="red-team">red-arena-complete</objective>
+        <objective team="blue-team">blue-arena-complete</objective>
+    </all>
+    <all id="allow-blue-own-blue">
+        <filter id="only-blue" />
+        <filter id="fighting-countdown" />
+        <any>
+            <objective team="blue-team">blue-pick-blue</objective>
+            <not>
+                <objective team="blue-team">blue-arena-complete</objective>
+            </not>
+            <all>
+                <objective team="blue-team">blue-pick-red</objective>
+                <not>
+                    <objective team="red-team">red-arena-complete</objective>
+                </not>
+            </all>
+            <all>
+                <objective team="red-team">red-pick-red</objective>
+                <objective team="red-team">red-arena-complete</objective>
+                <objective team="blue-team">blue-arena-complete</objective>
+            </all>
+        </any>
+    </all>
+    <!-- Apply duel gear during fight phase -->
+    <all id="apply-red-gear">
+        <filter id="only-red" />
+        <filter id="fighting-countdown" />
+    </all>
+    <all id="apply-blue-gear">
+        <filter id="only-blue" />
+        <filter id="fighting-countdown" />
+    </all>
+    <!-- Decide on duel kit -->
+    <all id="pick-kit-default">
+        <filter id="testing-phase" />
+        <carrying>
+            <item material="stone sword" />
+        </carrying>
+        <not>
+            <any>
+                <filter id="kit-bow-selected" />
+                <filter id="kit-uhc-selected" />
+                <filter id="kit-gold-selected" />
+                <filter id="kit-tnt-selected" />
+                <filter id="kit-diamond-selected" />
+                <filter id="kit-fish-selected" />
+            </any>
+        </not>
+    </all>
+    <any id="apply-kit-default">
+        <all>
+            <match-running />
+            <participating />
+            <filter id="fighting-phase" />
+            <objective id="kit-default-selected" any="true">kit-default</objective>
+        </all>
+        <all>
+            <match-running />
+            <participating />
+            <filter id="fighting-phase" />
+            <filter id="red-failed-red" />
+            <filter id="blue-failed-blue" />
+        </all>
+    </any>
+    <all id="pick-kit-bow">
+        <filter id="testing-phase" />
+        <carrying>
+            <item material="bow" />
+        </carrying>
+        <not>
+            <any>
+                <filter id="kit-default-selected" />
+                <filter id="kit-uhc-selected" />
+                <filter id="kit-gold-selected" />
+                <filter id="kit-tnt-selected" />
+                <filter id="kit-diamond-selected" />
+                <filter id="kit-fish-selected" />
+            </any>
+        </not>
+    </all>
+    <all id="apply-kit-bow">
+        <match-running />
+        <participating />
+        <filter id="fighting-phase" />
+        <objective id="kit-bow-selected" any="true">kit-bow</objective>
+    </all>
+    <all id="pick-kit-uhc">
+        <filter id="testing-phase" />
+        <carrying>
+            <item material="wood sword" />
+        </carrying>
+        <not>
+            <any>
+                <filter id="kit-default-selected" />
+                <filter id="kit-bow-selected" />
+                <filter id="kit-gold-selected" />
+                <filter id="kit-tnt-selected" />
+                <filter id="kit-diamond-selected" />
+                <filter id="kit-fish-selected" />
+            </any>
+        </not>
+    </all>
+    <all id="apply-kit-uhc">
+        <match-running />
+        <participating />
+        <filter id="fighting-phase" />
+        <objective id="kit-uhc-selected" any="true">kit-uhc</objective>
+    </all>
+    <all id="pick-kit-gold">
+        <filter id="testing-phase" />
+        <carrying>
+            <item material="gold sword" />
+        </carrying>
+        <not>
+            <any>
+                <filter id="kit-default-selected" />
+                <filter id="kit-bow-selected" />
+                <filter id="kit-uhc-selected" />
+                <filter id="kit-tnt-selected" />
+                <filter id="kit-diamond-selected" />
+                <filter id="kit-fish-selected" />
+            </any>
+        </not>
+    </all>
+    <all id="apply-kit-gold">
+        <match-running />
+        <participating />
+        <filter id="fighting-phase" />
+        <objective id="kit-gold-selected" any="true">kit-gold</objective>
+    </all>
+    <all id="pick-kit-tnt">
+        <filter id="testing-phase" />
+        <carrying>
+            <item material="tnt" />
+        </carrying>
+    </all>
+    <all id="apply-kit-tnt">
+        <match-running />
+        <participating />
+        <filter id="fighting-phase" />
+        <objective id="kit-tnt-selected" any="true">kit-tnt</objective>
+    </all>
+    <all id="pick-kit-diamond">
+        <filter id="testing-phase" />
+        <carrying>
+            <item material="diamond sword" />
+        </carrying>
+        <not>
+            <any>
+                <filter id="kit-default-selected" />
+                <filter id="kit-bow-selected" />
+                <filter id="kit-uhc-selected" />
+                <filter id="kit-gold-selected" />
+                <filter id="kit-tnt-selected" />
+                <filter id="kit-fish-selected" />
+            </any>
+        </not>
+    </all>
+    <all id="apply-kit-diamond">
+        <match-running />
+        <participating />
+        <filter id="fighting-phase" />
+        <objective id="kit-diamond-selected" any="true">kit-diamond</objective>
+    </all>
+    <all id="pick-kit-fish">
+        <filter id="testing-phase" />
+        <carrying>
+            <item material="raw fish" />
+        </carrying>
+        <not>
+            <any>
+                <filter id="kit-default-selected" />
+                <filter id="kit-bow-selected" />
+                <filter id="kit-uhc-selected" />
+                <filter id="kit-gold-selected" />
+                <filter id="kit-tnt-selected" />
+                <filter id="kit-diamond-selected" />
+            </any>
+        </not>
+    </all>
+    <all id="apply-kit-fish">
+        <match-running />
+        <participating />
+        <filter id="fighting-phase" />
+        <objective id="kit-fish-selected" any="true">kit-fish</objective>
+    </all>
+    <!-- Apply a penalty kit if teams don't complete their arena -->
+    <any id="apply-penalty-kit">
+        <all>
+            <match-running />
+            <participating />
+            <filter id="only-red" />
+            <filter id="fighting-phase" />
+            <not>
+                <objective team="red-team">red-arena-complete</objective>
+            </not>
+        </all>
+        <all>
+            <match-running />
+            <participating />
+            <filter id="only-blue" />
+            <filter id="fighting-phase" />
+            <not>
+                <objective team="blue-team">blue-arena-complete</objective>
+            </not>
+        </all>
+    </any>
+    <!-- Send teams to chosen arena side -->
+    <all id="teams-switching-sides">
+        <any>
+            <objective team="red-team">red-pick-blue</objective>
+            <objective team="blue-team">blue-pick-red</objective>
+        </any>
+        <objective team="red-team">red-arena-complete</objective>
+        <objective team="blue-team">blue-arena-complete</objective>
+    </all>
+    <all id="send-red-to-red">
+        <filter id="only-red" />
+        <filter id="fighting-phase" />
+        <any>
+            <all>
+                <any>
+                    <objective team="red-team">red-pick-red</objective>
+                    <objective team="blue-team">blue-pick-blue</objective>
+                </any>
+                <objective team="red-team">red-arena-complete</objective>
+                <objective team="blue-team">blue-arena-complete</objective>
+            </all>
+            <not id="red-failed-red">
+                <objective team="red-team">red-arena-complete</objective>
+            </not>
+            <filter id="blue-failed-blue" />
+            <all>
+                <objective team="red-team">red-pick-blue</objective>
+                <not>
+                    <objective team="blue-team">blue-arena-complete</objective>
+                </not>
+            </all>
+        </any>
+    </all>
+    <all id="send-red-to-blue">
+        <filter id="only-red" />
+        <filter id="fighting-phase" />
+        <filter id="teams-switching-sides" />
+    </all>
+    <all id="send-blue-to-red">
+        <filter id="only-blue" />
+        <filter id="fighting-phase" />
+        <filter id="teams-switching-sides" />
+    </all>
+    <all id="send-blue-to-blue">
+        <filter id="only-blue" />
+        <filter id="fighting-phase" />
+        <any>
+            <all>
+                <any>
+                    <objective team="red-team">red-pick-red</objective>
+                    <objective team="blue-team">blue-pick-blue</objective>
+                </any>
+                <objective team="red-team">red-arena-complete</objective>
+                <objective team="blue-team">blue-arena-complete</objective>
+            </all>
+            <not id="blue-failed-blue">
+                <objective team="blue-team">blue-arena-complete</objective>
+            </not>
+            <filter id="red-failed-red" />
+            <all>
+                <objective team="blue-team">blue-pick-red</objective>
+                <not>
+                    <objective team="red-team">red-arena-complete</objective>
+                </not>
+            </all>
+        </any>
+    </all>
+</filters>
+<regions>
+    <block    id="default-spawn">0.5,13,-22.5</block>
+    <block    id="red-spawn">-37.5,9,1.5</block>
+    <block    id="red-safe-spawn">-39.5,15,1.5</block>
+    <cylinder id="red-safe-net" base="-39.5,14,1.5" radius="3" height="1" />
+    <block    id="blue-spawn">38.5,9,1.5</block>
+    <block    id="blue-safe-spawn">40.5,15,1.5</block>
+    <cylinder id="blue-safe-net" base="40.5,14,1.5" radius="3" height="1" />
+    <cuboid   id="central-wall" min="-1,0,-18" max="2,18,21" />
+    <cylinder id="central-point" base="0.5,8,1.5" radius="1" height="12" />
+    <cylinder id="central-hill"  base="0.5,8,1.5" radius="2.8" height="12" />
+    <union    id="whole-arena">
+        <cuboid id="red-side" min="-0,0,29" max="-43,20,-25" />
+        <cuboid id="blue-side" min="1,0,29" max="44,20,-25" />
+    </union>
+    <above id="restrict-building" y="15" />
+    <below id="deny-building"     y="3" />
+    <below id="prevent-movement"  y="1" />
+    <below id="deny-movement"     y="0" />
+    <apply region="restrict-building" block="restricted-area-whitelist" message="You may not interact with that block here" />
+    <apply region="deny-building"     block="never"                     message="You may not interact with that block here" />
+    <apply                            block="allowed-building-blocks" />
+    <apply region="deny-movement"     enter="not-building-phase"        message="You may not exit the bottom of the arena" />
+    <apply region="prevent-movement"  kit="force-fly"     filter="building-phase" />
+    <apply region="red-spawn"         kit="renewable-kit" filter="building-phase" />
+    <apply region="blue-spawn"        kit="renewable-kit" filter="building-phase" />
+    <apply region="red-safe-net"      kit="random-kit"    filter="give-random-kit" />
+    <apply region="blue-safe-net"     kit="random-kit"    filter="give-random-kit" />
+</regions>
+<portals observers="never">
+    <!-- Teleport teams back to their spawn for arena testing -->
+    <portal forward="testing-phase" destination="red-spawn"  yaw="@-90" filter="only-red" />
+    <portal forward="testing-phase" destination="blue-spawn" yaw="@90"  filter="only-blue" />
+    <!-- Return players to their spawn if they fall during testing -->
+    <portal region="deny-movement" destination="red-spawn"  yaw="@-90" filter="only-red-during-testing" />
+    <portal region="deny-movement" destination="blue-spawn" yaw="@90"  filter="only-blue-during-testing" />
+    <!-- Teleport teams to safe zone once their arena is completed -->
+    <portal forward="save-red-team"  destination="red-safe-spawn"  yaw="@-90" filter="only-red" />
+    <portal forward="save-blue-team" destination="blue-safe-spawn" yaw="@90"  filter="only-blue" />
+    <!-- Teleport teams to chosen area -->
+    <portal forward="send-red-to-red"   destination="red-spawn"  yaw="@-90" />
+    <portal forward="send-red-to-blue"  destination="blue-spawn" yaw="@90" />
+    <portal forward="send-blue-to-red"  destination="red-spawn"  yaw="@-90" />
+    <portal forward="send-blue-to-blue" destination="blue-spawn" yaw="@90" />
+</portals>
+<structures>
+    <structure id="red-fallback-arena" air="true">
+        <region>
+            <cuboid min="-32,4,20" size="30,12,-38" />
+        </region>
+    </structure>
+    <structure id="blue-fallback-arena" air="true">
+        <region>
+            <cuboid min="33,4,-17" size="-30,12,38" />
+        </region>
+    </structure>
+    <dynamic structure="red-fallback-arena"  filter="red-failed-red"   trigger="fighting-phase" />
+    <dynamic structure="blue-fallback-arena" filter="blue-failed-blue" trigger="fighting-phase" />
+</structures>
+<block-drops>
+    <!-- Give player a pickaxe when they punch pickaxe related blocks -->
+    <rule punch="true" kit="multitool-pickaxe">
+        <filter>
+            <all>
+                <any>
+                    <cause>punch</cause>
+                    <cause>mine</cause>
+                </any>
+                <any>
+                    <material>smooth brick</material>
+                </any>
+                <not>
+                    <wearing>
+                        <item material="gold nugget" name="`rmagic_multitool.pickaxe" />
+                    </wearing>
+                </not>
+                <filter id="building-phase" />
+            </all>
+        </filter>
+    </rule>
+    <!-- Give player an axe when they punch axe related blocks -->
+    <rule punch="true" kit="multitool-axe">
+        <filter>
+            <all>
+                <any>
+                    <cause>punch</cause>
+                    <cause>mine</cause>
+                </any>
+                <any>
+                    <material>wood</material>
+                    <material>spruce fence</material>
+                    <material>spruce wood stairs</material>
+                    <material>wood step</material>
+                    <material>wood double step</material>
+                    <material>ladder</material>
+                </any>
+                <not>
+                    <wearing>
+                        <item material="gold nugget" name="`rmagic_multitool.axe" />
+                    </wearing>
+                </not>
+                <filter id="building-phase" />
+            </all>
+        </filter>
+    </rule>
+    <!-- Give player a shears when they punch shear related blocks -->
+    <rule punch="true" kit="multitool-shears">
+        <filter>
+            <all>
+                <any>
+                    <cause>punch</cause>
+                    <cause>mine</cause>
+                </any>
+                <any>
+                    <material>web</material>
+                </any>
+                <not>
+                    <wearing>
+                        <item material="gold nugget" name="`rmagic_multitool.shears" />
+                    </wearing>
+                </not>
+                <filter id="building-phase" />
+            </all>
+        </filter>
+    </rule>
+</block-drops>
+<control-points show="false" required="false" capture-time="0s" permanent="true" >
+    <control-point id="central-win" name="Central Point" capture="central-hill" captured="whole-arena" capture-rule="majority" player-filter="fighting-phase" show="true" required="true" capture-time="60s" />
+    <!-- Points to check arena complete -->
+    <control-point id="red-arena-complete"  name="red-arena-complete"  capture="central-point" capture-filter="testing-phase" player-filter="only-red"/>
+    <control-point id="blue-arena-complete" name="blue-arena-complete" capture="central-point" capture-filter="testing-phase" player-filter="only-blue" />
+    <!-- Decide on the duel kit being used -->
+    <control-point id="kit-default" name="kit-default" capture="everywhere" capture-filter="give-random-kit" player-filter="pick-kit-default" />
+    <control-point id="kit-bow"     name="kit-bow"     capture="everywhere" capture-filter="give-random-kit" player-filter="pick-kit-bow" />
+    <control-point id="kit-uhc"     name="kit-uhc"     capture="everywhere" capture-filter="give-random-kit" player-filter="pick-kit-uhc" />
+    <control-point id="kit-gold"    name="kit-gold"    capture="everywhere" capture-filter="give-random-kit" player-filter="pick-kit-gold" />
+    <control-point id="kit-tnt"     name="kit-tnt"     capture="everywhere" capture-filter="give-random-kit" player-filter="pick-kit-tnt" />
+    <control-point id="kit-diamond" name="kit-diamond" capture="everywhere" capture-filter="give-random-kit" player-filter="pick-kit-diamond" />
+    <control-point id="kit-fish"    name="kit-fish"    capture="everywhere" capture-filter="give-random-kit" player-filter="pick-kit-fish" />
+    <!-- Points to pick sides -->
+    <control-point id="red-pick-red"   name="red-pick-red"   capture="everywhere" capture-filter="give-random-kit" player-filter="red-holding-red" />
+    <control-point id="red-pick-blue"  name="red-pick-blue"  capture="everywhere" capture-filter="give-random-kit" player-filter="red-holding-blue" />
+    <control-point id="blue-pick-red"  name="blue-pick-red"  capture="everywhere" capture-filter="give-random-kit" player-filter="blue-holding-red" />
+    <control-point id="blue-pick-blue" name="blue-pick-blue" capture="everywhere" capture-filter="give-random-kit" player-filter="blue-holding-blue" />
+    <!-- Change sides to team color -->
+    <control-point id="red-own-red"   name=" " capture="everywhere" captured="red-side"  player-filter="allow-red-own-red" />
+    <control-point id="red-own-blue"  name=" " capture="everywhere" captured="blue-side" player-filter="allow-red-own-blue" />
+    <control-point id="blue-own-red"  name=" " capture="everywhere" captured="red-side"  player-filter="allow-blue-own-red" />
+    <control-point id="blue-own-blue" name=" " capture="everywhere" captured="blue-side" player-filter="allow-blue-own-blue" />
+</control-points>
+<destroyables show="false" required="false" mode-changes="true">
+    <destroyable id="arena-wall" name="arena-wall" region="central-wall" materials="stone:3;stone:4;stone:5" owner="red-team" />
+</destroyables>
+<modes>
+    <mode after="5m" material="air" show-before="0s" name="Removing dividing wall" />
+</modes>
+<damage>
+    <deny>
+        <not>
+            <all>
+                <void />
+                <filter id="fighting-phase" />
+            </all>
+        </not>
+    </deny>
+</damage>
+<itemremove>
+    <item>smooth brick</item>
+    <item>stained glass:0</item>
+    <item>wood:1</item>
+    <item>spruce wood stairs</item>
+    <item>wood step:1</item>
+    <item>spruce fence:1</item>
+    <item>ladder</item>
+    <item>web</item>
+    <item>string</item>
+    <item>gravel</item>
+    <item>flint</item>
+    <item>diamond pickaxe</item>
+    <item>diamond spade</item>
+    <item>diamond axe</item>
+    <item>shears</item>
+    <item>bow</item>
+    <item>wood sword</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>stone sword</item>
+    <item>chainmail helmet</item>
+    <item>chainmail chestplate</item>
+    <item>chainmail leggings</item>
+    <item>chainmail boots</item>
+    <item>gold sword</item>
+    <item>gold helmet</item>
+    <item>gold chestplate</item>
+    <item>gold leggings</item>
+    <item>gold boots</item>
+    <item>iron sword</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>diamond sword</item>
+    <item>diamond helmet</item>
+    <item>diamond chestplate</item>
+    <item>diamond leggings</item>
+    <item>diamond boots</item>
+    <item>potion</item>
+    <item>glass bottle</item>
+    <item>iron pickaxe</item>
+    <item>snow ball</item>
+    <item>quartz block</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>stone button</item>
+    <item>redstone</item>
+    <item>nether fence</item>
+    <item>tnt</item>
+    <item>stone plate</item>
+    <item>step</item>
+    <item>lever</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
