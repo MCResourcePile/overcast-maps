@@ -68,7 +68,14 @@
     <item>smooth brick</item>
     <item>string</item>
     <item>iron axe</item>
+    <item>golden apple</item>
+    <item>golden ingot</item>
 </itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item amount="1" material="gold ingot"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>15</maxbuildheight>
 
 <spawns>
