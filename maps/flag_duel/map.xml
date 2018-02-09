@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Flag Duel</name>
+<version>1.0.0</version>
+<objective>Take the flag from the center and capture it behind your opponent's spawn!</objective>
+<authors>
+    <author uuid="61982fa8-f0f9-46d7-977a-47325c9bbd5c" /> <!-- JSBach -->
+</authors>
+<contributors>
+    <contributor uuid="c2848337-b526-4db0-9130-fabd0a5c7cfb" contribution="Provided the MapDev Server"/> <!-- Rasta_Jol -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="10">Blue Team</team>
+    <team id="red" color="dark red" max="10">Red Team</team>
+</teams>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <all id="ladder-allowed">
+        <material>ladder</material>
+    </all>
+    <all id="red-flag-hold">
+        <flag-carried>flag</flag-carried>
+        <team>red</team>
+    </all>
+    <all id="blue-flag-hold">
+        <flag-carried>flag</flag-carried>
+        <team>blue</team>
+    </all>
+</filters>
+<regions>
+    <apply block="never" message="You may not place ladders here!">
+        <region>
+            <region id="flag-nets" />
+            <region id="blue-spawn" />
+            <region id="red-spawn" />
+        </region>
+    </apply>
+    <apply block-physics="never">
+        <everywhere />
+    </apply>
+    <apply block="ladder-allowed">
+        <everywhere />
+    </apply>
+    <union id="flag-nets">
+        <rectangle id="blue-net" min="-17,60" max="18,68" />
+        <rectangle id="red-net" min="18,-59" max="-17,-67" />
+    </union>
+    <union id="red-spawn">
+        <rectangle min="-26,46" max="-32,55" />
+        <rectangle min="27,46" max="33,55" />
+    </union>
+    <union id="blue-spawn">
+        <rectangle min="-26,-45" max="-32,-54" />
+        <rectangle min="27,-45" max="33,-54" />
+    </union>
+    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <cylinder id="red-spawnpoint" base="0.5,36,56.5" radius="2" height="1" />
+    <cylinder id="blue-spawnpoint" base="0.5,36,-55.5" radius="2" height="1" />
+</regions>
+<maxbuildheight>13</maxbuildheight>
+<kits>
+    <kit id="spawn" force="true">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" amount="16">arrow</item>
+        <item slot="3">golden apple</item>
+        <item slot="4">ladder</item>
+        <leggings locked="true" unbreakable="true">chainmail leggings</leggings>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <helmet locked="true" color="0066cc" unbreakable="true">leather helmet</helmet>
+        <boots locked="true" color="0066cc" unbreakable="true">leather boots</boots>
+        <chestplate locked="true" color="0066cc" unbreakable="true">leather chestplate</chestplate>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <helmet locked="true" color="cd0000" unbreakable="true">leather helmet</helmet>
+        <boots locked="true" color="cd0000" unbreakable="true">leather boots</boots>
+        <chestplate locked="true" color="cd0000" unbreakable="true">leather chestplate</chestplate>
+    </kit>
+</kits>
+<respawn delay="6s" auto="false" blackout="true" />    
+<spawns>
+    <spawn team="blue" kit="blue-kit">
+        <regions>
+            <point yaw="0">0.5,36,-55</point>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red-kit">
+        <regions yaw="180">
+            <point yaw="180">0.5,36,56.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <point yaw="-90">-47.5,33,0.5</point>
+        </regions>
+    </default>
+</spawns>    
+<portals>
+    <portal x="@0.5" y="@7" z="@-25.5" yaw="0" filter="blue-flag-hold">
+        <region><cuboid min="5,35,-54" max="6,40,-57"/></region>
+    </portal>
+    <portal x="@0.5" y="@7" z="@26.5" yaw="-180" filter="red-flag-hold">
+        <region><cuboid min="-4,35,55" max="-5,40,58"/></region>
+    </portal>
+    <portal destination="red-spawnpoint" filter="only-red">
+        <region><rectangle min="18,-59" max="-17,-67" /></region>
+    </portal>
+    <portal destination="blue-spawnpoint" filter="only-blue">
+        <region><rectangle min="-17,60" max="18,68" /></region>
+    </portal>
+</portals>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<timelock>on</timelock>
+<itemremove>
+    <item>chainmail leggings</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+</itemremove>
+<score>
+    <limit>3</limit>
+</score>
+<time>15m</time>
+<flags>
+    <flag id="flag" name="Flag" color="black" shared="true">
+        <post recover-time="10s" respawn-time="30s" id="center-post">0.5,8,0.5</post>
+        <net points="1" region="red-net" capture-filter="only-red"/>
+        <net points="1" region="blue-net" capture-filter="only-blue"/>
+    </flag>
+</flags>
+</map>
