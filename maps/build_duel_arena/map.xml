@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Build: Duel Arena</name>
-<version>0.3.5</version>
+<version>0.4.1</version>
 <objective>Build a defensive base then fight the other team!</objective>
 <authors>
      <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" /> <!-- mitchiii_ -->
@@ -33,17 +33,24 @@
     <alert after="5m" filter="blue-failed-blue">Blue team failed to reach the central island and a pre-build structure will be generated instead.</alert>
     <alert after="5m" filter="teams-switching-sides">Team sides are being switched for this duel!</alert>
     <!-- Fighting phase broadcasts -->
-    <alert after="5m5s" filter="kit-default-selected">The DEFAULT kit has been selected for this duel!</alert>
-    <alert after="5m5s" filter="kit-bow-selected">The ARCHER kit has been selected for this duel!</alert>
-    <alert after="5m5s" filter="kit-uhc-selected">The UHC kit has been selected for this duel!</alert>
-    <alert after="5m5s" filter="kit-gold-selected">The GOLD kit has been selected for this duel!</alert>
-    <alert after="5m5s" filter="kit-tnt-selected">The BOMBER kit has been selected for this duel!</alert>
-    <alert after="5m5s" filter="kit-diamond-selected">The DIAMOND kit has been selected for this duel!</alert>
-    <alert after="5m5s" filter="kit-fish-selected">The SLAPPY FISH kit has been selected for this duel!</alert>
+    <alert after="5m5s" filter="kit-default-pre-selected">The DEFAULT kit has been chosen for this duel!</alert>
+    <alert after="5m5s" filter="kit-bow-pre-selected">The ARCHER kit has been chosen for this duel!</alert>
+    <alert after="5m5s" filter="kit-uhc-pre-selected">The UHC kit has been chosen for this duel!</alert>
+    <alert after="5m5s" filter="kit-gold-pre-selected">The GOLD kit has been chosen for this duel!</alert>
+    <alert after="5m5s" filter="kit-tnt-pre-selected">The BOMBER kit has been chosen for this duel!</alert>
+    <alert after="5m5s" filter="kit-diamond-pre-selected">The DIAMOND kit has been chosen for this duel!</alert>
+    <alert after="5m5s" filter="kit-fish-pre-selected">The SLAPPY FISH kit has been chosen for this duel!</alert>
+    <alert after="5m5s" filter="kit-default-selected">The DEFAULT kit has been randomly selected for this duel!</alert>
+    <alert after="5m5s" filter="kit-bow-selected">The ARCHER kit has been randomly selected for this duel!</alert>
+    <alert after="5m5s" filter="kit-uhc-selected">The UHC kit has been randomly selected for this duel!</alert>
+    <alert after="5m5s" filter="kit-gold-selected">The GOLD kit has been randomly selected for this duel!</alert>
+    <alert after="5m5s" filter="kit-tnt-selected">The BOMBER kit has been randomly selected for this duel!</alert>
+    <alert after="5m5s" filter="kit-diamond-selected">The DIAMOND kit has been randomly selected for this duel!</alert>
+    <alert after="5m5s" filter="kit-fish-selected">The SLAPPY FISH kit has been randomly selected for this duel!</alert>
     <alert after="5m15s">Eliminate the other team or capture the central point to win the game!</alert>
 </broadcasts>
 <kits>
-    <kit id="building-kit">
+    <kit id="building-kit" force="true">
         <item slot="0" amount="64" material="smooth brick"         lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
         <item slot="1" amount="64" material="stained glass"        lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
         <item slot="2" amount="64" material="wood" damage="1"      lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
@@ -53,6 +60,7 @@
         <item slot="6" amount="64" material="ladder"               lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
         <item slot="7" amount="4"  material="web" />
         <item slot="8"             material="diamond pickaxe" locked="true" name="`r`bMagic Pickaxe" unbreakable="true" />
+        <item slot="9"             material="air" />
         <chestplate                material="gold nugget"     locked="true" name="`rmagic_multitool.pickaxe" />
         <effect duration="oo" amplifier="127">fast digging</effect>
         <game-mode>adventure</game-mode>
@@ -193,7 +201,7 @@
     <!-- 10% chance -->
     <give kit="tnt-kit" filter="apply-kit-tnt" />
     <kit id="tnt-kit" force="true">
-        <item slot="0"              material="iron pickaxe" unbreakable="true" />
+        <item slot="0"              material="iron pickaxe" unbreakable="true" attributes="generic.attackDamage:add:10" />
         <item slot="1"  amount="16" material="snow ball" />
         <item slot="2"  amount="64" material="quartz block" />
         <item slot="3"              material="water bucket" />
@@ -229,8 +237,9 @@
     <!-- 5% chance -->
     <give kit="fish-kit" filter="apply-kit-fish" />
     <kit id="fish-kit" force="true">
-        <item slot="0" material="raw fish">
+        <item slot="0" material="raw fish" name="`rSlappy Fish">
             <enchantment level="4">sharpness</enchantment>
+            <enchantment level="1">knockback</enchantment>
         </item>
         <item slot="8" amount="2" material="golden apple" />
         <helmet material="air" />
@@ -246,6 +255,22 @@
     <kit id="glowing-kit">
         <effect duration="oo">glowing</effect>
     </kit>
+    <!-- Kit selection items -->
+    <give kit="kit-selection" filter="give-kit-selection-items" />
+    <kit id="kit-selection" parents="clear-items">
+        <item slot="0" material="stone sword"        locked="true" name="`r`bDefault Kit" />
+        <item slot="1" material="bow"                locked="true" name="`r`bArcher Kit" />
+        <item slot="2" material="stained glass pane" locked="true" name="`r`a`lHold a kit item to select that kit!" damage="8" />
+        <item slot="3" material="wood sword"         locked="true" name="`r`cUHC Kit" />
+        <item slot="4" material="gold sword"         locked="true" name="`r`cGold Kit" />
+        <item slot="5" material="diamond sword"      locked="true" name="`r`cDiamond Kit" />
+        <item slot="6" material="stained glass pane" locked="true" name="`r`a`lHold a kit item to select that kit!" damage="8" />
+        <item slot="7" material="tnt"                locked="true" name="`r`5Bomer Kit" />
+        <item slot="8" material="raw fish"           locked="true" name="`r`5Slappy Fish Kit" />
+        <item slot="9" material="nether star"        locked="true" />
+    </kit>
+    <give kit="building-kit" filter="remove-kit-selection-items" />
+    <give kit="building-kit" filter="after-pre-selection" />
 </kits>
 <item-mods>
     <rule>
@@ -470,7 +495,10 @@
         </all>
         <all>
             <filter id="fighting-phase" />
-            <filter id="kit-tnt-selected" />
+            <any>
+                <filter id="kit-tnt-selected" />
+                <filter id="kit-tnt-pre-selected" />
+            </any>
             <void />
             <any>
                 <filter id="building-blocks" />
@@ -599,7 +627,39 @@
         <filter id="only-blue" />
         <filter id="fighting-countdown" />
     </all>
+    <!-- Kit been preselected -->
+    <all id="after-pre-selection">
+        <region id="settings" />
+        <any id="kit-preselected">
+            <filter id="kit-default-pre-selected" />
+            <filter id="kit-bow-pre-selected" />
+            <filter id="kit-uhc-pre-selected" />
+            <filter id="kit-gold-pre-selected" />
+            <filter id="kit-tnt-pre-selected" />
+            <filter id="kit-diamond-pre-selected" />
+            <filter id="kit-fish-pre-selected" />
+        </any>
+    </all>
+    <not id="deny-after-pre-selection">
+        <filter id="kit-preselected" />
+    </not>
     <!-- Decide on duel kit -->
+    <all id="pre-pick-kit-default">
+        <filter id="building-phase" />
+        <holding>
+            <item material="stone sword" locked="true" name="`r`bDefault Kit" />
+        </holding>
+        <not>
+            <any>
+                <filter id="kit-bow-pre-selected" />
+                <filter id="kit-uhc-pre-selected" />
+                <filter id="kit-gold-pre-selected" />
+                <filter id="kit-tnt-pre-selected" />
+                <filter id="kit-diamond-pre-selected" />
+                <filter id="kit-fish-pre-selected" />
+            </any>
+        </not>
+    </all>
     <all id="pick-kit-default">
         <filter id="testing-phase" />
         <carrying>
@@ -613,6 +673,7 @@
                 <filter id="kit-tnt-selected" />
                 <filter id="kit-diamond-selected" />
                 <filter id="kit-fish-selected" />
+                <filter id="kit-preselected" />
             </any>
         </not>
     </all>
@@ -621,7 +682,10 @@
             <match-running />
             <participating />
             <filter id="fighting-phase" />
-            <objective id="kit-default-selected" any="true">kit-default</objective>
+            <any>
+                <objective id="kit-default-pre-selected" any="true">kit-default-pre</objective>
+                <objective id="kit-default-selected"     any="true">kit-default</objective>
+            </any>
         </all>
         <all>
             <match-running />
@@ -631,6 +695,22 @@
             <filter id="blue-failed-blue" />
         </all>
     </any>
+    <all id="pre-pick-kit-bow">
+        <filter id="building-phase" />
+        <holding>
+            <item material="bow" ocked="true" name="`r`bArcher Kit" />
+        </holding>
+        <not>
+            <any>
+                <filter id="kit-default-pre-selected" />
+                <filter id="kit-uhc-pre-selected" />
+                <filter id="kit-gold-pre-selected" />
+                <filter id="kit-tnt-pre-selected" />
+                <filter id="kit-diamond-pre-selected" />
+                <filter id="kit-fish-pre-selected" />
+            </any>
+        </not>
+    </all>
     <all id="pick-kit-bow">
         <filter id="testing-phase" />
         <carrying>
@@ -644,6 +724,7 @@
                 <filter id="kit-tnt-selected" />
                 <filter id="kit-diamond-selected" />
                 <filter id="kit-fish-selected" />
+                <filter id="kit-preselected" />
             </any>
         </not>
     </all>
@@ -651,7 +732,26 @@
         <match-running />
         <participating />
         <filter id="fighting-phase" />
-        <objective id="kit-bow-selected" any="true">kit-bow</objective>
+        <any>
+            <objective id="kit-bow-pre-selected" any="true">kit-bow-pre</objective>
+            <objective id="kit-bow-selected"     any="true">kit-bow</objective>
+        </any>
+    </all>
+    <all id="pre-pick-kit-uhc">
+        <filter id="building-phase" />
+        <holding>
+            <item material="wood sword" locked="true" name="`r`cUHC Kit" />
+        </holding>
+        <not>
+            <any>
+                <filter id="kit-default-pre-selected" />
+                <filter id="kit-bow-pre-selected" />
+                <filter id="kit-gold-pre-selected" />
+                <filter id="kit-tnt-pre-selected" />
+                <filter id="kit-diamond-pre-selected" />
+                <filter id="kit-fish-pre-selected" />
+            </any>
+        </not>
     </all>
     <all id="pick-kit-uhc">
         <filter id="testing-phase" />
@@ -666,6 +766,7 @@
                 <filter id="kit-tnt-selected" />
                 <filter id="kit-diamond-selected" />
                 <filter id="kit-fish-selected" />
+                <filter id="kit-preselected" />
             </any>
         </not>
     </all>
@@ -673,7 +774,26 @@
         <match-running />
         <participating />
         <filter id="fighting-phase" />
-        <objective id="kit-uhc-selected" any="true">kit-uhc</objective>
+        <any>
+            <objective id="kit-uhc-pre-selected" any="true">kit-uhc-pre</objective>
+            <objective id="kit-uhc-selected"     any="true">kit-uhc</objective>
+        </any>
+    </all>
+    <all id="pre-pick-kit-gold">
+        <filter id="building-phase" />
+        <holding>
+            <item material="gold sword" locked="true" name="`r`cGold Kit" />
+        </holding>
+        <not>
+            <any>
+                <filter id="kit-default-pre-selected" />
+                <filter id="kit-bow-pre-selected" />
+                <filter id="kit-uhc-pre-selected" />
+                <filter id="kit-tnt-pre-selected" />
+                <filter id="kit-diamond-pre-selected" />
+                <filter id="kit-fish-pre-selected" />
+            </any>
+        </not>
     </all>
     <all id="pick-kit-gold">
         <filter id="testing-phase" />
@@ -688,6 +808,7 @@
                 <filter id="kit-tnt-selected" />
                 <filter id="kit-diamond-selected" />
                 <filter id="kit-fish-selected" />
+                <filter id="kit-preselected" />
             </any>
         </not>
     </all>
@@ -695,19 +816,68 @@
         <match-running />
         <participating />
         <filter id="fighting-phase" />
-        <objective id="kit-gold-selected" any="true">kit-gold</objective>
+        <any>
+            <objective id="kit-gold-pre-selected" any="true">kit-gold-pre</objective>
+            <objective id="kit-gold-selected"     any="true">kit-gold</objective>
+        </any>
+    </all>
+    <all id="pre-pick-kit-tnt">
+        <filter id="building-phase" />
+        <holding>
+            <item material="tnt" locked="true" name="`r`5Bomer Kit" />
+        </holding>
+        <not>
+            <any>
+                <filter id="kit-default-pre-selected" />
+                <filter id="kit-bow-pre-selected" />
+                <filter id="kit-uhc-pre-selected" />
+                <filter id="kit-gold-pre-selected" />
+                <filter id="kit-diamond-pre-selected" />
+                <filter id="kit-fish-pre-selected" />
+            </any>
+        </not>
     </all>
     <all id="pick-kit-tnt">
         <filter id="testing-phase" />
         <carrying>
             <item material="tnt" />
         </carrying>
+        <not>
+            <any>
+                <filter id="kit-default-selected" />
+                <filter id="kit-bow-selected" />
+                <filter id="kit-uhc-selected" />
+                <filter id="kit-gold-selected" />
+                <filter id="kit-diamond-selected" />
+                <filter id="kit-fish-selected" />
+                <filter id="kit-preselected" />
+            </any>
+        </not>
     </all>
     <all id="apply-kit-tnt">
         <match-running />
         <participating />
         <filter id="fighting-phase" />
-        <objective id="kit-tnt-selected" any="true">kit-tnt</objective>
+        <any>
+            <objective id="kit-tnt-pre-selected" any="true">kit-tnt-pre</objective>
+            <objective id="kit-tnt-selected"     any="true">kit-tnt</objective>
+        </any>
+    </all>
+    <all id="pre-pick-kit-diamond">
+        <filter id="building-phase" />
+        <holding>
+            <item material="diamond sword" locked="true" name="`r`cDiamond Kit" />
+        </holding>
+        <not>
+            <any>
+                <filter id="kit-default-pre-selected" />
+                <filter id="kit-bow-pre-selected" />
+                <filter id="kit-uhc-pre-selected" />
+                <filter id="kit-gold-pre-selected" />
+                <filter id="kit-tnt-pre-selected" />
+                <filter id="kit-fish-pre-selected" />
+            </any>
+        </not>
     </all>
     <all id="pick-kit-diamond">
         <filter id="testing-phase" />
@@ -722,6 +892,7 @@
                 <filter id="kit-gold-selected" />
                 <filter id="kit-tnt-selected" />
                 <filter id="kit-fish-selected" />
+                <filter id="kit-preselected" />
             </any>
         </not>
     </all>
@@ -729,7 +900,26 @@
         <match-running />
         <participating />
         <filter id="fighting-phase" />
-        <objective id="kit-diamond-selected" any="true">kit-diamond</objective>
+        <any>
+            <objective id="kit-diamond-pre-selected" any="true">kit-diamond-pre</objective>
+            <objective id="kit-diamond-selected"     any="true">kit-diamond</objective>
+        </any>
+    </all>
+    <all id="pre-pick-kit-fish">
+        <filter id="building-phase" />
+        <holding>
+            <item material="raw fish" locked="true" name="`r`5Slappy Fish Kit" />
+        </holding>
+        <not>
+            <any>
+                <filter id="kit-default-pre-selected" />
+                <filter id="kit-bow-pre-selected" />
+                <filter id="kit-uhc-pre-selected" />
+                <filter id="kit-gold-pre-selected" />
+                <filter id="kit-tnt-pre-selected" />
+                <filter id="kit-diamond-pre-selected" />
+            </any>
+        </not>
     </all>
     <all id="pick-kit-fish">
         <filter id="testing-phase" />
@@ -744,6 +934,7 @@
                 <filter id="kit-gold-selected" />
                 <filter id="kit-tnt-selected" />
                 <filter id="kit-diamond-selected" />
+                <filter id="kit-preselected" />
             </any>
         </not>
     </all>
@@ -751,7 +942,10 @@
         <match-running />
         <participating />
         <filter id="fighting-phase" />
-        <objective id="kit-fish-selected" any="true">kit-fish</objective>
+        <any>
+            <objective id="kit-fish-pre-selected" any="true">kit-fish-pre</objective>
+            <objective id="kit-fish-selected"     any="true">kit-fish</objective>
+        </any>
     </all>
     <!-- Apply a penalty kit if teams don't complete their arena -->
     <any id="apply-penalty-kit">
@@ -841,6 +1035,22 @@
             </all>
         </any>
     </all>
+    <all id="give-kit-selection-items">
+        <filter id="building-phase" />
+        <region id="settings" />
+        <not>
+            <filter id="kit-preselected" />
+        </not>
+    </all>
+    <all id="remove-kit-selection-items">
+        <filter id="building-phase" />
+        <not>
+            <region id="settings" />
+        </not>
+        <carrying>
+            <item material="nether star" locked="true" />
+        </carrying>
+    </all>
 </filters>
 <regions>
     <block    id="default-spawn">0.5,13,-22.5</block>
@@ -857,6 +1067,10 @@
         <cuboid id="red-side" min="-0,0,29" max="-43,20,-25" />
         <cuboid id="blue-side" min="1,0,29" max="44,20,-25" />
     </union>
+    <union id="settings">
+        <block>-36.5,1,13.5</block>
+        <block>37.5,1,-10.5</block>
+    </union>
     <above id="restrict-building" y="15" />
     <below id="deny-building"     y="3" />
     <below id="prevent-movement"  y="1" />
@@ -865,6 +1079,7 @@
     <apply region="deny-building"     block="never"                     message="You may not interact with that block here" />
     <apply                            block="allowed-building-blocks" />
     <apply region="deny-movement"     enter="not-building-phase"        message="You may not exit the bottom of the arena" />
+    <apply region="settings"          enter="deny-after-pre-selection"  message="A kit has already been pre-selected for this duel" />
     <apply region="prevent-movement"  kit="force-fly"     filter="building-phase" />
     <apply region="red-spawn"         kit="renewable-kit" filter="building-phase" />
     <apply region="blue-spawn"        kit="renewable-kit" filter="building-phase" />
@@ -886,6 +1101,9 @@
     <portal forward="send-red-to-blue"  destination="blue-spawn" yaw="@90" />
     <portal forward="send-blue-to-red"  destination="red-spawn"  yaw="@-90" />
     <portal forward="send-blue-to-blue" destination="blue-spawn" yaw="@90" />
+    <!-- Return player back to spawn after settings -->
+    <portal forward="after-pre-selection" destination="red-spawn"  yaw="@-90" filter="only-red" />
+    <portal forward="after-pre-selection" destination="blue-spawn" yaw="@90" filter="only-blue" />
 </portals>
 <structures>
     <structure id="red-fallback-arena" air="true">
@@ -973,7 +1191,15 @@
     <!-- Points to check arena complete -->
     <control-point id="red-arena-complete"  name="red-arena-complete"  capture="central-point" capture-filter="testing-phase" player-filter="only-red"/>
     <control-point id="blue-arena-complete" name="blue-arena-complete" capture="central-point" capture-filter="testing-phase" player-filter="only-blue" />
-    <!-- Decide on the duel kit being used -->
+    <!-- Decide on the duel kit being used (staff) -->
+    <control-point id="kit-default-pre" name="kit-default-pre" capture="everywhere" capture-time="6s" capture-filter="building-phase" player-filter="pre-pick-kit-default" />
+    <control-point id="kit-bow-pre"     name="kit-bow-pre"     capture="everywhere" capture-time="6s" capture-filter="building-phase" player-filter="pre-pick-kit-bow" />
+    <control-point id="kit-uhc-pre"     name="kit-uhc-pre"     capture="everywhere" capture-time="6s" capture-filter="building-phase" player-filter="pre-pick-kit-uhc" />
+    <control-point id="kit-gold-pre"    name="kit-gold-pre"    capture="everywhere" capture-time="6s" capture-filter="building-phase" player-filter="pre-pick-kit-gold" />
+    <control-point id="kit-tnt-pre"     name="kit-tnt-pre"     capture="everywhere" capture-time="6s" capture-filter="building-phase" player-filter="pre-pick-kit-tnt" />
+    <control-point id="kit-diamond-pre" name="kit-diamond-pre" capture="everywhere" capture-time="6s" capture-filter="building-phase" player-filter="pre-pick-kit-diamond" />
+    <control-point id="kit-fish-pre"    name="kit-fish-pre"    capture="everywhere" capture-time="6s" capture-filter="building-phase" player-filter="pre-pick-kit-fish" />
+    <!-- Decide on the duel kit being used (random) -->
     <control-point id="kit-default" name="kit-default" capture="everywhere" capture-filter="give-random-kit" player-filter="pick-kit-default" />
     <control-point id="kit-bow"     name="kit-bow"     capture="everywhere" capture-filter="give-random-kit" player-filter="pick-kit-bow" />
     <control-point id="kit-uhc"     name="kit-uhc"     capture="everywhere" capture-filter="give-random-kit" player-filter="pick-kit-uhc" />
