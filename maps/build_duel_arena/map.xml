@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Build: Duel Arena</name>
-<version>0.4.1</version>
+<version>0.5.0</version>
 <objective>Build a defensive base then fight the other team!</objective>
 <authors>
      <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" /> <!-- mitchiii_ -->
@@ -51,6 +51,7 @@
 </broadcasts>
 <kits>
     <kit id="building-kit" force="true">
+        <clear />
         <item slot="0" amount="64" material="smooth brick"         lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
         <item slot="1" amount="64" material="stained glass"        lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
         <item slot="2" amount="64" material="wood" damage="1"      lore="`r`aRenewable material|`r`7Return to the starting point|`r`7to restock on this material" />
@@ -133,6 +134,7 @@
     <!-- Team specific duel gear -->
     <give kit="red-duel-gear" filter="apply-red-gear" />
     <kit id="red-duel-gear">
+        <game-mode>survival</game-mode>
         <helmet     color="993333" material="leather helmet"     unbreakable="true" />
         <chestplate color="993333" material="leather chestplate" unbreakable="true" />
         <leggings   color="993333" material="leather leggings"   unbreakable="true" />
@@ -140,6 +142,7 @@
     </kit>
     <give kit="blue-duel-gear" filter="apply-blue-gear" />
     <kit id="blue-duel-gear">
+        <game-mode>survival</game-mode>
         <helmet     color="334cb2" material="leather helmet"     unbreakable="true" />
         <chestplate color="334cb2" material="leather chestplate" unbreakable="true" />
         <leggings   color="334cb2" material="leather leggings"   unbreakable="true" />
@@ -151,7 +154,8 @@
     <kit id="default-kit" force="true">
         <item slot="0"             material="stone sword" unbreakable="true" />
         <item slot="1"             material="bow"         unbreakable="true" />
-        <item slot="2" amount="48" material="arrow" />
+        <item slot="2" amount="16" material="stained glass" />
+        <item slot="7" amount="48" material="arrow" />
         <item slot="8" amount="2"  material="golden apple" />
         <chestplate                material="gold chestplate" unbreakable="true" />
         <boots                     material="iron boots"      unbreakable="true" />
@@ -163,18 +167,20 @@
             <enchantment>power</enchantment>
             <enchantment>infinity</enchantment>
         </item>
-        <item slot="1"            material="arrow" />
-        <item slot="7"            material="potion" potion="swiftness" />
-        <item slot="8" amount="2" material="golden apple" />
-        <chestplate               material="chainmail chestplate" unbreakable="true" />
-        <boots                    material="gold boots"           unbreakable="true" />
+        <item slot="1"             material="arrow" />
+        <item slot="2" amount="16" material="stained glass" />
+        <item slot="7"             material="potion" potion="swiftness" />
+        <item slot="8" amount="2"  material="golden apple" />
+        <chestplate                material="chainmail chestplate" unbreakable="true" />
+        <boots                     material="gold boots"           unbreakable="true" />
     </kit>
     <!-- 15% chance -->
     <give kit="uhc-kit" filter="apply-kit-uhc" />
     <kit id="uhc-kit" force="true">
         <item slot="0"             material="wood sword" unbreakable="true" />
         <item slot="1"             material="bow"        unbreakable="true" />
-        <item slot="2" amount="16" material="arrow" />
+        <item slot="2" amount="16" material="stained glass" />
+        <item slot="5" amount="16" material="arrow" />
         <item slot="6"             material="potion" potion="healing" />
         <item slot="7"             material="potion" potion="healing" />
         <item slot="8"             material="potion" potion="healing" />
@@ -189,7 +195,8 @@
     <kit id="gold-kit" force="true">
         <item slot="0"             material="gold sword" unbreakable="true" />
         <item slot="1"             material="bow"        unbreakable="true" />
-        <item slot="2" amount="48" material="arrow" />
+        <item slot="2" amount="16" material="stained glass" />
+        <item slot="7" amount="48" material="arrow" />
         <item slot="8" amount="2"  material="golden apple" />
         <helmet                    material="gold helmet"     unbreakable="true" />
         <chestplate                material="gold chestplate" unbreakable="true">
@@ -227,7 +234,8 @@
         <item slot="1"             material="bow"           unbreakable="true">
             <enchantment level="3">power</enchantment>
         </item>
-        <item slot="2" amount="48" material="arrow" />
+        <item slot="2" amount="16" material="stained glass" />
+        <item slot="7" amount="48" material="arrow" />
         <item slot="8" amount="2"  material="golden apple" />
         <helmet                    material="diamond helmet"     unbreakable="true" />
         <chestplate                material="diamond chestplate" unbreakable="true" />
@@ -241,6 +249,7 @@
             <enchantment level="4">sharpness</enchantment>
             <enchantment level="1">knockback</enchantment>
         </item>
+        <item slot="1" amount="16" material="stained glass" />
         <item slot="8" amount="2" material="golden apple" />
         <helmet material="air" />
         <leggings material="air" />
@@ -258,16 +267,22 @@
     <!-- Kit selection items -->
     <give kit="kit-selection" filter="give-kit-selection-items" />
     <kit id="kit-selection" parents="clear-items">
-        <item slot="0" material="stone sword"        locked="true" name="`r`bDefault Kit" />
-        <item slot="1" material="bow"                locked="true" name="`r`bArcher Kit" />
-        <item slot="2" material="stained glass pane" locked="true" name="`r`a`lHold a kit item to select that kit!" damage="8" />
-        <item slot="3" material="wood sword"         locked="true" name="`r`cUHC Kit" />
-        <item slot="4" material="gold sword"         locked="true" name="`r`cGold Kit" />
-        <item slot="5" material="diamond sword"      locked="true" name="`r`cDiamond Kit" />
-        <item slot="6" material="stained glass pane" locked="true" name="`r`a`lHold a kit item to select that kit!" damage="8" />
-        <item slot="7" material="tnt"                locked="true" name="`r`5Bomer Kit" />
-        <item slot="8" material="raw fish"           locked="true" name="`r`5Slappy Fish Kit" />
-        <item slot="9" material="nether star"        locked="true" />
+        <item slot="0"  material="stained glass pane" locked="true" name="`r`a`lOpen your inventory and pick a kit!" damage="5" />
+        <item slot="1"  material="stained glass pane" locked="true" name="`r`a`lOpen your inventory and pick a kit!" damage="5" />
+        <item slot="2"  material="stained glass pane" locked="true" name="`r`a`lOpen your inventory and pick a kit!" damage="5" />
+        <item slot="3"  material="stained glass pane" locked="true" name="`r`a`lOpen your inventory and pick a kit!" damage="5" />
+        <item slot="5"  material="stained glass pane" locked="true" name="`r`a`lOpen your inventory and pick a kit!" damage="5" />
+        <item slot="6"  material="stained glass pane" locked="true" name="`r`a`lOpen your inventory and pick a kit!" damage="5" />
+        <item slot="7"  material="stained glass pane" locked="true" name="`r`a`lOpen your inventory and pick a kit!" damage="5" />
+        <item slot="8"  material="stained glass pane" locked="true" name="`r`a`lOpen your inventory and pick a kit!" damage="5" />
+        <item slot="19" material="stone sword"        lore="`r`7Place this item in your hotbar|`r`7and hold it to select this kit." name="`r`bDefault Kit" />
+        <item slot="20" material="bow"                lore="`r`7Place this item in your hotbar|`r`7and hold it to select this kit." name="`r`bArcher Kit" />
+        <item slot="21" material="wood sword"         lore="`r`7Place this item in your hotbar|`r`7and hold it to select this kit." name="`r`cUHC Kit" />
+        <item slot="22" material="gold sword"         lore="`r`7Place this item in your hotbar|`r`7and hold it to select this kit." name="`r`cGold Kit" />
+        <item slot="23" material="diamond sword"      lore="`r`7Place this item in your hotbar|`r`7and hold it to select this kit." name="`r`cDiamond Kit" />
+        <item slot="24" material="tnt"                lore="`r`7Place this item in your hotbar|`r`7and hold it to select this kit." name="`r`5Bomer Kit" />
+        <item slot="25" material="raw fish"           lore="`r`7Place this item in your hotbar|`r`7and hold it to select this kit." name="`r`5Slappy Fish Kit" />
+        <boots material="nether star" locked="true" />
     </kit>
     <give kit="building-kit" filter="remove-kit-selection-items" />
     <give kit="building-kit" filter="after-pre-selection" />
@@ -412,13 +427,14 @@
     <time id="fighting-phase">5m5s</time>
     <all id="enable-glow">
         <participating />
-        <countdown duration="30s" message="All players will glow in {0}">
-            <all>
-                <match-running />
-                <time>10m</time>
-            </all>
-        </countdown>
+        <time>10m</time>
     </all>
+    <countdown duration="30s" message="All players will glow in {0}">
+        <all>
+            <match-running />
+            <time>9m30s</time>
+        </all>
+    </countdown>
     <countdown id="ending-countdown" duration="1m" message="The team with the most players will win in {0}">
         <all>
             <match-running />
@@ -494,11 +510,11 @@
             <void />
         </all>
         <all>
-            <filter id="fighting-phase" />
+            <filter id="fighting-phase" /><!--
             <any>
                 <filter id="kit-tnt-selected" />
                 <filter id="kit-tnt-pre-selected" />
-            </any>
+            </any>-->
             <void />
             <any>
                 <filter id="building-blocks" />
@@ -647,7 +663,7 @@
     <all id="pre-pick-kit-default">
         <filter id="building-phase" />
         <holding>
-            <item material="stone sword" locked="true" name="`r`bDefault Kit" />
+            <item material="stone sword" lore="`r`7Place this item in your hotbar|`r`7and hold it to select this kit." name="`r`bDefault Kit" />
         </holding>
         <not>
             <any>
@@ -698,7 +714,7 @@
     <all id="pre-pick-kit-bow">
         <filter id="building-phase" />
         <holding>
-            <item material="bow" ocked="true" name="`r`bArcher Kit" />
+            <item material="bow" lore="`r`7Place this item in your hotbar|`r`7and hold it to select this kit." name="`r`bArcher Kit" />
         </holding>
         <not>
             <any>
@@ -740,7 +756,7 @@
     <all id="pre-pick-kit-uhc">
         <filter id="building-phase" />
         <holding>
-            <item material="wood sword" locked="true" name="`r`cUHC Kit" />
+            <item material="wood sword" lore="`r`7Place this item in your hotbar|`r`7and hold it to select this kit." name="`r`cUHC Kit" />
         </holding>
         <not>
             <any>
@@ -782,7 +798,7 @@
     <all id="pre-pick-kit-gold">
         <filter id="building-phase" />
         <holding>
-            <item material="gold sword" locked="true" name="`r`cGold Kit" />
+            <item material="gold sword" lore="`r`7Place this item in your hotbar|`r`7and hold it to select this kit." name="`r`cGold Kit" />
         </holding>
         <not>
             <any>
@@ -824,7 +840,7 @@
     <all id="pre-pick-kit-tnt">
         <filter id="building-phase" />
         <holding>
-            <item material="tnt" locked="true" name="`r`5Bomer Kit" />
+            <item material="tnt" lore="`r`7Place this item in your hotbar|`r`7and hold it to select this kit." name="`r`5Bomer Kit" />
         </holding>
         <not>
             <any>
@@ -866,7 +882,7 @@
     <all id="pre-pick-kit-diamond">
         <filter id="building-phase" />
         <holding>
-            <item material="diamond sword" locked="true" name="`r`cDiamond Kit" />
+            <item material="diamond sword" lore="`r`7Place this item in your hotbar|`r`7and hold it to select this kit." name="`r`cDiamond Kit" />
         </holding>
         <not>
             <any>
@@ -908,7 +924,7 @@
     <all id="pre-pick-kit-fish">
         <filter id="building-phase" />
         <holding>
-            <item material="raw fish" locked="true" name="`r`5Slappy Fish Kit" />
+            <item material="raw fish" lore="`r`7Place this item in your hotbar|`r`7and hold it to select this kit." name="`r`5Slappy Fish Kit" />
         </holding>
         <not>
             <any>
@@ -1047,9 +1063,9 @@
         <not>
             <region id="settings" />
         </not>
-        <carrying>
+        <wearing>
             <item material="nether star" locked="true" />
-        </carrying>
+        </wearing>
     </all>
 </filters>
 <regions>
@@ -1187,18 +1203,18 @@
     </rule>
 </block-drops>
 <control-points show="false" required="false" capture-time="0s" permanent="true" >
-    <control-point id="central-win" name="Central Point" capture="central-hill" captured="whole-arena" capture-rule="majority" player-filter="fighting-phase" show="true" required="true" capture-time="60s" />
+    <control-point id="central-win" name="Central Point" capture="central-hill" captured="whole-arena" capture-rule="majority" player-filter="fighting-phase" show="true" required="true" capture-time="36s" incremental="true" />
     <!-- Points to check arena complete -->
     <control-point id="red-arena-complete"  name="red-arena-complete"  capture="central-point" capture-filter="testing-phase" player-filter="only-red"/>
     <control-point id="blue-arena-complete" name="blue-arena-complete" capture="central-point" capture-filter="testing-phase" player-filter="only-blue" />
     <!-- Decide on the duel kit being used (staff) -->
-    <control-point id="kit-default-pre" name="kit-default-pre" capture="everywhere" capture-time="6s" capture-filter="building-phase" player-filter="pre-pick-kit-default" />
-    <control-point id="kit-bow-pre"     name="kit-bow-pre"     capture="everywhere" capture-time="6s" capture-filter="building-phase" player-filter="pre-pick-kit-bow" />
-    <control-point id="kit-uhc-pre"     name="kit-uhc-pre"     capture="everywhere" capture-time="6s" capture-filter="building-phase" player-filter="pre-pick-kit-uhc" />
-    <control-point id="kit-gold-pre"    name="kit-gold-pre"    capture="everywhere" capture-time="6s" capture-filter="building-phase" player-filter="pre-pick-kit-gold" />
-    <control-point id="kit-tnt-pre"     name="kit-tnt-pre"     capture="everywhere" capture-time="6s" capture-filter="building-phase" player-filter="pre-pick-kit-tnt" />
-    <control-point id="kit-diamond-pre" name="kit-diamond-pre" capture="everywhere" capture-time="6s" capture-filter="building-phase" player-filter="pre-pick-kit-diamond" />
-    <control-point id="kit-fish-pre"    name="kit-fish-pre"    capture="everywhere" capture-time="6s" capture-filter="building-phase" player-filter="pre-pick-kit-fish" />
+    <control-point id="kit-default-pre" name="kit-default-pre" capture="everywhere" capture-filter="building-phase" player-filter="pre-pick-kit-default" />
+    <control-point id="kit-bow-pre"     name="kit-bow-pre"     capture="everywhere" capture-filter="building-phase" player-filter="pre-pick-kit-bow" />
+    <control-point id="kit-uhc-pre"     name="kit-uhc-pre"     capture="everywhere" capture-filter="building-phase" player-filter="pre-pick-kit-uhc" />
+    <control-point id="kit-gold-pre"    name="kit-gold-pre"    capture="everywhere" capture-filter="building-phase" player-filter="pre-pick-kit-gold" />
+    <control-point id="kit-tnt-pre"     name="kit-tnt-pre"     capture="everywhere" capture-filter="building-phase" player-filter="pre-pick-kit-tnt" />
+    <control-point id="kit-diamond-pre" name="kit-diamond-pre" capture="everywhere" capture-filter="building-phase" player-filter="pre-pick-kit-diamond" />
+    <control-point id="kit-fish-pre"    name="kit-fish-pre"    capture="everywhere" capture-filter="building-phase" player-filter="pre-pick-kit-fish" />
     <!-- Decide on the duel kit being used (random) -->
     <control-point id="kit-default" name="kit-default" capture="everywhere" capture-filter="give-random-kit" player-filter="pick-kit-default" />
     <control-point id="kit-bow"     name="kit-bow"     capture="everywhere" capture-filter="give-random-kit" player-filter="pick-kit-bow" />
