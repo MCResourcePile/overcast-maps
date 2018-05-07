@@ -1,6 +1,6 @@
 <map proto="1.4.2" game="Arenas Cleared">
 <name>Build: Dropper</name>
-<version>1.1.0</version>
+<version>1.1.1</version>
 <objective>Build your own dropper puzzle then race everyone else!</objective>
 <authors>
      <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" /> <!-- mitchiii_ -->
@@ -42,16 +42,16 @@
     <tip   after="3s"  >Double tap space to fly to assist you while building!</tip>
     <tip   after="23s" >You will have to beat your own dropper puzzle later, so don't make it too hard!</tip>
     <tip   after="83s" >Return to the start platform to restock on building materials!</tip>
-    <alert after="240s">Complete your dropper puzzle for it to included in the race!</alert>
-    <alert after="365s">The dropper race has begun!</alert>
-    <alert after="360s" filter="arena-1-inactive">`c`lRed`r`c's dropper puzzle has been removed from the race!</alert>
-    <alert after="360s" filter="arena-2-inactive">`9`lBlue`r`c's dropper puzzle has been removed from the race!</alert>
-    <alert after="360s" filter="arena-3-inactive">`2`lGreen`r`c's dropper puzzle has been removed from the race!</alert>
-    <alert after="360s" filter="arena-4-inactive">`6`lOrange`r`c's dropper puzzle has been removed from the race!</alert>
-    <alert after="360s" filter="arena-5-inactive">`5`lPurple`r`c'sdropper puzzler has been removed from the race!</alert>
-    <alert after="360s" filter="arena-6-inactive">`3`lCyan`r`c's dropper puzzle has been removed from the race!</alert>
-    <alert after="360s" filter="arena-7-inactive">`d`lPink`r`c's dropper puzzle has been removed from the race!</alert>
-    <alert after="360s" filter="arena-8-inactive">`e`lYellow`r`c's dropper puzzle has been removed from the race!</alert>
+    <alert after="5m"  >Complete your dropper puzzle for it to included in the race!</alert>
+    <alert after="7m5s">The dropper race has begun!</alert>
+    <alert after="7m" filter="arena-1-inactive">`c`lRed`r`c's dropper puzzle has been removed from the race!</alert>
+    <alert after="7m" filter="arena-2-inactive">`9`lBlue`r`c's dropper puzzle has been removed from the race!</alert>
+    <alert after="7m" filter="arena-3-inactive">`2`lGreen`r`c's dropper puzzle has been removed from the race!</alert>
+    <alert after="7m" filter="arena-4-inactive">`6`lOrange`r`c's dropper puzzle has been removed from the race!</alert>
+    <alert after="7m" filter="arena-5-inactive">`5`lPurple`r`c'sdropper puzzler has been removed from the race!</alert>
+    <alert after="7m" filter="arena-6-inactive">`3`lCyan`r`c's dropper puzzle has been removed from the race!</alert>
+    <alert after="7m" filter="arena-7-inactive">`d`lPink`r`c's dropper puzzle has been removed from the race!</alert>
+    <alert after="7m" filter="arena-8-inactive">`e`lYellow`r`c's dropper puzzle has been removed from the race!</alert>
 </broadcasts>
 <kits>
     <kit id="observer-kit"><effect>night vision</effect></kit>
@@ -314,6 +314,14 @@
     <wearing id="preset-puzzle-request">
         <item material="iron helmet" name="`r`bLoad Dropper Template" lore="`r`9`lEquip to activate|`r`7Generates a pre-designed|`r`7dropper puzzle template" />
     </wearing>
+    <all id="player-1-preset-puzzle-request"><filter id="preset-puzzle-request" /><filter id="during-build-phase-player-1" /></all>
+    <all id="player-2-preset-puzzle-request"><filter id="preset-puzzle-request" /><filter id="during-build-phase-player-2" /></all>
+    <all id="player-3-preset-puzzle-request"><filter id="preset-puzzle-request" /><filter id="during-build-phase-player-3" /></all>
+    <all id="player-4-preset-puzzle-request"><filter id="preset-puzzle-request" /><filter id="during-build-phase-player-4" /></all>
+    <all id="player-5-preset-puzzle-request"><filter id="preset-puzzle-request" /><filter id="during-build-phase-player-5" /></all>
+    <all id="player-6-preset-puzzle-request"><filter id="preset-puzzle-request" /><filter id="during-build-phase-player-6" /></all>
+    <all id="player-7-preset-puzzle-request"><filter id="preset-puzzle-request" /><filter id="during-build-phase-player-7" /></all>
+    <all id="player-8-preset-puzzle-request"><filter id="preset-puzzle-request" /><filter id="during-build-phase-player-8" /></all>
     <!-- Check if player used preset puzzle -->
     <all id="player-1-preset">
         <objective id="arena-1-preset-active" any="true">arena-1-preset</objective>
@@ -500,11 +508,11 @@
     <all id="save-teammates-8-if-testing-complete"><filter id="arena-8-active" /><filter id="only-player-8" /><filter id="testing-phase" /><region id="arena-8" /></all>
     <!-- Phase times -->
     <all id="build-spawn-kit"  ><not><time>6s</time></not><region id="all-arenas-whole" /><participating /></all>
-    <all id="build-phase"      ><time>0s</time><not><time>240s</time></not></all>
-    <all id="build-phase-end"  ><time>240s</time><not><time>241s</time></not><region id="all-arenas-whole" /></all>
-    <all id="testing-phase"    ><time id="after-test-phase-start">240s</time><not><time>360</time></not></all>
-    <all id="testing-phase-end"><time>360s</time><not><time>361s</time></not><region id="all-arenas-whole" /></all>
-    <all id="race-started"     ><time id="race-phase">365s</time><not><time>366s</time></not></all>
+    <all id="build-phase"      ><time>0s</time><not><time>5m</time></not></all>
+    <all id="build-phase-end"  ><time>5m</time><not><time>5m1s</time></not><region id="all-arenas-whole" /></all>
+    <all id="testing-phase"    ><time id="after-test-phase-start">5m</time><not><time>7m</time></not></all>
+    <all id="testing-phase-end"><time>7m</time><not><time>7m1s</time></not><region id="all-arenas-whole" /></all>
+    <all id="race-started"     ><time id="race-phase">7m5s</time><not><time>7m6s</time></not></all>
     <!-- Trigger filters, build phase ended -->
     <all id="arena-1-build-phase-end"><filter id="only-player-1" /><filter id="build-phase-end" /><region id="arena-1" /></all>
     <all id="arena-2-build-phase-end"><filter id="only-player-2" /><filter id="build-phase-end" /><region id="arena-2" /></all>
@@ -537,28 +545,28 @@
     <all id="inside-arena-7-during-race"><region id="arena-7" /><filter id="race-phase" /><participating /></all>
     <all id="inside-arena-8-during-race"><region id="arena-8" /><filter id="race-phase" /><participating /></all>
     <!-- Phase group countdowns -->
-    <countdown duration="4m" message="Building phase ends in {0}">
+    <countdown duration="5m" message="Building phase ends in {0}">
         <all>
             <not>
-                <time>4m</time>
+                <time>5m</time>
             </not>
             <match-running/>
         </all>
     </countdown>
     <countdown duration="2m" message="Testing phase ends in {0}">
         <all>
-            <time>4m</time>
+            <time>5m</time>
             <not>
-                <time>6m</time>
+                <time>7m</time>
             </not>
             <match-running/>
         </all>
     </countdown>
     <countdown duration="5s" message="The race will begin in {0}">
         <all>
-            <time>6m</time>
+            <time>7m</time>
             <not>
-                <time>6m5s</time>
+                <time>7m5s</time>
             </not>
             <match-running/>
         </all>
@@ -570,12 +578,6 @@
         </all>
     </countdown>
 </filters>
-<modes>
-    <mode show-before="4m1s" after="4m"   material="air" name="`lBuild phase `r`3ends" />
-    <mode show-before="2m1s" after="6m"   material="air" name="`lTesting phase `r`3ends" />
-    <mode show-before="6s"   after="6m5s" material="air" name="`lRace starting" />
-    <mode show-before="1m1s" after="18m"  material="air" name="`lRace ending" />
-</modes>
 <regions>
     <!-- Apply invis and blindness each time player enters a new tube -->
     <apply region="arena-1-tube-award" kit="race-effects" filter="race-phase" />
@@ -748,15 +750,15 @@
     <translate id="arena-0-tube-fail-safe" offset="0,-5,0"><region id="arena-0-tube" /></translate>
 </regions>
 <control-points required="false" points="0" capture-time="0s" permanent="true" show="false">
-    <!-- Check if player wants to Load Dropper Template -->
-    <control-point id="arena-1-preset" name="arena-1-preset" capture="arena-1" player-filter="preset-puzzle-request" />
-    <control-point id="arena-2-preset" name="arena-2-preset" capture="arena-2" player-filter="preset-puzzle-request" />
-    <control-point id="arena-3-preset" name="arena-3-preset" capture="arena-3" player-filter="preset-puzzle-request" />
-    <control-point id="arena-4-preset" name="arena-4-preset" capture="arena-4" player-filter="preset-puzzle-request" />
-    <control-point id="arena-5-preset" name="arena-5-preset" capture="arena-5" player-filter="preset-puzzle-request" />
-    <control-point id="arena-6-preset" name="arena-6-preset" capture="arena-6" player-filter="preset-puzzle-request" />
-    <control-point id="arena-7-preset" name="arena-7-preset" capture="arena-7" player-filter="preset-puzzle-request" />
-    <control-point id="arena-8-preset" name="arena-8-preset" capture="arena-8" player-filter="preset-puzzle-request" />
+    <!-- Check if player wants to load dropper template -->
+    <control-point id="arena-1-preset" name="arena-1-preset" capture="everywhere" player-filter="player-1-preset-puzzle-request" />
+    <control-point id="arena-2-preset" name="arena-2-preset" capture="everywhere" player-filter="player-2-preset-puzzle-request" />
+    <control-point id="arena-3-preset" name="arena-3-preset" capture="everywhere" player-filter="player-3-preset-puzzle-request" />
+    <control-point id="arena-4-preset" name="arena-4-preset" capture="everywhere" player-filter="player-4-preset-puzzle-request" />
+    <control-point id="arena-5-preset" name="arena-5-preset" capture="everywhere" player-filter="player-5-preset-puzzle-request" />
+    <control-point id="arena-6-preset" name="arena-6-preset" capture="everywhere" player-filter="player-6-preset-puzzle-request" />
+    <control-point id="arena-7-preset" name="arena-7-preset" capture="everywhere" player-filter="player-7-preset-puzzle-request" />
+    <control-point id="arena-8-preset" name="arena-8-preset" capture="everywhere" player-filter="player-8-preset-puzzle-request" />
     <!-- Check if arena is actually possible -->
     <control-point id="arena-1-completed" name="arena-1-completed" capture="lobby-kit-apply" player-filter="during-test-phase-player-1" />
     <control-point id="arena-2-completed" name="arena-2-completed" capture="lobby-kit-apply" player-filter="during-test-phase-player-2" />
