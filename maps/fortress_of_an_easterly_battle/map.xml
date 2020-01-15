@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<map proto="1.4.3">
+<name>Fortress of an Easterly Battle</name>
+<version>1.0.0</version>
+<objective>Leak lava from the enemy's obsidian core into the void.</objective>
+<gamemode>dtc</gamemode>
+<rules>
+    <rule>You cannot place dispensers on the map!</rule>
+</rules>
+<authors>
+    <author uuid="3a549b18-08ed-4756-a78c-b34d29a4fd87"/> <!-- Torn_Ares -->
+    <author uuid="98a4a81e-4393-4041-8d43-40a0196b5832"/> <!-- Thungon -->
+    <author uuid="0ae466ff-d3a1-4307-a323-89043643ace5"/> <!-- GammaRay_89 -->
+</authors>
+<teams>
+    <team color="gold" id="orange" max="24">Orange</team>
+    <team color="light purple" id="pink" max="24">Pink</team>
+</teams>
+<spawns>
+    <spawn team="orange" yaw="90">
+        <regions>
+            <point>27.5,65.5,-79.5</point>
+        </regions>
+    </spawn>
+    <spawn team="pink" yaw="-90">
+        <regions>
+            <point>61.5,65.5,-79.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="180">
+            <cylinder base="44.5,64.5,-79.5" radius="7" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <deny id="deny-dispenser">
+        <material>dispenser</material>
+    </deny>
+</filters>
+<regions>
+    <negative id="outside-map">
+        <rectangle id="map" min="4,40" max="85,-47"/>
+    </negative>
+    <union id="spawns">
+        <!-- Orange tunnel -->
+        <rectangle min="11,-45" max="17,-83"/>
+        <rectangle min="29,-77" max="17,-83"/>
+        <!-- Pink tunnel -->
+        <rectangle min="78,-45" max="72,-83"/>
+        <rectangle min="59,-77" max="72,-83"/>
+    </union>
+    <apply block="deny-dispenser" region="map" message="Dispensers are disabled on this map!"/>
+    <apply enter="never" build="never" region="spawns" message="You may not enter the spawns!"/>
+    <apply block="never" region="outside-map" message="You may not build in the void!"/>
+</regions>
+<cores material="obsidian" leak="4" mode-change="true" name="Core">
+    <core owner="orange">
+        <region>
+            <cuboid min="5,60,0" max="10,66,-7"/>
+        </region>
+    </core>
+    <core owner="pink">
+        <region>
+            <cuboid min="84,60,0" max="79,66,-7"/>
+        </region>
+    </core>
+</cores>
+<modes>
+    <mode after="10m" material="gold block" name="GOLD CORE MODE"/>
+</modes>
+<maxbuildheight>130</maxbuildheight>
+<gamerules>
+    <doFireTick>false</doFireTick>
+</gamerules>
+<itemremove>
+    <item>obsidian</item>
+</itemremove>
+</map>
