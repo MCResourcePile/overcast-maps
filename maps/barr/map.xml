@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.4.1">
 <name>Barr DTC</name>
-<version>1.2.5</version>
+<version>1.2.6</version>
 <objective>Destroy the core of the enemy team to win!</objective>
 <authors>
     <author uuid="755acf7d-c9b4-4f1d-b7ac-db4dfdfa2b26"/>
