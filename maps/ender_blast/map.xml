@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Ender Blast</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Destroy 75% of the enemy's endstone cuboid to enter the wool room inside of it, then return the wool back to your side</objective>
 <authors>
     <author uuid="ca2306d1-1198-4d46-8c44-a82f5b3c8a4e" contribution="Original author and map layout" /> <!-- BeanButt -->
@@ -131,11 +131,13 @@
                 <material>stained clay:9</material>
                 <cause>explosion</cause>
             </all>
-            <all>
-                <material>ender stone</material>
-                <cause>player</cause>
-            </all>
         </any>
+    </not>
+    <not id="deny-endstone-break-fist">
+        <all>
+            <material>ender stone</material>
+            <cause>player</cause>
+        </all>
     </not>
     <all id="deny-before-red-monument">
         <any>
@@ -224,7 +226,7 @@
     <apply region="red-cuboid-inside-o"                    block="woolroom-blocks-red" />
     <apply region="blue-cuboid-inside-o"                   block="woolroom-blocks-blue" />
     <apply region="red-cuboid-region"                      use="deny-before-blue-monument" />
-    <apply region="blue-cuboid-region"                     use="deny-before-red-monument" />
+    <apply region="blue-cuboid-region"                     use="deny-before-red-monument" block-break="deny-endstone-break-fist" />
     <apply region="around-cuboids"                         block="bad-blocks" />
     <apply region="playable-area"                          block="tnt-immune" />
     <apply region="red-cuboid-inside"  enter="only-blue"                                   message="`cYou may not enter `9Blue`c's woolroom!" />
