@@ -1,0 +1,90 @@
+<map proto="1.4.1">
+<name>Shave Harambe</name>
+<version>1.0.0</version>
+<objective>Shave off Harambe's beard to win.</objective>
+<authors>
+    <author uuid="715769c5-8c4c-4489-bdf8-f9cee2b2ae8a"/>     <!--  amactus  -->
+    <author uuid="d3814d5a-3d37-42f2-9db8-916846bb70ad"/>     <!--  bread  -->
+</authors>
+<teams>
+    <team id="red" color="blue" max="10" max-overfill="12">Blue</team>
+    <team id="blue" color="dark red" max="10" max-overfill="12">Red</team>
+</teams>
+<kits>
+    <kit id="spawnkit">
+        <item slot="0" name="`bRazor" enchantment="damage all:5;durability:5;dig speed:1">shears</item>
+        <item slot="1">bow</item>
+        <item slot="2" amount="64">arrow</item>
+        <item slot="6" amount="32">ladder</item>
+        <item slot="7">golden apple</item>
+        <item slot="8" amount="64">cooked beef</item>
+    </kit>
+    <kit id="red-kit" parents="spawnkit">
+        <chestplate color="cd0000" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="cd0000" unbreakable="true">leather leggings</leggings>
+        <boots color="cd0000" unbreakable="true">leather boots</boots>
+        <item slot="4" damage="14" amount="64">stained glass</item>
+        <item slot="5" damage="14" amount="64">wool</item>
+    </kit>
+    <kit id="blue-kit" parents="spawnkit">
+        <chestplate color="0066cc" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="0066cc" unbreakable="true">leather leggings</leggings>
+        <boots color="0066cc" unbreakable="true">leather boots</boots>
+        <item slot="4" damage="11" amount="64">stained glass</item>
+        <item slot="5" damage="11" amount="64">wool</item>
+    </kit>
+    <kit id="obs">
+        <potion amplifier="1" duration="oo">night vision</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn kit="blue-kit" team="red" yaw="-90">
+        <region>
+            <cylinder base="-49.5,26,0.5" radius="2" height="0"/>
+        </region>
+    </spawn>
+    <spawn kit="red-kit" team="blue" yaw="90">
+        <region>
+            <cylinder base="0.5,26,0.5" radius="2" height="0"/>
+        </region>
+    </spawn>
+    <default kit="obs" yaw="90">
+        <region>
+            <block>17.5,42,1</block>
+        </region>
+    </default>
+</spawns>
+<regions>
+	<negative id="non-playable">
+		<rectangle min="-84.5,-19.5" max="35.5,23.5"/>
+	</negative>
+	<apply block="never" message="You may not leave the playable area!" region="non-playable"/>
+</regions>
+<destroyables name="Beard" show-progress="true" completion="50%" materials="wool:12">
+    <destroyable owner="blue">
+        <region>
+            <cuboid min="9,0,-8" max="35,50,10"/>
+        </region>
+    </destroyable>
+    <destroyable owner="red">
+        <region>
+            <cuboid min="-58,0,12" max="-85,50,-11"/>
+        </region>
+    </destroyable>
+</destroyables>
+<itemremove>
+    <item>wool</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>cooked beef</item>
+    <item>ladder</item>
+    <item>stained glass</item>
+    <item>arrow</item>
+</itemremove>
+<toolrepair>
+    <tool>shears</tool>
+    <tool>bow</tool>
+</toolrepair>
+<maxbuildheight>89</maxbuildheight>
+</map>

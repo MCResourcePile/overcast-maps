@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<map proto= "1.4.3">
+	<name>Airship Battle 2</name>
+	<version>1.0.0</version>
+	<gamemode>dtc</gamemode>
+	<objective>Leak the enemy's core</objective>
+	<authors>
+		<author contributation="Map Author" uuid="30e27366-0b14-4076-8f55-0819ece49ce3"/> <!--  dewtroid  -->
+	</authors>
+	<contributors>
+		<contributor contribution="XML" uuid="53af1e46-7424-485b-97de-7bf8d854a2aa"/> <!--  BTKing  -->
+	</contributors>
+	<friendlyfire>off</friendlyfire>
+	<difficulty>hard</difficulty>
+	<timelock>on</timelock>
+	<maxbuildheight>90</maxbuildheight>
+	<teams>
+		<team max-overfill="8" max="7" color="dark_red" id="red-team">Red</team>
+		<team max-overfill="8" max="7" color="blue" id="blue-team">Blue</team>
+	</teams>
+	<spawns>
+		<default>
+			<regions>
+				<point yaw="180">-11.5,112,-32.5</point>
+			</regions>
+		</default>
+		<spawn safe="true" team="red-team">
+			<regions>
+				<point yaw="0">-42.5,111,6.5</point>
+			</regions>
+		</spawn>
+		<spawn safe="true" team="blue-team">
+			<regions>
+				<point yaw="180">14.5,111,73.5</point>
+			</regions>
+		</spawn>
+	</spawns>
+	<cores material="gold_block" leak="1">
+		<core team="red-team">
+			<region><cuboid min="-41.5,71,12.5" max="-43.5,75,10.5"/></region>
+		</core>
+		<core team="blue-team">
+			<region><cuboid min="13.5,71,67.5" max="15.5,75,69.5"/></region>
+		</core>
+	</cores>
+	<regions>
+		<cuboid id="playing-field" min="38.5,0,-8.5" max="-54.5,92,80.5"/>
+		<apply message="You may not place blocks outside the playing field!" block-break="never" block-place="never">
+			<region>
+				<negative>
+					<region id="playing-field"/>
+				</negative>
+			</region>
+		</apply>
+		<cuboid id="blue-spawn" min="17.5,110,76.5" max="11.5,117,48.5"/>
+		<apply region="blue-spawn" block-break="never" block-place="never"/>
+		<cuboid id="blue-drop" min="12.5,69,53.5" max="16.5,109,49.5"/>
+		<apply region="blue-drop" block-break="never" block-place="never" message="You may not modify the spawn drop!"/>
+		<cuboid id="red-spawn" min="-43.5,110,3.5" max="-39.5,117,31.5"/>
+		<apply region="red-spawn" block-break="never" block-place="never"/>
+		<cuboid id="red-drop" min="-40.5,69,26.5" max="-44.5,109,30.5"/>
+		<apply region="red-drop" block-break="never" block-place="never" message="You may not modify the spawn drop!"/>
+	</regions>
+	<hunger>
+    		<depletion>off</depletion>
+	</hunger>
+</map>

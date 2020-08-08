@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>MM: Dark Scent</name>
+<version>1.0.0</version>
+<include src="mmclasses.xml"/>
+<authors>
+    <author>Tywnis</author>
+</authors>
+<spawns>
+    <spawn angle="-236.5,8,35.5" safe="true">
+        <cuboid min="-284,0,-9" max="-203,9,73"/>
+    </spawn>
+    <default yaw="0">
+        <cylinder base="-259.5,5.2,4.5" radius="1.5" height="1"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="play" parents="deny-all">
+        <allow>
+            <block>tnt</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <apply block="play">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+</map>

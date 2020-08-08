@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Race: Drought</name>
+<version>1.0.0</version>
+<objective>Score points by completing laps around the track.</objective>
+<include src="race.xml"/>
+<authors>
+    <author>Reshif</author>
+</authors>
+<portals>
+    <portal x="0" y="-7.5" z="3.5">
+        <cuboid min="-7,14,-2" max="7,18,-1"/>
+    </portal>
+    <portal x="@0" y="@7.5" z="@3" yaw="@0">
+        <cuboid min="-100,-5,-100" max="100,0,100"/>
+    </portal>
+</portals>
+<regions>
+    <cuboid name="spawn" min="-7,7.5,2" max="7,8.5,4"/>
+</regions>
+<score>
+    <limit>3</limit>
+    <box value="1">
+        <cuboid min="-7,14,-2" max="7,18,-1"/>
+    </box>
+</score>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="0"><region name="spawn"/></spawn>
+    <spawn team="red" kit="red" yaw="0"><region name="spawn"/></spawn>
+    <spawn team="green" kit="green" yaw="0"><region name="spawn"/></spawn>
+    <spawn team="yellow" kit="yellow" yaw="0"><region name="spawn"/></spawn>
+    <spawn team="purple" kit="purple" yaw="0"><region name="spawn"/></spawn>
+    <spawn team="pink" kit="pink" yaw="0"><region name="spawn"/></spawn>
+    <spawn team="orange" kit="orange" yaw="0"><region name="spawn"/></spawn>
+    <spawn team="lime" kit="lime" yaw="0"><region name="spawn"/></spawn>
+    <spawn team="cyan" kit="cyan" yaw="0"><region name="spawn"/></spawn>
+    <spawn team="gray" kit="gray" yaw="0"><region name="spawn"/></spawn>
+    <spawn team="navy" kit="navy" yaw="0"><region name="spawn"/></spawn>
+    <spawn team="black" kit="black" yaw="0"><region name="spawn"/></spawn>
+    <default yaw="0"><region name="spawn"/></default>
+</spawns>
+</map>

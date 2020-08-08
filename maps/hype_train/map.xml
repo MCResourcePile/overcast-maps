@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+	<name>Hype Train</name>
+	<version>1.0.0</version>
+	<objective>Get Hyped!</objective>
+	<rules>
+		<rule>THERE ARE NO STOPS ON THE HYPE HYPE HYPE HYPE HYPE HYPE TRAIN!</rule>
+	</rules>
+	<authors>
+		<author>pikpikmerchant</author>
+	</authors>
+	<contributors>
+		<contributor contribution="Hype">kalikakitty</contributor>
+		<contributor contribution="Drinks">moo88888888</contributor>
+		<contributor contribution="Helped">thestrangeboy1</contributor>
+		<contributor contribution="Putting his head all over the place (If you see one of his heads, tell me so I can remove it)">Vector72</contributor>
+	</contributors>
+	<teams>
+		<team color="yellow" max="200">HYPE</team>
+	</teams>
+	<disabledamage>
+		<damage>fall</damage>
+		<damage>entity attack</damage>
+	</disabledamage>
+	<timelock>on</timelock> 
+	<score>
+		<time>7200</time>
+	</score>
+	<kits>
+		<kit name="hype">
+			<!-- Potion effects to allow player to move about the train more easily -->
+			<potion duration="oo" amplifier="8">jump</potion>
+			<potion duration="oo" amplifier="2">speed</potion>
+			<potion duration="oo" amplifier="1">night vision</potion>
+			<!-- Allows 1.7.2 users to remove the night vision effect. There are potions which allow players to still have jump boost and speed in a chest -->
+			<item slot="8" name="`9`lMuscle Milk" lore="`5`oDirnk this if you are using 1.7.2!">335</item>
+		</kit>
+	</kits>
+	<spawns>
+		<spawn team="HYPE" kit="hype" yaw="-90" pitch="90">
+			<cuboid min="-15.5,130,3.5" max="-19.5,130,-0.5"/>
+		</spawn>
+		<default yaw="0">
+			<cuboid min="-23.5,64,-13.5" max="-15.5,64,-12.5"/>
+		</default>
+	</spawns>
+	<filters>
+		<!-- No deny-all to prevent annoying spam of messages whenever you punch something -->
+		<filter name="block">
+			<any>
+				<block>glass</block>
+				<block>tnt</block>
+				<!-- Hidden Sponges? -->
+				<block>sponge</block>
+			</any>
+		</filter>
+		<filter name="deny-interact" parents="allow-all">
+			<deny>
+				<block>dispenser</block>
+				<block>lever</block>
+			</deny>
+		</filter>
+	</filters>
+	<tnt>
+		<blockdamage>off</blockdamage>
+		<instantignite>on</instantignite>
+	</tnt>
+	<regions>
+		<rectangle name="map" min="-oo,-oo" max="oo,oo"/>
+		<apply block="block" message="You may only break glass and place TNT">
+			<region name="map"/>
+		</apply>
+		<apply use="deny-interact">
+			<region name="map"/>
+		</apply>
+	</regions>
+	<itemremove>
+		<item>glass bottle</item>
+	</itemremove>
+</map>

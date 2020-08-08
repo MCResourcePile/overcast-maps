@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>MM: Lotus</name>
+<version>1.0.0</version>
+<include src="mmclasses.xml"/>
+<authors>
+    <author>personherson</author>
+</authors>
+<spawns>
+    <spawn angle="0.5,6,0.5" safe="true">
+        <cylinder base="0,2,0" radius="35" height="3"/>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="0,2,0" radius="1.5" height="1"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="play" parents="deny-all">
+        <allow>
+            <block>tnt</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <apply block="play">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+</map>

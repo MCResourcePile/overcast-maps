@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<map proto="1.4.2">
+  <name>Monochrome</name>
+  <version>1.1.1</version>
+  <objective>Kill the most players in 7 minutes</objective>
+  <authors>
+    <author uuid="a63de09d-6fa9-436f-9070-26f5e9a4d27b"/>
+    <!-- dragonrider455 -->
+    <author uuid="b6a25001-d380-41d6-9b35-60d6b82aa125"/>
+    <!-- BigMike2252 -->
+  </authors>
+  <broadcasts>
+    <tip after="30s">be strategic, find places to startle the enemy</tip>
+    <alert after="1m">Be carefull, enemies are allways lurking</alert>
+    <tip after="4m">Controlling Mid is the key to victory</tip>
+  </broadcasts>
+  <timelock>on</timelock>
+  <teams>
+     <team id="red-team" color="dark red" max="12" max-overfill="20">Red Team</team>
+     <team id="blue-team" color="blue" max="12" max-overfill="20">Blue Team</team>
+  </teams>
+  <score>
+    <kills>1</kills>
+    <deaths>0</deaths>
+  </score>
+  <rage/>
+  <time>7m</time>
+  <regions>
+    <cuboid id="Red Spawn" min="18.5,18.5,-8.5" max="18.5,18.5,-9.5"/>
+    <cuboid id="Blue Spawn" min="-125.5,18.5,-8.5" max="-125.5,18.5,-9.5"/>
+    <cuboid id="Blue-Jumppad-R" min="-107.0,7.0,7.0" max="-109.0,7.5,8.0"/>
+    <cuboid id="Blue-Jumppad-L" min="-107.0,7.0,-25.0" max="-109.0,7.5,-26.0"/>
+    <cuboid id="Red-Jumppad-L" min="0.0,7.0,-25.0" max="2.0,7.5,-26.0"/>
+    <cuboid id="Red-Jumppad-R" min="0.0,7.0,7.0" max="2.0,7.5,8.0"/>
+    <!--  Red Pads  -->
+    <apply velocity="0.0,0.95,0.25">
+        <region>
+            <cuboid min="0.0,7.0,7.0" max="2.0,7.5,8.0"/>
+        </region>
+    </apply>
+    <apply velocity="0.0,0.95,-0.25">
+        <region>
+            <cuboid min="0.0,7.0,-25.0" max="2.0,7.5,-26.0"/>
+        </region>
+    </apply>
+    <!--  Blue Pads  -->
+    <apply velocity="0.0,0.95,0.25">
+        <region>
+            <cuboid min="-107.0,7.0,7.0" max="-109.0,7.5,8.0"/>
+        </region>
+    </apply>
+    <apply velocity="0.0,0.95,-0.25">
+        <region>
+            <cuboid min="-107.0,7.0,-25.0" max="-109.0,7.5,-26.0"/>
+        </region>
+    </apply>
+  </regions>
+  <spawns>
+    <spawn team="Red Team" kit="redKit">
+        <regions yaw="90">
+            <cuboid min="18.5,18.5,-8.5" max="18.5,18.5,-9.5"/>
+        </regions>
+    </spawn>
+    <spawn team="Blue Team" kit="blueKit">
+        <regions yaw="-90">
+            <cuboid min="-125.5,18.5,-8.5" max="-125.5,18.5,-9.5"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <point>-42.5,8.1,-6.5</point>
+        </regions>
+    </default>
+  </spawns>
+  <hunger>
+    <depletion>off</depletion>
+  </hunger>
+  <disabledamage>
+    <damage>fall</damage>
+  </disabledamage>
+  <kits>
+    <kit id="base-kit" force="true">
+      <item slot="0" material ="iron sword"/>
+        <enchantment level="9">sharpness/enchantment>
+      <item slot="1" material="bow"/>
+        <enchantment level="9">power</enchantment>
+      <item slot="2" material="arrow"/>
+      <effect duration="oo" amplifier="1">night_vision</effect>
+      <effect duration="oo" amplifier="1">speed</effect>
+    </kit>
+    <kit id="redKit" parents="base-kit">
+      <helmet material="stained_glass" damage="14" locked="true"/>
+      <chestplate material="leather chestplate" color="E92816" locked="true"/>
+      <leggings material="leather leggings" color="E92816" locked="true"/>
+      <boots material="leather boots" color="E92816" locked="true"/>
+    </kit>
+    <kit id="blueKit" parents="base-kit">
+      <helmet material="stained_glass" damage="11" locked="true"/>
+      <chestplate material="leather chestplate" color="B43D0" locked="true"/>
+      <leggings material="leather leggings" color="B43D0" locked="true"/>
+      <boots material="leather boots" color="B43D0" locked="true"/>
+    </kit>
+  </kits>
+  <itemremove>
+    <item>stained_glass</item>
+    <item>leather_chestplate</item>
+    <item>leather_boots</item>
+    <item>leather_leggings</item>
+    <item>iron_sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+  </itemremove>
+  <filters>
+    <filter id="No-Destroy">
+    <deny-all/>
+  </filter>
+  <kill-rewards>
+    <kill-reward>
+        <item amount="1" material="arrow"/>
+    </kill-reward>
+  </kill-rewards>
+</map>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>MM: Quarry</name>
+<version>1.0.0</version>
+<include src="mmclasses.xml"/>
+<authors>
+    <author>Reshif</author>
+</authors>
+<spawns>
+    <spawn angle="129.5,36,-171.5" safe="true">
+        <cuboid min="107,33,-142" max="154,45,-196"/>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="118.5,63.2,-171.5" radius="1.5" height="1"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="play" parents="deny-all">
+        <allow>
+            <block>tnt</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <apply block="play">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+</map>

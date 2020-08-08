@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+	<name>BN: Oil Rig</name>
+	<version>1.0</version>
+	<objective>Be the team with the most kills after 5 minutes.</objective>
+	<authors>
+		<author>Matic0B</author>
+	</authors>
+	<contributors>
+		<contributor contribution="XML">TheZaner</contributor>
+	</contributors>
+	<filters>
+		<filter name="only-tnt">
+			<block>tnt</block>
+		</filter>
+	</filters>
+	<regions>
+		<rectangle name="main" min="oo,oo" max="-oo,-oo"/>
+		<cuboid name="jump" min="-46,38,-46" max="-48,36,-48"/>
+		<apply block="only-tnt" message="You may only place TNT.">
+			<region name="main"/>
+		</apply>
+		<apply velocity="@ 0.0,5.0,0.">
+			<region name="jump"/>
+		</apply>
+   </regions>
+	<teams>
+		<team color="dark red" max="10" max-overfill="12">Red Team</team>
+		<team color="yellow" max="10" max-overfill="12">Yellow Team</team>
+		<team color="green" max="10" max-overfill="12">Green Team</team>
+		<team color="blue" max="10" max-overfill="12">Blue Team</team>
+	</teams>
+	<spawns>
+		<spawn team="red" kit="red" yaw="45">
+			<cuboid min="-3,48,-92" max="-2,48,-93"/>
+		</spawn>
+		<spawn team="blue" kit="blue" yaw="135">
+			<cuboid min="-2,48,-2" max="-3,48,-3"/>
+		</spawn>
+		<spawn team="green" kit="green" yaw="-135">
+			<cuboid min="-93,48,-2" max="-92,48,-3"/>
+		</spawn>
+		<spawn team="yellow" kit="yellow" yaw="-45">
+			<cuboid min="-92,48,-92" max="-92,48,-92"/>
+		</spawn>
+		<default yaw="0">
+			<cuboid min="-47,140,-48" max="-48,140,-47"/>
+		</default>
+	</spawns>
+	<kits>
+		<kit name="red">
+			<helmet damage="-30000" color="993333">leather helmet</helmet>
+			<chestplate damage="-30000" color="993333">leather chestplate</chestplate>
+			<leggings damage="-30000" color="993333">leather leggings</leggings>
+		</kit>
+		<kit name="blue">
+			<helmet damage="-30000" color="334CB2">leather helmet</helmet>
+			<chestplate damage="-30000" color="334CB2">leather chestplate</chestplate>
+			<leggings damage="-30000" color="334CB2">leather leggings</leggings>
+		</kit>
+		<kit name="yellow">
+			<helmet damage="-30000" color="E5E533">leather helmet</helmet>
+			<chestplate damage="-30000" color="E5E533">leather chestplate</chestplate>
+			<leggings damage="-30000" color="E5E533">leather leggings</leggings>
+		</kit>
+		<kit name="green">
+			<helmet damage="-30000" color="667F33">leather helmet</helmet>
+			<chestplate damage="-30000" color="667F33">leather chestplate</chestplate>
+			<leggings damage="-30000" color="667F33">leather leggings</leggings>
+		</kit>
+	</kits>
+	<itemremove>
+		<item>leather helmet</item>
+		<item>leather chestplate</item>
+		<item>leather leggings</item>
+	</itemremove>
+	<include src="blasternauts.xml"/>
+</map>

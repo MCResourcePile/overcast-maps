@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>MM: Forest Crypt</name>
+<version>1.0.3</version>
+<include src="mmclasses.xml"/>
+<authors>
+    <author>Reshif</author>
+</authors>
+<contributors>
+    <contributor contribution="XML Fixing/Help">Stealth5061</contributor>
+    <contributor contribution="XML Fixing/Help">ElectroidFilms</contributor>
+</contributors>
+<spawns>
+    <spawn angle="201.5,40,13.5" safe="true">
+        <cuboid min="169,33,-16" max="248,39,43"/>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="192.5,63.2,14.5" radius="1.5" height="1"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="use">
+        <not>
+            <block>anvil</block>
+            <block>brewing_stand</block>
+        </not>
+    </filter>
+    <filter name="play" parents="deny-all">
+        <allow>
+            <block>tnt</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <apply block="play" use="use">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+</map>

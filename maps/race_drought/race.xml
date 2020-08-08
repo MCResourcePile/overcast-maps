@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<teams>
+    <team color="blue" max="1" max-overfill="1">Blue Car</team>
+    <team color="red" max="1" max-overfill="1">Red Car</team>
+    <team color="dark green" max="1" max-overfill="1">Green Car</team>
+    <team color="yellow" max="1" max-overfill="1">Yellow Car</team>
+    <team color="dark purple" max="1" max-overfill="1">Purple Car</team>
+    <team color="light purple" max="1" max-overfill="1">Pink Car</team>
+    <team color="gold" max="1" max-overfill="1">Orange Car</team>
+    <team color="green" max="1" max-overfill="1">Lime Car</team>
+    <team color="dark aqua" max="1" max-overfill="1">Cyan Car</team>
+    <team color="gray" max="1" max-overfill="1">Gray Car</team>
+    <team color="dark blue" max="1" max-overfill="1">Navy Car</team>
+    <team color="black" max="1" max-overfill="1">Black Car</team>
+</teams>
+<kits>
+    <kit name="blue"><helmet damage="3">wool</helmet></kit>
+    <kit name="red"><helmet damage="14">wool</helmet></kit>
+    <kit name="green"><helmet damage="13">wool</helmet></kit>
+    <kit name="yellow"><helmet damage="4">wool</helmet></kit>
+    <kit name="purple"><helmet damage="10">wool</helmet></kit>
+    <kit name="pink"><helmet damage="2">wool</helmet></kit>
+    <kit name="orange"><helmet damage="1">wool</helmet></kit>
+    <kit name="lime"><helmet damage="5">wool</helmet></kit>
+    <kit name="cyan"><helmet damage="9">wool</helmet></kit>
+    <kit name="gray"><helmet damage="8">wool</helmet></kit>
+    <kit name="navy"><helmet damage="11">wool</helmet></kit>
+    <kit name="black"><helmet damage="15">wool</helmet></kit>
+    <kit name="base">
+        <potion duration="oo" amplifier="100" ambient="true">heal</potion>
+        <potion duration="oo" amplifier="4" ambient="true">damage_resistance</potion>
+    </kit>
+</kits>
+<classes family="Cars" sticky="true" restrict="false">
+    <class name="Touring Car" description="4/5 speed, knockback 1 and efficiency 2 shears" icon="iron boots" default="true">
+        <kit parents="base">
+            <item slot="0" enchantment="knockback:1;dig_speed:2">shears</item>
+            <boots enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.50" damage="-3000">iron boots</boots>
+        </kit>
+    </class>
+    <class name="Formula One" description="5/5 speed, snowballs, no shears" icon="chainmail boots">
+        <kit parents="base">
+            <item slot="0" amount="127">snow ball</item>
+            <boots enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.55" damage="-3000">chainmail boots</boots>
+        </kit>
+    </class>
+    <class name="Buggy" description="2/5 speed, jump boost and regular shears" icon="leather boots">
+        <kit parents="base">
+            <item slot="0">shears</item>
+            <potion duration="oo" amplifier="1" ambient="true">jump</potion>
+            <boots enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.40" damage="-3000">leather boots</boots>
+        </kit>
+    </class>
+    <class name="Hot Rod" description="3/5 speed, fire aspect and extra webs, hyperspeed shears" icon="gold boots">
+        <kit parents="base">
+            <item slot="0" enchantment="fire_aspect:1;dig_speed:10">shears</item>
+            <item slot="1" amount="32">web</item>
+            <boots enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.45" damage="-3000">gold boots</boots>
+        </kit>
+    </class>
+    <class name="Truck" description="1/5 speed, knockback 2 and extra TNT, no shears" icon="diamond boots">
+        <kit parents="base">
+            <item slot="0" enchantment="knockback:2">stick</item>
+            <item slot="1" amount="32">tnt</item>
+            <boots enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.35" damage="-3000">diamond boots</boots>
+        </kit>
+    </class>
+</classes>
+<filters>
+    <filter name="play" parents="deny-all">
+        <allow>
+            <block>web</block>
+            <block>tnt</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <apply block="play">
+        <rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<mobs>
+    <filter>
+        <spawn>spawner egg</spawn>
+    </filter>
+</mobs>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>wood sword</tool>
+</toolrepair>
+<itemremove>
+    <item>string</item>
+    <item>iron boots</item>
+    <item>chainmail boots</item>
+    <item>leather boots</item>
+    <item>gold boots</item>
+    <item>diamond boots</item>
+    <item>shears</item>
+    <item>wool</item>
+</itemremove>
+<tnt>
+    <instantignite>on</instantignite>
+</tnt>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>Skyfall</name>
+<version>1.0</version>
+<objective>Avoid the falling TNT from the sky!</objective>
+<authors>
+    <author>Reshif</author>
+</authors>
+<teams>
+    <team color="yellow" max="50">Players</team>
+</teams>
+<autorespawn/>
+<spawns>
+    <spawn team="players" kit="spawn" angle="0.5,8,0.5">
+        <cylinder base="0.5,6.1,0.5" radius="25" height="1"/>
+    </spawn>
+    <default angle="0.5,8,0.5">
+        <cylinder base="0.5,6.3,0.5" radius="3" height="1"/>
+    </default>
+</spawns>
+<blitz>
+    <time>6m</time>
+    <lives>1</lives>
+</blitz>
+<kits>
+    <kit name="spawn" potion-particles="true">
+        <helmet locked="true">iron helmet</helmet>
+        <chestplate locked="true" enchantment="protection_explosions:2">diamond chestplate</chestplate>
+        <leggings locked="true">leather leggings</leggings>
+        <boots locked="true">iron boots</boots>
+        <potion duration="oo">regeneration</potion>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-tnt-explosions">
+        <all>
+            <cause>explosion</cause>
+            <not>
+                <block>mob spawner</block>
+            </not>
+        </all>
+    </filter>
+</filters>
+<regions>
+    <apply block="only-tnt-explosions">
+        <rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<renewables rate="10000" grow="true" avoid-entities="false" sound="false" particles="false">
+    <renewable>
+        <region>
+            <cylinder base="0.5,5,0.5" radius="32" height="1"/>
+        </region>
+        <renew-filter>
+            <filter name="allow-all"/>
+        </renew-filter>
+    </renewable>
+</renewables>
+<itemremove>
+    <item>tnt</item>
+    <item>iron helmet</item>
+    <item>diamond chestplate</item>
+    <item>leather leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<mobs>
+<filter parents="deny-all">
+    <allow>
+        <spawn>spawner egg</spawn>
+        <spawn>spawner</spawn>
+    </allow>
+</filter>
+</mobs>
+<tnt>
+    <instantignite>on</instantignite>
+    <blockdamage>on</blockdamage>
+</tnt>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<blockdrops>
+    <rule>
+        <fall-chance>.75</fall-chance>
+        <land-chance>0</land-chance>
+        <fall-speed>1.75</fall-speed>
+    </rule>
+    <filter>
+        <not>
+            <block>mob spawner</block>
+        </not>
+    </filter>
+</blockdrops>
+</map>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>MM: Rig</name>
+<version>1.0.0</version>
+<include src="mmclasses.xml"/>
+<authors>
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- StealthMedia -->
+</authors>
+<spawns safe="true" spread="true">
+    <spawn spread="true" safe="true">
+        <point yaw="-179">-6.5,9,8.5</point>
+        <point yaw="-91">-6.5,9,8.5</point>
+        <point yaw="-89">-6.5,9,-7.5</point>
+        <point yaw="0">-6.5,9,-7.5</point>
+        <point yaw="2">24.5,9,2.5</point>
+        <point yaw="91">22.5,22,20.5</point>
+        <point yaw="-135">-18.5,15,20.5</point>
+        <point yaw="180">1.5,22,-7.5</point>
+        <point yaw="45">20.5,22,-15.5</point>
+        <point yaw="135">24.5,15,18.5</point>
+        <point yaw="-179">18.5,15,22.5</point>
+        <point yaw="-90">4.5,15,25.5</point>
+        <point yaw="162">14.5,22,25.5</point>
+        <point yaw="135">20.5,22,22.5</point>
+        <point yaw="-119">9.5,22,11.5</point>
+        <point yaw="-121">0.5,26,2.5</point>
+        <point yaw="1">-8.5,15,3.5</point>
+    </spawn>
+    <default yaw="0">
+        <cuboid min="0,43,-1" max="2,43,-1"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="play" parents="deny-all">
+        <allow>
+            <block>tnt</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <apply block="play">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+</map>

@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<map proto="1.4.3">
+<name>2014: Rage FFA</name>
+<version>1.3</version>
+<phase>development</phase>
+<gamemode>ffa</gamemode>
+<gamemode>rage</gamemode>
+<objective>Get the most kills after 8 minutes!</objective>
+<authors>
+	<author contribution="Lobby Builder">bleangamer</author>
+	<author uuid="a9f11454-beac-4cc3-a138-1780802c8794" contribution="Map concept and XML"/>
+	<!-- Crazy_ -->
+</authors>
+<rules>
+	<rule>Fall damage is disabled.</rule>
+</rules>
+<rage/>
+<gamerules>
+	<doTileDrops>false</doTileDrops>
+	<doFireTick>false</doFireTick>
+</gamerules>
+<hunger>
+	<depletion>off</depletion>
+</hunger>
+<disabledamage>
+	<damage>fall</damage>
+</disabledamage>
+<players min="2" max="16" max-overfill="20" colors="true"/>
+<score>
+	<kills>1</kills>
+</score>
+<time>8m</time>
+<spawns>
+	<spawn kit="play" spread="true" safe="true">
+		<regions>
+			<cuboid min="46.5,13,46.5" max="-46.5,50,-46.5"/>
+		</regions>
+	</spawn>
+	<default>
+		<regions>
+			<point>0,27.5,0</point>
+		</regions>
+	</default>
+</spawns>
+<respawns>
+	<respawn auto="true" delay="2.5s"/>
+</respawns>
+<kits>
+	<kit id="play">
+		<any count="1">
+			<option weight="0.80">
+				<!-- 80% of the time you'll spawn with no helmet -->
+				<helmet locked="true" unbreakable="true">air</helmet>
+			</option>
+			<option weight="0.10">
+				<!-- 10% chance to spawn with the OCN head -->
+				<head slot="slot.armor.head" locked="true" uuid="d6cdaf45-3c22-4887-925e-9e823c9dd81f">
+					<skin>eyJ0aW1lc3RhbXAiOjE1Mjg2NjMwMjU3ODYsInByb2ZpbGVJZCI6IjNjN2RiMTRkYWM0YjRlMzViMmM2M2IyMjM3ZjM4MmJlIiwicHJvZmlsZU5hbWUiOiJBcHBsZSIsInRleHR1cmVzIjp7IlNLSU4iOnsidXJsIjoiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS9lNjljM2M4NGUxYzhjMzE5NmY5YzFhYjc4ZTRmMWQ4YTdmNWFmYTA1NGNiNDllOTg5ZTMyNzE3YjllMGQzMjc2In0sIkNBUEUiOnsidXJsIjoiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS9mMmRiOTM4YWJhYzQ0NGZmMzE1Yjk1ZTk1OTAxODRlMGUyZmU4OTQxZmRmZjU1OWE0YWI5NmNkNTRiY2RkIn19fQ==</skin>
+				</head>
+			</option>
+			<option weight="0.07">
+				<!-- 7% chance to spawn with Apple's head -->
+				<head slot="slot.armor.head" locked="true" uuid="3c7db14d-ac4b-4e35-b2c6-3b2237f382be">
+					<skin>eyJ0aW1lc3RhbXAiOjE1Mjg2NjMwMjU3ODYsInByb2ZpbGVJZCI6IjNjN2RiMTRkYWM0YjRlMzViMmM2M2IyMjM3ZjM4MmJlIiwicHJvZmlsZU5hbWUiOiJBcHBsZSIsInRleHR1cmVzIjp7IlNLSU4iOnsidXJsIjoiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS9lNjljM2M4NGUxYzhjMzE5NmY5YzFhYjc4ZTRmMWQ4YTdmNWFmYTA1NGNiNDllOTg5ZTMyNzE3YjllMGQzMjc2In0sIkNBUEUiOnsidXJsIjoiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS9mMmRiOTM4YWJhYzQ0NGZmMzE1Yjk1ZTk1OTAxODRlMGUyZmU4OTQxZmRmZjU1OWE0YWI5NmNkNTRiY2RkIn19fQ==</skin>
+				</head>
+			</option>
+			<option weight="0.03">
+				<!-- 3% chance to spawn with Cubist's head -->
+				<head slot="slot.armor.head" locked="true" uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112">
+					<skin>eyJ0aW1lc3RhbXAiOjE0NDY0MDgwOTExNzQsInByb2ZpbGVJZCI6IjNmYmVjN2RkMGE1ZjQwYmY5ZDExODg1YTU0NTA3MTEyIiwicHJvZmlsZU5hbWUiOiJDdWJpc3QiLCJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTRlZGExMjg4NWIzYmE2ZGY2ODMyZGZkMTIzNGEyNjc5MmQwNDI2ZDkyMDM2ZWVlYzc1M2ZiZmM2NmRiIn19fQ==</skin>
+				</head>
+			</option>
+		</any>
+		<chestplate unbreakable="true" locked="true">chainmail chestplate</chestplate>
+		<leggings unbreakable="true" locked="true">iron leggings</leggings>
+		<boots unbreakable="true" locked="true" material="chainmail boots">
+			<enchantment level="5">depth_strider</enchantment>
+		</boots>
+		<item slot="0" enchantments="damage_all:10">iron sword</item>
+		<item slot="1" enchantments="arrow_damage:10">bow</item>
+		<item slot="2" amount="2">arrow</item>
+		<potion duration="2" amplifier="10">resistance</potion>
+    	<double-jump enabled="true" recharge-before-landing="true" power="3.5"/>
+    	<potion time="oo" amplifier="1">speed</potion>
+  </kit>
+</kits>
+<regions>
+	<apply velocity="0,1.5,0">
+		<region>
+			<cuboid max="1,15,-1" min="-1,16,1"/>
+			<!-- center lauchpad -->
+		</region>
+	</apply>
+	<apply block="never">
+		<region>
+			<everywhere/>
+		</region>
+	</apply>
+</regions>
+<kill-rewards> 
+	<kill-reward>
+		<item amount="1">arrow</item>
+	</kill-reward>
+</kill-rewards>
+<itemremove>
+	<item>chainmail chestplate</item>
+	<item>iron leggings</item>
+	<item>chainmail boots</item>
+	<item>iron sword</item>
+	<item>bow</item>
+	<item>arrow</item>
+	<item>skull</item>
+</itemremove>
+</map>

@@ -1,0 +1,802 @@
+<?xml version="1.0"?>
+<map proto="1.4.0" game="Dungeon Bosses">
+<name>Forest of Lost Souls</name>
+<version>0.0.62</version>
+<objective>Conquer all seven dungeon bosses of the Forest of Lost Souls!</objective>
+<authors>
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" />
+    <!--   minimitch0199   -->
+</authors>
+
+<teams>
+    <team id="players" color="yellow" max="6">Players</team>
+    <team id="archmage" color="dark purple" max="0">Forest Archmage</team>
+</teams>
+
+<filters>
+    <any id="allowedBlocks">
+        <material>stationary lava</material>
+        <all>
+            <any>
+                <material>torch</material>
+                <material>leaves 2</material>
+                <material>mob spawner</material>
+                <material>vine</material>
+                <material>long grass</material>
+                <material>red rose</material>
+                <material>double plant</material>
+                <material>stained clay</material>
+                <material>lava</material>
+            </any>
+            <cause>player</cause>
+        </all>
+        <all>
+            <any>
+                <material>gravel</material>
+                <material>redstone block</material>
+                <material>mob spawner</material>
+                <material>leaves 2</material>
+            </any>
+            <cause>explosion</cause>
+        </all>
+    </any>
+    <any id="fireballDestoryables">
+        <material>torch</material>
+        <material>leaves 2</material>
+        <material>mob spawner</material>
+        <material>vine</material>
+        <material>long grass</material>
+        <material>red rose</material>
+        <material>double plant</material>
+    </any>
+    <material id="onlyRedWool">stained glass:14</material>
+    <material id="onlyOrangeWool">stained glass:1</material>
+    <material id="onlyBlueWool">stained glass:3</material>
+    <material id="onlyPurpleWool">stained glass:10</material>
+    <any id="onlyArcher">
+        <class>Archer</class>
+        <class>❖ Debug</class>
+    </any>
+    <any id="onlyWarrior">
+        <class>Warrior</class>
+        <class>❖ Debug</class>
+    </any>
+    <any id="onlyWizard">
+        <class>Wizard</class>
+        <class>❖ Debug</class>
+    </any>
+    <not id="guardianDefeat">
+        <objective>guardianMonument</objective>
+    </not>
+    <not id="denySpawns">
+        <objective team="players">afterGlory</objective>
+    </not>
+    <all id="denyAfterGuardianDefeat">
+        <objective>guardianMonument</objective>
+        <not>
+            <objective team="players">afterGuardian</objective>
+        </not>
+    </all>
+    <all id="denyAfterGloryDefeat">
+        <objective>gloryMonument</objective>
+        <not>
+            <objective team="players">afterGlory</objective>
+        </not>
+    </all>
+    <all id="denyAfterFateDefeat">
+        <objective>fateMonument</objective>
+        <not>
+            <objective team="players">afterFate</objective>
+        </not>
+    </all>
+    <objective id="allowPortal">fateMonument</objective>
+    <all id="allowArchmageBroadcasts">
+        <objective team="players">checkPortal</objective>
+        <not>
+            <objective team="players">platformTimer</objective>
+        </not>
+    </all>
+    <all id="denyAfterArchmageSpawn">
+        <objective>blueShard</objective>
+        <objective>redShard</objective>
+        <objective>orangeShard</objective>
+        <not>
+            <objective team="players">destroyedSouls</objective>
+        </not>
+    </all>
+    <all id="archmageMimicBroadcasts">
+        <objective team="players">archmageMimic</objective>
+        <not>
+            <objective team="players">denyArchmageMimic</objective>
+        </not>
+    </all>
+</filters>
+
+<regions>
+    <!-- Team Spawns -->
+    <block id="defaultSpawn">0.5,1,0.5</block>
+    <block id="playerSpawn">0.5,1,0.5</block>
+    <union id="wools">
+        <block id="guardianMonument-region">0,2,-9</block>
+        <block id="gloryMonument-region">8,2,64</block>
+        <block id="fateMonument-region">22,2,72</block>
+        <block id="archmageMonument-region">68,2,28</block>
+        <block id="blueShard-region">87,8,-2</block>
+        <block id="redShard-region">87,8,58</block>
+        <block id="orangeShard-region">85,2,28</block>
+    </union>
+    <circle id="map" center="0.5,42.5" radius="100" />
+    <cylinder id="portalInput" base="22.5,0,20.5" radius="3" height="1" />
+    <block id="portalOutput">75.5,4,28.5</block>
+    <apply block-place="onlyRedWool" region="guardianMonument-region" />
+    <apply block-place="onlyRedWool" region="redShard-region" />
+    <apply block-place="onlyOrangeWool" region="gloryMonument-region" />
+    <apply block-place="onlyOrangeWool" region="orangeShard-region" />
+    <apply block-place="onlyBlueWool" region="fateMonument-region" />
+    <apply block-place="onlyBlueWool" region="blueShard-region" />
+    <apply block-place="onlyPurpleWool" region="archmageMonument-region" />
+    <apply block="allowedBlocks" />
+</regions>
+
+<portals>
+    <portal region="portalInput" destination="portalOutput" filter="allowPortal" smooth="true" />
+</portals>
+
+<mobs>
+    <filter>
+        <spawn>spawner</spawn>
+    </filter>
+</mobs>
+
+<spawns>
+    <default kit="default" region="defaultSpawn" yaw="180" />
+    <spawn team="players" kit="playersKit" region="playerSpawn" yaw="180" filter="denySpawns" />
+</spawns>
+<respawn spectate="true" auto="true">
+    <message>`6⚠ `bYou are no longer able to respawn! `6⚠</message>
+</respawn>
+
+<kits>
+    <kit id="default">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="clear">
+        <clear />
+    </kit>
+    <kit id="playersKit" parents="clear">
+        <item slot="6" amount="8" damage="1">leaves 2</item>
+        <item slot="7" amount="64">torch</item>
+        <item slot="8" amount="2">golden apple</item>
+        <item slot="34" amount="64">torch</item>
+        <potion duration="1" amplifier="10">heal</potion>
+        <shield health="4" delay="10s" />
+    </kit>
+</kits>
+
+<classes family="players" sticky="true">
+    <class name="Archer" default="false" icon="bow">
+        <kit>
+            <item slot="0" unbreakable="true" prevent-sharing="true">wood axe</item>
+            <item slot="1" unbreakable="true" prevent-sharing="true">bow</item>
+            <item slot="2" name="`rQuiver of Decay `8| `bAbility`8" projectile="witherArrow" prevent-sharing="true">record 11</item>
+            <item slot="3" unbreakable="true" prevent-sharing="true">wood pickaxe</item>
+            <item slot="5" amount="36">arrow</item>
+            <helmet unbreakable="true" prevent-sharing="true">gold helmet</helmet>
+            <chestplate unbreakable="true" prevent-sharing="true">iron chestplate</chestplate>
+            <boots unbreakable="true" prevent-sharing="true">gold boots</boots>
+            <potion duration="oo" amplifier="5">health boost</potion>
+        </kit>
+    </class>
+    <class name="Warrior" default="true" icon="iron sword">
+        <kit>
+            <item slot="0" unbreakable="true" prevent-sharing="true">iron sword</item>
+            <item slot="1" name="`rIron Shield `8| `bAbility`8" projectile="stun" prevent-sharing="true">record 9</item>
+            <item slot="2" unbreakable="true" prevent-sharing="true">stone pickaxe</item>
+            <helmet unbreakable="true" prevent-sharing="true">iron helmet</helmet>
+            <chestplate unbreakable="true" prevent-sharing="true">iron chestplate</chestplate>
+            <boots unbreakable="true" prevent-sharing="true">gold boots</boots>
+            <potion duration="oo" amplifier="5">health boost</potion>
+            <potion duration="oo" amplifier="1">resistance</potion>
+        </kit>
+    </class>
+    <class name="Wizard" default="false" icon="record 12">
+        <kit>
+            <item slot="0" unbreakable="true" projectile="staff1" prevent-sharing="true" name="`rStaff" enchantments="knockback:1;looting:1">wood hoe</item>
+            <item slot="1" name="`rFireball `8| `bAbility`8" projectile="fireball" prevent-sharing="true">record 12</item>
+            <item slot="2" unbreakable="true" prevent-sharing="true">stone pickaxe</item>
+            <helmet unbreakable="true" prevent-sharing="true">gold helmet</helmet>
+            <chestplate unbreakable="true" prevent-sharing="true" enchantment="protection projectile:3">leather chestplate</chestplate>
+            <boots unbreakable="true" prevent-sharing="true">leather boots</boots>
+            <potion duration="oo" amplifier="2">health boost</potion>
+        </kit>
+    </class>
+    <class name="❖ Debug" default="false" icon="record 10" restrict="false">
+        <kit>
+            <item slot="0" unbreakable="true" prevent-sharing="true" name="`5Blade of the Screaming Souls" enchantments="sharpness:3;fire aspect:1">diamond sword</item>
+            <item slot="1" unbreakable="true" prevent-sharing="true" name="`5Bow of the Midnight Sun" enchantments="power:3;flame:1;punch:1">bow</item>
+            <item slot="2" name="`5Wither Arrow `8| `bAbility`8" prevent-sharing="true" projectile="witherArrowOp">record 11</item>
+            <item slot="4" unbreakable="true" prevent-sharing="true" name="`5Pickaxe of a Thousand Nightmares" enchantments="dig speed:2">diamond pickaxe</item>
+            <item slot="5" amount="64" prevent-sharing="true" name="`5Soul Bender" enchantments="knockback:2">ender pearl</item>
+            <item slot="20" name="`rFireball `8| `bAbility`8" prevent-sharing="true" projectile="fireballOp">record 12</item>
+            <item slot="27" name="`rStaff" prevent-sharing="true" projectile="staff3" enchantments="knockback:1;looting:1">gold hoe</item>
+            <item slot="28" amount="64">arrow</item>
+            <item slot="29" name="`5Mithril Shield `8| `bAbility`8" prevent-sharing="true" projectile="stunOp">record 10</item>
+            <helmet unbreakable="true" prevent-sharing="true">diamond helmet</helmet>
+            <chestplate unbreakable="true" prevent-sharing="true">diamond chestplate</chestplate>
+            <leggings unbreakable="true" prevent-sharing="true">diamond leggings</leggings>
+            <boots unbreakable="true" prevent-sharing="true">diamond boots</boots>
+            <potion duration="oo" amplifier="5">health boost</potion>
+            <potion duration="oo" amplifier="5">resistance</potion>
+        </kit>
+    </class>
+</classes>
+
+<projectiles>
+    <projectile id="stun" name="Stun" throwable="false" velocity="1" projectile="Snowball" potion="slowness:45:10;weakness:60:2" damage="0" cooldown="12s" />
+    <projectile id="stunOp" name="Stun" throwable="false" velocity="2" projectile="Snowball" potion="slowness:45:10;weakness:60:2" damage="0" cooldown="0s" />
+    <projectile id="witherArrow" name="Quiver" throwable="false" velocity="2" projectile="Arrow" potion="wither:120:2" damage="6" cooldown="12s" />
+    <projectile id="witherArrowOp" name="Quiver" throwable="false" velocity="5" projectile="Arrow" potion="wither:120:2" damage="6" cooldown="0s" />
+    <projectile id="fireball" name="Fireball" throwable="false" velocity="5" projectile="Fireball" destroy-filter="fireballDestoryables" damage="18" cooldown="12s" />
+    <projectile id="fireballOp" name="Fireball" throwable="false" velocity="5" projectile="Fireball" destroy-filter="fireballDestoryables" damage="18" cooldown="0s" />
+    <projectile id="staff1" name="Staff" throwable="false" velocity="2.5" projectile="Snowball" damage="8" cooldown="0.5s" />
+    <projectile id="staff2" name="Staff" throwable="false" velocity="2.5" projectile="Snowball" damage="10" cooldown="0.5s" />
+    <projectile id="staff3" name="Staff" throwable="false" velocity="2.5" projectile="Snowball" damage="10" cooldown="0s" />
+</projectiles>
+
+<falling-blocks>
+    <rule>
+        <filter>
+            <material>step</material>
+        </filter>
+        <sticky>
+            <material>mob spawner</material>
+        </sticky>
+    </rule>
+</falling-blocks>
+
+<destroyables>
+    <!-- Tunnel Bosses -->
+    <destroyable id="guardianMonument" name="Forsaken Guardian" sparks="true" materials="air" owner="archmage" required="true" region="guardianMonument-region" show="true" />
+    <destroyable id="gloryMonument" name="Wandering Glory" sparks="true" materials="air" owner="archmage" required="true" region="gloryMonument-region" show="true" />
+    <destroyable id="fateMonument" name="Wandering Fate" sparks="true" materials="air" owner="archmage" required="true" region="fateMonument-region" show="true" />
+    <!-- Cave Bosses -->
+    <destroyable id="redShard" name="፠ Forsaken Adviser" sparks="true" materials="air" owner="archmage" required="true" region="redShard-region" show="true" />
+    <destroyable id="orangeShard" name="፠ Triumph" sparks="true" materials="air" owner="archmage" required="true" region="orangeShard-region" show="true" />
+    <destroyable id="blueShard" name="፠ Moira" sparks="true" materials="air" owner="archmage" required="true" region="blueShard-region" show="true" />
+    <!-- Main Bosses -->
+    <destroyable id="archmageMonument" name="❖ Forest Archmage" sparks="true" materials="air" owner="archmage" required="true" region="archmageMonument-region" show="true" />
+    <destroyable id="sentinelMonument" name="❖ Royal Sentinel" sparks="true" materials="air" owner="archmage" required="true" region="archmageMonument-region" show="true" />
+</destroyables>
+
+<control-points show="false">
+    <!-- Cancel Glory Text After Guardian Complete -->
+    <control-point id="afterGuardian" name="afterGuardian" capture-time="0s">
+        <capture>
+            <cylinder base="0.5,1,9.5" radius="3" height="8" />
+        </capture>
+        <player-filter>
+            <all>
+                <team>players</team>
+                <objective>guardianMonument</objective>
+            </all>
+        </player-filter>
+    </control-point>
+    <!-- Cancel Fate Text After Glory Complete -->
+    <control-point id="afterGlory" name="afterGlory" capture-time="0s">
+        <capture>
+            <cylinder base="-11.5,1,64.5" radius="3" height="8" />
+        </capture>
+        <player-filter>
+            <all>
+                <team>players</team>
+                <objective>gloryMonument</objective>
+            </all>
+        </player-filter>
+    </control-point>
+    <!-- Cancel Archmage Text After Fate Complete -->
+    <control-point id="afterFate" name="afterFate" capture-time="0s">
+        <capture>
+            <cylinder base="22.5,1,50.5" radius="3" height="8" />
+        </capture>
+        <player-filter>
+            <all>
+                <team>players</team>
+                <objective>fateMonument</objective>
+            </all>
+        </player-filter>
+    </control-point>
+    <!-- Check If Players Have Entered The Portal -->
+    <control-point id="checkPortal" name="checkPortal" capture-time="0s">
+        <capture>
+            <cylinder base="22.5,0,20.5" radius="3" height="1" />
+        </capture>
+        <player-filter>
+            <all>
+                <team>players</team>
+                <objective>fateMonument</objective>
+            </all>
+        </player-filter>
+    </control-point>
+    <!-- Remove Soul Boss Spawners -->
+    <control-point id="platformTimer" name="platformTimer" capture-time="8s">
+        <capture>
+            <cylinder base="75.5,0,28.5" radius="32" height="16" />
+        </capture>
+        <player-filter>
+            <all>
+                <team>players</team>
+                <objective>fateMonument</objective>
+            </all>
+        </player-filter>
+    </control-point>
+    <!-- All Souls Destoryed, Cancel Archmage Text -->
+    <control-point id="destroyedSouls" name="destroyedSouls" capture-time="1.5s">
+        <capture>
+            <everywhere />
+        </capture>
+        <player-filter>
+            <all>
+                <team>players</team>
+                <objective>blueShard</objective>
+                <objective>redShard</objective>
+                <objective>orangeShard</objective>
+            </all>
+        </player-filter>
+    </control-point>
+    <!-- removeArchmageSpawner -->
+    <control-point id="removeArchmageSpawner" name="removeArchmageSpawner" capture-time="8s">
+        <capture>
+            <everywhere />
+        </capture>
+        <player-filter>
+            <all>
+                <team>players</team>
+                <objective>blueShard</objective>
+                <objective>redShard</objective>
+                <objective>orangeShard</objective>
+            </all>
+        </player-filter>
+    </control-point>
+    <!-- Archmage Mimic Spawners -->
+    <control-point id="archmageMimic" name="archmageMimic" capture-time="16s">
+        <capture>
+            <everywhere />
+        </capture>
+        <player-filter>
+            <all>
+                <team>players</team>
+                <objective>blueShard</objective>
+                <objective>redShard</objective>
+                <objective>orangeShard</objective>
+            </all>
+        </player-filter>
+    </control-point>
+    <!-- Deny Archmage Mimic Spawners -->
+    <control-point id="denyArchmageMimic" name="denyArchmageMimic" capture-time="1m16s">
+        <capture>
+            <everywhere />
+        </capture>
+        <player-filter>
+            <all>
+                <team>players</team>
+                <objective>blueShard</objective>
+                <objective>redShard</objective>
+                <objective>orangeShard</objective>
+            </all>
+        </player-filter>
+    </control-point>
+</control-points>
+
+<structures>
+    <!-- Guardian Protectors -->
+    <structure id="protectorSpawner" air="false">
+        <region>
+            <cuboid min="-2,55,0" size="5,3,1" />
+        </region>
+    </structure>
+    <!-- Forsaken Guardian Spawner -->
+    <structure id="guardianSpawner" air="false">
+        <region>
+            <cuboid min="0,55,-5" size="1,3,1" />
+        </region>
+    </structure>
+    <!-- Guardian Complete TNT Block -->
+    <structure id="guardianComplete" air="false">
+        <region>
+            <cuboid min="0,18,7" size="1,1,1" />
+        </region>
+    </structure>
+    <!-- Guardian Complete Loot Chest -->
+    <structure id="guardianChest" air="false">
+        <region>
+            <cuboid min="0,48,-5" size="1,1,1" />
+        </region>
+    </structure>
+    <!-- Wanding Glory Spawner -->
+    <structure id="glorySpawner" air="false">
+        <region>
+            <cuboid min="0,55,64" size="1,3,1" />
+        </region>
+    </structure>
+    <!-- Portal Room Glory Monument -->
+    <structure id="gloryWoolMonument" air="false">
+        <region>
+            <cuboid min="29,21,23" size="3,6,-4" />
+        </region>
+    </structure>
+    <!-- Glory Complete TNT Block -->
+    <structure id="gloryComplete" air="false">
+        <region>
+            <cuboid min="0,12,32" size="1,3,1" />
+        </region>
+    </structure>
+    <!-- Wandering Fate Spawner -->
+    <structure id="fateSpawner" air="false">
+        <region>
+            <cuboid min="18,55,63" size="1,3,1" />
+        </region>
+    </structure>
+    <!-- Portal Room Fate Monument -->
+    <structure id="fateWoolMonument" air="false">
+        <region>
+            <cuboid min="21,21,14" size="4,6,-4" />
+        </region>
+    </structure>
+    <!-- Portal Room Forest Archmage Portal -->
+    <structure id="portalMonument" air="false">
+        <region>
+            <cuboid min="27,21,25" size="-8,11,-8" />
+        </region>
+    </structure>
+    <!-- Dummy Air Block to Remove Old Enchanting Table -->
+    <structure id="removeEnchanting" air="true">
+        <region>
+            <cuboid min="21,1,20" size="1,1,1" />
+        </region>
+    </structure>
+    <!-- Lower Archmage Room Spawn Platform to Remove Soul Bosses -->
+    <structure id="removePillar" air="true">
+        <region>
+            <cuboid min="74,46,27" size="3,5,3" />
+        </region>
+    </structure>
+    <!-- Stone Statue Lava -->
+    <structure id="lavaStatue" air="false">
+        <region>
+            <cuboid min="101,59,26" size="3,4,5" />
+        </region>
+    </structure>
+    <!-- Archmage Release -->
+    <structure id="archmageSpawner" air="false">
+        <region>
+            <cuboid min="98,50,28" size="1,1,1" />
+        </region>
+    </structure>
+    <!-- Archmage Mimic Spawners -->
+    <structure id="archmageMimicSpawner" air="false">
+        <region>
+            <cuboid min="98,55,28" size="1,1,1" />
+        </region>
+    </structure>
+    <!-- Moria Beacon -->
+    <structure id="beaconBlue" air="true">
+        <region>
+            <cuboid min="87,57,2" size="1,1,1" />
+        </region>
+    </structure>
+    <!-- Adviser Beacon -->
+    <structure id="beaconRed" air="true">
+        <region>
+            <cuboid min="87,57,54" size="1,1,1" />
+        </region>
+    </structure>
+    <!-- Triumph Beacon -->
+    <structure id="beaconOrange" air="true">
+        <region>
+            <cuboid min="87,57,28" size="1,1,1" />
+        </region>
+    </structure>
+
+    <!-- Forsaken Guardian Fight Spawners -->
+    <structures offset="0,-37,0">
+        <dynamic structure="protectorSpawner">
+            <filter>
+                <all id="filter-protector-spawners">
+                    <time>5s</time>
+                    <not>
+                        <completed>guardianMonument</completed>
+                    </not>
+                </all>
+            </filter>
+        </dynamic>
+        <dynamic structure="guardianSpawner">
+            <filter>
+                <all id="filter-guardian-spawner">
+                    <time>1s</time>
+                    <not>
+                        <time>10s</time>
+                    </not>
+                </all>
+            </filter>
+        </dynamic>
+    </structures>
+
+    <!-- Boss Complete Monuments -->
+    <structures offset="0,-21,0">
+        <dynamic structure="gloryWoolMonument">
+            <filter>
+                <completed>gloryMonument</completed>
+            </filter>
+        </dynamic>
+        <dynamic structure="fateWoolMonument">
+            <filter>
+                <completed>fateMonument</completed>
+            </filter>
+        </dynamic>
+        <dynamic structure="portalMonument">
+            <filter>
+                <all>
+                    <completed>guardianMonument</completed>
+                    <completed>gloryMonument</completed>
+                    <completed>fateMonument</completed>
+                </all>
+            </filter>
+        </dynamic>
+    </structures>
+
+    <structures offset="1,0,0">
+        <dynamic structure="removeEnchanting">
+            <filter>
+                <completed>fateMonument</completed>
+            </filter>
+        </dynamic>
+    </structures>
+
+    <!-- Boss Spawners and Loot Chests -->
+    <structures offset="0,-54,0">
+        <dynamic structure="glorySpawner">
+            <filter>
+                <completed>guardianMonument</completed>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="4,-54,1">
+        <dynamic structure="fateSpawner">
+            <filter>
+                <completed>gloryMonument</completed>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-16,0">
+        <dynamic structure="guardianComplete">
+            <filter>
+                <completed id="filter-tnt">guardianMonument</completed>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-47,0">
+        <dynamic structure="guardianChest">
+            <filter>
+                <completed id="filter-guardian-chest">guardianMonument</completed>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-9,0">
+        <dynamic structure="gloryComplete">
+            <filter>
+                <completed>gloryMonument</completed>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-46,0">
+        <dynamic structure="removePillar">
+            <filter>
+                <completed>platformTimer</completed>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-47,0">
+        <dynamic structure="archmageSpawner">
+            <filter>
+                <all>
+                    <completed>blueShard</completed>
+                    <completed>redShard</completed>
+                    <completed>orangeShard</completed>
+                    <not>
+                        <completed team="players">removeArchmageSpawner</completed>
+                    </not>
+                </all>
+            </filter>
+        </dynamic>
+        <dynamic structure="archmageMimicSpawner">
+            <filter>
+                <all>
+                    <completed team="players">archmageMimic</completed>
+                    <not>
+                        <completed team="players">denyArchmageMimic</completed>
+                    </not>
+                </all>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-34,0">
+        <dynamic structure="lavaStatue">
+            <filter>
+                <all>
+                    <completed>blueShard</completed>
+                    <completed>redShard</completed>
+                    <completed>orangeShard</completed>
+                </all>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="beaconBlue">
+            <filter>
+                <completed>blueShard</completed>
+            </filter>
+        </dynamic>
+        <dynamic structure="beaconRed">
+            <filter>
+                <completed>redShard</completed>
+            </filter>
+        </dynamic>
+        <dynamic structure="beaconOrange">
+            <filter>
+                <completed>orangeShard</completed>
+            </filter>
+        </dynamic>
+    </structures>
+</structures>
+
+<block-drops>
+    <rule>
+        <region>
+            <circle center="0.5,42.5" radius="750" />
+        </region>
+        <filter>
+            <material>mob spawner</material>
+        </filter>
+        <drops>
+            <item chance="0.8" amount="6">arrow</item>
+            <item chance="0.5" damage="4">ink sack</item>
+            <item chance="0.4" damage="1" amount="6">leaves 2</item>
+            <item chance="0.3">golden apple</item>
+            <item chance="0.05" unbreakable="true" name="`5Pickaxe of a Thousand Nightmares" enchantments="dig speed:2">diamond pickaxe</item>
+            <item chance="0.03" unbreakable="true" name="`5Blade of the Screaming Souls" enchantments="sharpness:3;fire aspect:1">diamond sword</item>
+            <item chance="0.02" unbreakable="true" name="`5Bow of the Midnight Sun" enchantments="power:3;flame:1;punch:1">bow</item>
+            <item chance="0.01" name="`5Soul Bender" enchantments="knockback:2">ender pearl</item>
+        </drops>
+    </rule>
+    <rule>
+        <region>
+            <circle center="0.5,42.5" radius="500" />
+        </region>
+        <filter>
+            <material>leaves 2</material>
+        </filter>
+        <drops>
+            <item damage="1" amount="1">leaves 2</item>
+        </drops>
+    </rule>
+</block-drops>
+
+<!-- Causes mobs to drop items with missing textures
+    <item-mods>
+        <rule>
+            <match>
+                <material>wood sword</material>
+                <material>leather helmet</material>
+                <material>leather chestplate</material>
+                <material>leather leggings</material>
+                <material>leather boots</material>
+                <material>stone sword</material>
+                <material>chainmail helmet</material>
+                <material>chainmail chestplate</material>
+                <material>chainmail leggings</material>
+                <material>chainmail boots</material>
+                <material>iron sword</material>
+                <material>iron helmet</material>
+                <material>iron chestplate</material>
+                <material>iron leggings</material>
+                <material>iron boots</material>
+                <material>gold sword</material>
+                <material>gold helmet</material>
+                <material>gold chestplate</material>
+                <material>gold leggings</material>
+                <material>gold boots</material>
+                <material>diamond sword</material>
+                <material>diamond helmet</material>
+                <material>diamond chestplate</material>
+                <material>diamond leggings</material>
+                <material>diamond boots</material>
+                <material>bow</material>
+            </match>
+            <modify unbreakable="true" />
+        </rule>
+    </item-mods>-->
+
+<itemremove>
+    <item>gravel</item>
+    <item>redstone block</item>
+    <item>bone</item>
+    <item>skull item</item>
+    <item>flint</item>
+    <item>seeds</item>
+    <item>red rose</item>
+    <item>apple</item>
+    <item>sapling</item>
+    <item>rotten flesh</item>
+    <item>string</item>
+    <item>spider eye</item>
+    <item>iron ingot</item>
+    <item>coal</item>
+    <item>carrot item</item>
+    <item>potato item</item>
+    <item>gold record</item>
+    <item>green record</item>
+    <item>record 3</item>
+    <item>record 4</item>
+    <item>record 5</item>
+    <item>record 6</item>
+    <item>record 7</item>
+    <item>record 8</item>
+    <item>record 9</item>
+    <item>record 10</item>
+    <item>record 11</item>
+    <item>record 12</item>
+    <item>sulphur</item>
+    <item>blaze rod</item>
+    <item>gold nugget</item>
+    <item>gold ingot</item>
+    <item>magma cream</item>
+</itemremove>
+
+<!-- <itemkeep /> Make sure keepInventory gamerule is set to true -->
+
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+
+<disabledamage>
+    <damage>block explosion</damage>
+</disabledamage>
+
+<broadcasts>
+    <!-- Forsaken Guardian Messages -->
+    <alert after="3s" filter="guardianDefeat">`6[`cForsaken Guardian`6] `bWho has woken me..? You'll find that that was... unwise.</alert>
+    <alert after="6s" filter="guardianDefeat">`6[`cForsaken Guardian`6] `bMy minions will protect me!</alert>
+    <alert after="12s" filter="guardianDefeat">`6[`cForsaken Guardian`6] `bLeave this place!</alert>
+    <alert after="40s" filter="guardianDefeat">`6[`cForsaken Guardian`6] `bFOOLS! YOU DO NOT UNDERSTAND!</alert>
+    <alert after="90s" filter="guardianDefeat">`6[`cForsaken Guardian`6] `bI HAVE HAD ENOUGH OF YOU!</alert>
+    <!-- Guardian Protector Messages -->
+    <alert after="7.5s" every="10s" filter="guardianDefeat">`6[`cGuardian Protector`6] `bProtect the Guardian!</alert>
+    <alert after="7.5s" every="24s" filter="guardianDefeat">`6[`cGuardian Protector`6] `bProtect the Guardian!</alert>
+    <!-- Wandering Glory Messages -->
+    <alert after="5s" every="10s" filter="denyAfterGuardianDefeat">`6[`6Wandering Glory`6] `bHow dare you take down the Forsaken Guardian!</alert>
+    <alert after="15s" every="12s" filter="denyAfterGuardianDefeat">`6[`6Wandering Glory`6] `bRUN, YES RUN FOR YOUR WORTHLESS LIVES!</alert>
+    <alert after="25s" every="16s" filter="denyAfterGuardianDefeat">`6[`6Wandering Glory`6] `bCome closer, brave warrior - LET ME FEED UPON YOUR WORTHLESS SOUL!</alert>
+    <!-- Wandering Fate Messages -->
+    <alert after="5s" every="10s" filter="denyAfterGloryDefeat">`6[`9Wandering Fate`6] `bThis cannot be! LEAVE THIS PLACE!</alert>
+    <alert after="15s" every="12s" filter="denyAfterGloryDefeat">`6[`9Wandering Fate`6] `bI'll deal with you myself - come feel the wrath of my blade!</alert>
+    <alert after="25s" every="16s" filter="denyAfterGloryDefeat">`6[`9Wandering Fate`6] `bI will not take defeat. I'll crush your skull under the force of my blade!</alert>
+    <!-- Forest Archmage Messages -->
+    <alert after="5s" every="10s" filter="denyAfterGloryDefeat">`6[`5Forest Archmage`6] `bENOUGH! You shall no longer see the light of day!</alert>
+    <alert after="5.1s" every="10s" filter="denyAfterGloryDefeat">`6⚠ `cRespawning has been disabled! `6⚠</alert>
+
+    <alert after="5s" every="20s" filter="denyAfterFateDefeat">`6[`5Forest Archmage`6] `bWe have suffered far too much - come warrior, claim your reward...</alert>
+
+    <alert after="1s" every="6s" filter="allowArchmageBroadcasts">`6[`5Forest Archmage`6] `bSo, you've come to collect your reward? Ha... ha... ha...</alert>
+    <alert after="1.1s" every="6s" filter="allowArchmageBroadcasts">`6[`5Forest Archmage`6] `bYour reward is a swift death! The `cForsaken Adviser, `6Triumph `band `9Moira `bwill make short work of you!</alert>
+
+    <alert after="1s" every="1s" filter="denyAfterArchmageSpawn">`6[`5Forest Archmage`6] `bUrrhg! I need no minions, YOU WILL DIE!!!</alert>
+    <!-- Archmage Mimic Messages -->
+    <alert after="1s" every="6s" filter="archmageMimicBroadcasts">`6[`5Forest Archmage`6] `bI am everywhere and I am nowhere!</alert>
+    <alert after="4s" every="10s" filter="archmageMimicBroadcasts">`6[`5Forest Archmage`6] `bI am everywhere and I am nowhere!</alert>
+    <alert after="8s" every="13s" filter="archmageMimicBroadcasts">`6[`5Forest Archmage`6] `bI am everywhere and I am nowhere!</alert>
+    <alert after="20s" filter="archmageMimicBroadcasts">`6[`5Forest Archmage`6] `bWhich one am I..? Take a guess! Hahaha</alert>
+    <!--
+
+        <alert after="1s"   every="1.5s" filter="guardianDefeat"              >`6[`3Royal Sentinel`6] `bMortal fools, what have you done...</alert>-->
+</broadcasts>
+</map>

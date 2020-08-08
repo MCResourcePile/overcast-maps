@@ -2,8 +2,7 @@
 
 :european_castle: Publicly downloadable maps from the Overcast Network repository.
 
-All maps can be downloaded from the [Overcast Collection](https://mcresourcepile.github.io/maps/overcast) on our website. **This repository only contains maps which names begin with letters A through to F.** All other maps can be found in the corresponding repositories:  
-[`overcast-maps-g-to-n`](https://github.com/MCResourcePile/overcast-maps-g-to-n), [`overcast-maps-o-to-z`](https://github.com/MCResourcePile/overcast-maps-o-to-z).
+All maps can be downloaded from the [Overcast Collection](https://mcresourcepile.github.io/maps/overcast) on our website.
 
 All maps are assumed to be released under a [non-commercial license](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode) unless otherwise stated on the ResourcePile website or in the included notice in the compiled downloads from the ResourcePile website. For more information on map use and acquisition, refer to our [map policy](https://mcresourcepile.github.io/policies/maps).
 

@@ -1,0 +1,223 @@
+<map proto="1.4.2">
+<name>Orbit</name>
+<version>1.1.1</version>
+<objective>Destroy the other team's monuments to win</objective>
+<authors>
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" /> <!-- mitchiii_ -->
+</authors>
+<teams>
+    <team id="blue-team" color="blue"     max="12" max-overfill="16">Blue</team>
+    <team id="red-team"  color="dark red" max="12" max-overfill="16">Red</team>
+</teams>
+<kits>
+    <kit id="main-kit" parents="lazer-kit">
+        <double-jump power="6" recharge-time="4s" />
+        <chestplate material="elytra" unbreakable="true" />
+        <effect>glowing</effect>
+    </kit>
+    <kit id="blue-kit" parents="main-kit">
+        <helmet   unbreakable="true" locked="true" color="0066cc" material="leather helmet" />
+        <leggings unbreakable="true" locked="true" color="0066cc" material="leather leggings" />
+    </kit>
+    <kit id="red-kit" parents="main-kit">>
+        <helmet   unbreakable="true" locked="true" color="cd0000" material="leather helmet" />
+        <leggings unbreakable="true" locked="true" color="cd0000" material="leather leggings" />
+    </kit>
+    <kit id="lazer-kit" force="true">
+        <any count="1">
+            <option weight="10">
+                <item slot="0" locked="true" material="iron barding" name="`r`bLazer" projectile="lazer-default" lore="`r`7Damage: `98|`r`7Projectile Damage: `98|`r`7Cooldown: `90 seconds" show-attributes="false">
+                    <attribute operation="add" amount="8">generic.attackDamage</attribute>
+                </item>
+                <max-health>20</max-health>
+                <boots material="gold boots" unbreakable="true" locked="true" />
+            </option>
+            <option weight="8">
+                <item slot="0" locked="true" material="iron barding" name="`r`bHigh Powered Lazer" projectile="lazer-spectral" lore="`r`7Damage: `98|`r`7Projectile Damage: `912|`r`7Victim Effects: `9Weakness II for 2 seconds|`r`7Cooldown: `90.1 seconds" show-enchantments="false" show-attributes="false">
+                    <enchantment level="1">unbreaking</enchantment>
+                    <attribute operation="add" amount="8">generic.attackDamage</attribute>
+                </item>
+                <max-health>18</max-health>
+                <boots material="chainmail boots" unbreakable="true" locked="true" />
+            </option>
+            <option weight="6">
+                <item slot="0" locked="true" material="gold barding" name="`r`6Skull Lazer" projectile="lazer-wither" lore="`r`7Damage: `912|`r`7Projectile Damage: `916|`r`7Explosion Damage: `9?|`r`7Victim Effects: `9Wither II for 4 seconds|`r`7Cooldown: `90.4 seconds" show-attributes="false">
+                    <attribute operation="add" amount="12">generic.attackDamage</attribute>
+                </item>
+                <max-health>12</max-health>
+                <boots material="leather boots" color="000000" unbreakable="true" locked="true" />
+            </option>
+            <option weight="4">
+                <item slot="0" locked="true" material="gold barding" name="`r`6TNT Launcher" projectile="lazer-bomer" lore="`r`7Damage: `912|`r`7Projectile Damage: `96|`r`7Explosion Damage: `9?|`r`7Cooldown: `90.6 seconds" show-enchantments="false" show-attributes="false">
+                    <enchantment level="1">unbreaking</enchantment>
+                    <attribute operation="add" amount="12">generic.attackDamage</attribute>
+                </item>
+                <max-health>10</max-health>
+                <boots material="chainmail boots" unbreakable="true" locked="true" />
+            </option>
+            <option weight="3">
+                <item slot="0" locked="true" material="diamond barding" name="`r`dFireball Launcher" projectile="lazer-fireball" lore="`r`7Damage: `916|`r`7Projectile Damage: `920|`r`7Explosion Damage: `9?|`r`7Cooldown: `90.6 seconds" show-attributes="false">
+                    <attribute operation="add" amount="16">generic.attackDamage</attribute>
+                </item>
+                <max-health>8</max-health>
+                <boots  material="gold boots" unbreakable="true" locked="true" />
+            </option>
+            <option weight="1">
+                <item slot="0" locked="true" material="diamond barding" name="`r`dDragon Fireball Launcher" projectile="lazer-dragon" lore="`r`7Damage: `916|`r`7Projectile Damage: `912|`r`7Explosion Damage: `9?|`r`7Area Damage: `9? for ? seconds|`r`7Cooldown: `90.8 seconds" show-enchantments="false" show-attributes="false">
+                    <enchantment level="1">unbreaking</enchantment>
+                    <attribute operation="add" amount="16">generic.attackDamage</attribute>
+                </item>
+                <max-health>6</max-health>
+                <boots material="diamond boots" unbreakable="true" locked="true" />
+            </option>
+        </any>
+    </kit>
+</kits>
+<projectiles>
+    <projectile id="lazer-default"  name="lazer" projectile="Arrow"          velocity="3.5" damage="8"  throwable="false" click="right" cooldown="0s" />
+    <projectile id="lazer-spectral" name="lazer" projectile="Arrow"          velocity="3.5" damage="12" throwable="false" click="right" cooldown="0.1s">
+        <effect duration="2" level="2">weakness</effect>
+    </projectile>
+    <projectile id="lazer-bomer"    name="lazer" projectile="TNTPrimed"      velocity="2.1" damage="6"  throwable="false" click="right" cooldown="0.6s" />
+    <projectile id="lazer-wither"   name="lazer" projectile="WitherSkull"    velocity="3.5" damage="16" throwable="false" click="right" cooldown="0.4s">
+        <effect duration="2" level="4">wither</effect>
+    </projectile>
+    <projectile id="lazer-fireball" name="lazer" projectile="LargeFireball"  velocity="2.8" damage="20" throwable="false" click="right" cooldown="0.6s" />
+    <projectile id="lazer-dragon"   name="lazer" projectile="DragonFireball" velocity="1.0" damage="12" throwable="false" click="right" cooldown="0.8s" />
+</projectiles>
+<kill-rewards>
+    <kill-reward kit="lazer-kit" />
+    <kill-reward>
+        <filter>
+            <kill-streak count="3" repeat="true" persistent="true" />
+        </filter>
+        <item material="snowball" amount="2" name="`r`cGrenade" grenade="true" grenade-power="2" grenade-fire="true" />
+    </kill-reward>
+</kill-rewards>
+<spawns>
+    <default                               region="default-spawn" yaw="-90" />
+    <spawn team="blue-team" kit="blue-kit" region="blue-spawn"    yaw="0" />
+    <spawn team="red-team"  kit="red-kit"  region="red-spawn"     yaw="180" />
+</spawns>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+    <all id="player-playing">
+        <participating />
+        <match-running />
+        <region id="zero-gravity-region" />
+    </all>
+</filters>
+<regions>
+    <block id="default-spawn">-203.5,29,56.5</block>
+    <block id="blue-spawn">-136.5,58,-167.5</block>
+    <block id="red-spawn">-136.5,58,279.5</block>
+    <rectangle id="zero-gravity-region" min="oo,-87.5" max="-oo,199.5" />
+    <sphere id="blue-spawn-boost" origin="-136.5,53,-167.5" radius="3" />
+    <sphere id="red-spawn-boost"  origin="-136.5,53,279.5"  radius="3" />
+    <apply region="blue-spawn-boost">
+        <kit>
+            <impulse>0,2,16</impulse>
+        </kit>
+    </apply>
+    <apply region="red-spawn-boost">
+        <kit>
+            <impulse>0,2,-16</impulse>
+        </kit>
+    </apply>
+</regions>
+<destroyables materials="packed ice;ice;beacon" completion="100%" show-progress="true">
+    <destroyable name="West Monument" owner="blue-team">
+       <region>
+           <cylinder base="-185.5,22,-56.5" radius="3" height="8" />
+        </region>
+    </destroyable>
+    <destroyable name="Central Monument" owner="blue-team">
+       <region>
+           <cylinder base="-136.5,46,-24.5" radius="3" height="8" />
+        </region>
+    </destroyable>
+    <destroyable name="East Monument" owner="blue-team">
+       <region>
+           <cylinder base="-88.5,22,-56.5" radius="3" height="8" />
+        </region>
+    </destroyable>
+    <destroyable name="West Monument" owner="red-team">
+       <region>
+           <cylinder base="-184.5,22,168.5" radius="3" height="8" />
+        </region>
+    </destroyable>
+    <destroyable name="Central Monument" owner="red-team">
+       <region>
+           <cylinder base="-136.5,46,136.5" radius="3" height="8" />
+        </region>
+    </destroyable>
+    <destroyable name="East Monument" owner="red-team">
+       <region>
+           <cylinder base="-87.5,22,168.5" radius="3" height="8" />
+        </region>
+    </destroyable>
+</destroyables>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>fly into wall</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<tnt>
+    <instantignite>on</instantignite>
+    <fuse>2s</fuse>
+    <power>6</power>
+</tnt>
+<block-drops>
+    <rule>
+        <fall-chance>0.5</fall-chance>
+        <land-chance>0.8</land-chance>
+   </rule>
+</block-drops>
+<renewables>
+    <renewable rate="16" grow="true">
+        <region>
+            <union>
+                <cuboid min="-144,0,-61" max="-127,60,-178" />
+                <cuboid min="-129,0,175" max="-148,60,284" />
+            </union>
+        </region>
+        <renew-filter>
+            <not>
+                <material>air</material>
+            </not>
+        </renew-filter>
+    </renewable>
+</renewables>
+<itemremove>
+    <item>iron barding</item>
+    <item>gold barding</item>
+    <item>diamond barding</item>
+    <item>arrow</item>
+    <item>spectral arrow</item>
+    <item>snow ball</item>
+    <item>elytra</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>chainmail helmet</item>
+    <item>chainmail chestplate</item>
+    <item>chainmail leggings</item>
+    <item>chainmail boots</item>
+    <item>gold helmet</item>
+    <item>gold chestplate</item>
+    <item>gold leggings</item>
+    <item>gold boots</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>diamond helmet</item>
+    <item>diamond chestplate</item>
+    <item>diamond leggings</item>
+    <item>diamond boots</item>
+</itemremove>
+</map>

@@ -1,0 +1,68 @@
+<map proto="1.3.3">
+    <include src="blitz-global.xml" />
+    <name>Indursti</name>
+    <version>1.0.1</version>
+    <objective>Eliminate the enemy.</objective>
+    <authors>
+        <author>Matic0B</author>
+    </authors>
+    <teams>
+        <team color="dark red" max="12">Red Team</team>
+        <team color="blue" max="12">Blue Team</team>
+    </teams>
+    <blitz>
+        <lives>2</lives>
+        <title>Blitz</title>
+        <time>5m</time>
+    </blitz>
+    <kits>
+        <kit name="spawn">
+            <item slot="0" damage="-3000">stone sword</item>
+            <item slot="1" damage="-3000">bow</item>
+            <item slot="2" amount="12">arrow</item>
+            <potion duration="3">heal</potion>
+            <leggings damage="-3000">iron leggings</leggings>
+        </kit>
+        <kit name="red" parents="spawn">
+            <helmet color="cd0000" damage="-3000">leather helmet</helmet>
+            <chestplate color="cd0000" enchantment="protection projectile" damage="-3000">leather chestplate</chestplate>
+            <boots color="cd0000" damage="-3000">leather boots</boots>
+        </kit>
+        <kit name="blue" parents="spawn">
+            <helmet color="0066cc" damage="-3000">leather helmet</helmet>
+            <chestplate color="0066cc" enchantment="protection projectile" damage="-3000">leather chestplate</chestplate>
+            <boots color="0066cc" damage="-3000">leather boots</boots>
+        </kit>
+    </kits>
+    <regions>
+        <apply block="deny-all">
+            <rectangle min="-oo,-oo" max="oo,oo" />
+        </apply>
+    </regions>
+    <spawns>
+        <spawn team="red" kit="red" yaw="-90">
+            <point>35.5,2,0.5</point>
+        </spawn>
+        <spawn team="blue" kit="blue" yaw="90">
+            <point>-34.5,2,0.5</point>
+        </spawn>
+        <default yaw="0">
+            <point>0.5,25,0.5</point>
+        </default>
+    </spawns>
+    <itemremove>
+        <item>stone sword</item>
+        <item>bow</item>
+        <item>leather helmet</item>
+        <item>leather chestplate</item>
+        <item>iron leggings</item>
+        <item>leather boots</item>
+    </itemremove>
+    <hunger>
+        <depletion>off</depletion>
+    </hunger>
+    <killreward>
+        <item amount="6">arrow</item>
+    </killreward>
+    <timelock>on</timelock>
+</map>

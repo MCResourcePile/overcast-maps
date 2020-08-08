@@ -1,0 +1,93 @@
+<map proto="1.4.0" game="Creep Slap!">
+	<name>Creep Slap: Vier</name>
+	<objective>Ignite and throw the Creepers! Least deaths win!</objective>
+	<version>1.0.0</version>
+	<gamemode>arcade</gamemode>
+	<authors>
+		<author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25"/>
+		<!-- Matic0B -->
+	</authors>
+	<contributors>
+		<contributor uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" contribution="Maker of original Creep Slap"/>
+		<!-- AtlasGames -->
+	</contributors>
+	<teams>
+		<team color="red" id="red" min="1" max="2" max-overfill="2">Red</team>
+		<team color="purple" id="purple" min="1" max="2" max-overfill="2">Purple</team>
+		<team color="orange" id="orange" min="1" max="2" max-overfill="2">Orange</team>
+		<team color="yellow" id="yellow" min="1" max="2" max-overfill="2">Yellow</team>
+	</teams>
+	<score>
+		<kills>1</kills>
+	</score>
+	<time>2m</time>
+	<kits>
+		<kit id="spawn-kit">
+			<effect amplifier="1" duration="oo">night vision</effect>
+			<effect amplifier="2" duration="oo">resistance</effect>
+			<item slot="0" enchantments="knockback:5" name="`a`lCreeper Slapper" unbreakable="true">flint and steel</item>
+			<item slot="1" amount="16" damage="50">383</item>
+			<item slot="2" amount="16" damage="50">383</item>
+			<walk-speed>2</walk-speed>
+		</kit>
+		<kit id="obs-kit">
+			<effect amplifier="1" duration="oo">night vision</effect>
+		</kit>
+	</kits>
+	<spawns>
+		<spawn kit="spawn-kit" team="red">
+			<regions yaw="90">
+				<region id="red-spawn"/>
+			</regions>
+		</spawn>
+		<spawn kit="spawn-kit" team="purple">
+			<regions yaw="180">
+				<region id="purple-spawn"/>
+			</regions>
+		</spawn>
+		<spawn kit="spawn-kit" team="orange">
+			<regions yaw="-90">
+				<region id="orange-spawn"/>
+			</regions>
+		</spawn>
+		<spawn kit="spawn-kit" team="yellow">
+			<regions yaw="0">
+				<region id="yellow-spawn"/>
+			</regions>
+		</spawn>
+		<default kit="obs-kit">
+			<regions yaw="0">
+				<point>-4.5,72,-4.5</point>
+			</regions>
+		</default>
+	</spawns>
+	<regions>
+		<cuboid id="red-spawn" min="4,65,9" max="3,65,0"/>
+		<cuboid id="purple-spawn" min="0,65,4" max="-9,65,3"/>
+		<cuboid id="orange-spawn" min="0,65,-13" max="-12,65,-9"/>
+		<cuboid id="yellow-spawn" min="-9,65,-13" max="0,65,-12"/>
+		<cuboid id="creeper-area" min="2,65,-11" max="-11,66,2"/>
+		<apply block="never" region="everywhere"/>
+	</regions>
+	<mobs>
+		<filter>
+			<all>
+				<region id="creeper-area"/>
+				<mob>creeper</mob>
+				<spawn>spawner egg</spawn>
+			</all>
+		</filter>
+	</mobs>
+	<itemremove>
+		<item>flint and steel</item>
+		<item>383</item>
+		<item>sulphur</item>
+	</itemremove>
+	<kill-reward>
+		<item amount="4" damage="50">383</item>
+	</kill-reward>
+	<hunger>
+		<depletion>off</depletion>
+	</hunger>
+	<timelock>on</timelock>
+</map>

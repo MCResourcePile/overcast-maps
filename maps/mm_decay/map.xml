@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>MM: Decay</name>
+<version>1.0.0</version>
+<include src="mmclasses.xml"/>
+<authors>
+    <author uuid="105f6a09-f533-412b-93cb-501601763c11"/>
+    <!--Jtr-->
+</authors>
+<spawns>
+    <spawn angle="2.5,10,4.5" spread="true" safe="true">
+        <cuboid min="23,3,25" max="26,7,-24"/>
+    </spawn>
+    <default yaw="180">
+        <cuboid min="3,18,3" max="1,20,1"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="play" parents="deny-all">
+        <allow>
+            <block>tnt</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <apply block="play">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+</map>

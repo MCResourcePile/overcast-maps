@@ -1,0 +1,127 @@
+<map proto="1.4.0">
+<name>Rogue CTF</name>
+<version>1.0.1</version>
+<objective>Capture the enemy team's flag 3 times to win!</objective>
+<authors>
+    <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!--  NixaniaXi  -->
+    <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!--  DoomRobotBoy  -->
+</authors>
+<contributors>
+    <contributor contribution="Layout help" uuid="0f59172c-de53-4bbe-a060-1a5dc274db4e"/> <!-- Kingie -->
+</contributors>
+<broadcasts>
+    <tip after="1s">To capture a flag you need two teammates to open the net for you!</tip>
+    <tip after="1m">To capture a flag you need two teammates to open the net for you!</tip>
+</broadcasts>
+<hunger>
+<depletion>off</depletion>
+</hunger>
+<score>
+    <limit>3</limit>
+</score>
+<teams>
+    <team id="red" color="dark red" max="10">Red</team>
+    <team id="blue" color="blue" max="10">Blue</team>
+</teams>
+<respawn delay="9s" auto="true"/>
+<spawns>
+    <spawn team="blue" kit="blue-kit" filter="spawn-condition-regular">
+        <regions>
+            <point yaw="45">-252.5,18,288.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue-kit" filter="spawn-condition">
+        <regions>
+            <point yaw="0">-218.5,14,250.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red-kit" filter="spawn-condition-regular">
+        <regions>
+            <point yaw="-135">-184.5,18,182.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red-kit" filter="spawn-condition">
+        <regions>
+            <point yaw="180">-218.5,14,220.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <point>-218.5,32,235.5</point>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn" force="true" discard-potion-bottles="true">
+        <game-mode>adventure</game-mode>
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" damage="8261">potion</item>
+        <item slot="8" amount="16">arrow</item>
+        <leggings enchantment="protection projectile:1" unbreakable="true">iron leggings</leggings>
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <helmet locked="true" color="993333" unbreakable="true">leather helmet</helmet>
+        <chestplate locked="true" color="993333" unbreakable="true">leather chestplate</chestplate>
+        <boots locked="true" color="993333" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <helmet locked="true" color="334CB2" unbreakable="true">leather helmet</helmet>
+        <chestplate locked="true" color="334CB2" unbreakable="true">leather chestplate</chestplate>
+        <boots locked="true" color="334CB2" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<killreward>
+    <item damage="8261">potion</item>
+    <item amount="8">arrow</item>
+</killreward>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>potion</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<filters>
+    <team id="red-pickup">red</team>
+    <team id="blue-pickup">blue</team>
+    <objective id="spawn-condition">cp</objective>
+    <not id="spawn-condition-regular">
+        <objective>cp</objective>
+    </not>
+    <any id="allow-redstone">
+        <material>PISTON_STICKY_BASE</material>
+        <material>PISTON_EXTENSION</material>
+        <material>PISTON_MOVING_PIECE</material>
+        <material>SMOOTH_BRICK</material>
+        <material>AIR</material>
+    </any>
+</filters>
+<regions>
+    <cuboid id="blue-net" min="-171,17,211" max="-172,20,209"/>
+    <cuboid id="red-net" min="-266,17,260" max="-265,20,262"/>
+    <rectangle id="map" min="oo,oo" max="-oo,-oo"/>
+    <apply block-break="never" block="allow-redstone" region="map"/>
+</regions>
+<control-points capture-players="lead" incremental="true" show-progress="true" required="false">
+    <control-point name="Center Point" id="cp" capture-time="5s" points="0">
+        <capture><cuboid min="-217,11,237" max="-220,14,234"/></capture>
+        <progress><cuboid min="-217,10,237" max="-220,11,234"/></progress>
+        <captured><cuboid min="-217,10,237" max="-220,11,234"/></captured>
+    </control-point>
+</control-points>
+<flags>
+    <flag id="red-flag" color="red" name="Red Flag" owner="red" carry-message="Capture the flag at the red beacon!">
+        <post id="red-post" pickup-filter="blue-pickup" recover-time="10s" respawn-speed="1.59">-196.5,12,194.5</post>
+        <net region="red-net" points="1"/>
+    </flag>
+    <flag id="blue-flag" color="blue" name="Blue Flag" owner="blue" carry-message="Capture the flag at the blue beacon!">
+        <post id="blue-post" pickup-filter="red-pickup" recover-time="10s" respawn-speed="1.59">-240.5,12,276.5</post>
+        <net region="blue-net" points="1"/>
+    </flag>
+</flags>
+<timelock>true</timelock>
+</map>

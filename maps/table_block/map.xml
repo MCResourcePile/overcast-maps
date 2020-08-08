@@ -1,0 +1,334 @@
+<map proto="1.4.0">
+<include src="tutorial.xml"/>
+<name>Table Block</name>
+<version>1.2.3</version>
+<objective>Break into the enemy's monuments and bring back the wools that are inside.</objective>
+<!--  Map authors & contributors.  -->
+<authors>
+    <author uuid="bbcafea0-53cf-4d29-9dd9-27f383d02faa" contribution="Map Builder"/><!--Spintown-->
+    <author uuid="7cbf2168-7f49-4fb3-aea8-6df8048a7ade" contribution="XML"/><!--nigges60-->
+    <author uuid="5c79d2c9-a4f0-4343-a84b-e1720f13009b" contribution="Fixed XML"/><!--CoWinkKeyDinkInc-->
+    <author uuid="3079b474-d80c-4709-9a4b-bb1212a166b0" contribution="Fixed XML"/><!--Lmmb74-->
+</authors>
+<contributors>
+    <contributor uuid="3518f310-17e9-4d7c-b383-7735aeeba65a" contribution="MCEdit"/><!--Lmac77-->
+    <contributor uuid="2fa0ea62-ca7f-477c-95d0-bff5be0f65b4" contribution="WorldEdit"/><!--8BitHer0-->
+    <contributor uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b" contribution="Provided Feedback"/><!--Anthonny-->
+</contributors>
+<!--Tutorial-->
+<tutorial>
+    <stage title="Table Block">
+        <message>
+            <line>`rThis map is a `a`lCapture the Wool `r(CTW) and a `a`lDestroy the Monument `r(DTW)` map.</line>
+            <line>`rThe objective is to destroy the entrance (the monument) and return the wool to the player's spawn!</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="90">-308.5,73,-409.5</point>
+        </teleport>
+    </stage>
+    <stage title="Entrances">
+        <message>
+            <line>`rThis Entrance belongs to `6Yellow`r team. `1Blue`r team must break into the entrance to get one of the wools.</line>
+            <line>`rYou have to destory a decent amount of pieces to complete the objective.</line>
+            <line>`rTeams cannot enter their own entrance they have to defend, if they try, they get teleported...</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="90">-167.5,20,-431.5</point>
+        </teleport>
+    </stage>
+    <stage title="Platforms">
+        <message>
+            <line>`l`4Over here! `rIt's a quick way to get to the front lines, but be careful! You might make an opening for the enemy! Now, back to the entrance...</line>
+        </message>
+        <teleport>
+            <point yaw="-45" pitch="63">-372,20,-388</point>
+        </teleport>
+    </stage>
+    <stage title="Wool Rooms">
+        <message>
+            <line>`rThis is the inside of an Entrance, which contains a wool spawner and a portal.</line>
+            <line>`rYou shall use the portal to leave.</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="45">-167.5,5,-434.5</point>
+        </teleport>
+    </stage>
+    <stage title="HourGlasses">
+        <message>
+            <line>`rThis is an HourGlass, which is where you're teleported after entering the portal inside an Entrance.</line>
+            <line>`rThe enemy can't get in your hour glass, so you can safely stay inside and exit at your own pace.</line>
+        </message>
+        <teleport>
+            <point yaw="-45" pitch="33">-458.5,30,-418.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+<!--Teams-->
+<teams>
+    <team id="yellow-team" color="yellow" max="32" max-overfill="40">Yellow</team>
+    <team id="blue-team" color="blue" max="32" max-overfill="40">Blue</team>
+</teams>
+<!--Spawns-->
+<spawns>
+    <spawn team="yellow-team" kit="yellow-kit">
+        <region yaw="-90">
+            <point>-481,13.5,-410</point>
+        </region>
+    </spawn>
+    <spawn team="blue-team" kit="blue-kit">
+        <region yaw="90">
+            <point>-136,13.5,-408</point>
+        </region>
+    </spawn>
+    <default>
+        <region yaw="0">
+            <point>-308.5,50,-477.5</point>
+        </region>
+    </default>
+</spawns>
+<!--Kits-->
+<kits>
+    <kit id="spawn">
+        <item slot="0" material="stone sword"/>
+        <item slot="1" unbreakable="true" enchantment="infinity:1" material="bow"/>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" material="iron axe"/>
+        <item slot="5" amount="32" damage="2" material="wood"/>
+        <item slot="6" amount="64" material="cobblestone"/>
+        <item slot="7" amount="64" material="cooked beef"/>
+        <item slot="8" amount="2"  material="golden apple"/>
+        <item slot="17" amount="1" material="arrow"/>
+        <potion amplifier="100" duration="3">heal</potion>
+        <potion amplifier="100" duration="3">damage resistance</potion>
+        <potion amplifier="100" duration="3">regeneration</potion>
+    </kit>
+    <kit id="yellow-kit" parents="spawn">
+        <helmet color="E5E533" material="leather helmet"/>
+        <chestplate color="E5E533" material="leather chestplate"/>
+        <leggings color="E5E533" material="leather leggings"/>
+        <boots color="E5E533" material="leather boots"/>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <helmet color="334CB2" material="leather helmet"/>
+        <chestplate color="334CB2" material="leather chestplate"/>
+        <leggings color="334CB2" material="leather leggings"/>
+        <boots color="334CB2" material="leather boots"/>
+    </kit>
+</kits>
+<!--Filters-->
+<filters>
+    <filter id="only-blue">
+        <team>blue-team</team>
+    </filter>
+    <filter id="only-yellow">
+        <team>yellow-team</team>
+    </filter>
+    <deny id="no-safeties">
+        <any>
+            <material>wool</material>
+        </any>
+    </deny>
+    <not id="iron-rules">
+        <not>
+            <all>
+                <any>
+                    <block>iron block</block>
+                </any>
+            </all>
+        </not>
+    </not>
+</filters>
+<!--Regions-->
+<regions>
+    <union id="spawns">
+        <rectangle id="bluespawn" min="-143,-420" max="-126,-401"/>
+        <rectangle id="yellowspawn" min="-489,-416" max="-473,-396"/>
+    </union>
+    <union id="gaps">
+        <rectangle min="-186,-445" max="-180,-371"/>
+        <rectangle min="-328,-446" max="-289,-372"/>
+        <rectangle min="-430,-446" max="-436,-372"/>
+    </union>
+    <union id="woolindicator">
+        <cuboid min="-169,45,-386" max="-167,48,-384"/>
+        <cuboid min="-169,45,-433" max="-167,48,-431"/>
+        <cuboid min="-450,45,-434" max="-448,48,-432"/>
+        <cuboid min="-450,45,-387" max="-448,48,-385"/>
+    </union>
+    <union id="woolrooms">
+        <union id="ywoolrooms"><!--Wools yellow need to get-->
+            <cuboid id="silverwool" min="-173,0,-426" max="-162,11,-437"/>
+            <cuboid id="graywool" min="-173,0,-379" max="-162,11,-390"/>
+        </union>
+        <union id="bwoolrooms"><!--Wools blue need to get-->
+            <cuboid id="magentawool" min="-454,0,-380" max="-443,11,-390"/>
+            <cuboid id="brownwool" min="-454,0,-427" max="-443,11,-438"/>
+        </union>
+    </union>
+    <union id="iron">
+        <rectangle id="yellow-iron" min="-475,-370" max="-489,-388"/>
+        <rectangle id="blue-iron" min="-141,-447" max="-127,-429"/>
+    </union>
+    <negative id="void">
+        <rectangle id="play-area" min="-492,-446" max="-124,-371"/>
+    </negative>
+    <union id="entrances">
+        <union id="blue-entrances">
+            <cuboid id="silver" min="-171,11,-428" max="-164,12,-435"/>
+            <cuboid id="gray" min="-171,11,-388" max="-164,12,-381"/>
+        </union>
+        <union id="yellow-entrances">
+            <cuboid id="magenta" min="-452,11,-389" max="-445,12,-382"/>
+            <cuboid id="brown" min="-452,11,-429" max="-445,12,-436"/>
+        </union>
+    </union>
+    <union id="blue-port">
+        <cuboid id="silver-port" min="-171,9,-428" max="-164,11,-435"/>
+        <cuboid id="gray-port" min="-171,9,-388" max="-164,11,-381"/>
+    </union>
+    <union id="yellow-port">
+        <cuboid id="magenta-port" min="-452,9,-389" max="-445,11,-382"/>
+        <cuboid id="brown-port" min="-452,9,-429" max="-445,11,-436"/>
+    </union>
+    <union id="clocks">
+        <circle id="yellowclock" center="-448.5,-408.5" radius="5.5"/><!--Yellowclock-->
+        <circle id="blueclock" center="-167.5,-408.5" radius="5.5"/><!--Blueclock-->
+    </union>
+    <union id="platforms">
+        <cuboid id="yellowplat" min="-370,15,-386" max="-367,19,-383"/>
+        <cuboid id="blueplat" min="-246,15,-431" max="-249,19,-434"/>
+    </union>
+    <!--Applying-->
+    <apply block-break="iron-rules" block-place="deny-all" region="iron" message="You may only break iron blocks here!"/>
+    <apply block-break="deny-all" region="woolindicator" message="You may not break this!"/>
+    <apply block-break="only-blue" block-place="deny-all" region="yellow-entrances" message="You may not modify your entrances!"/>
+    <apply block-break="only-yellow" block-place="deny-all" region="blue-entrances" message="You may not modify your entrances!"/>
+    <apply block-place="no-safeties" region="play-area" message="You may not place safeties!"/>
+
+    <apply block="deny-all" region="void" message="You may not build in the void!"/>
+    <apply block="deny-all" region="clocks" message="You may not edit your hour glass"/>
+    <apply block="deny-all" region="platforms" message="You may not edit the platforms"/>
+    <apply block="deny-all" region="spawns" message="You may not edit any spawn!"/>
+    <apply block="deny-all" region="woolrooms" message="You may not edit the wool rooms!"/>
+
+    <apply enter="only-blue" region="blue-iron" message="You may only enter your iron supplies room!"/>
+    <apply enter="only-blue" region="bluespawn" message="You may not enter the enemy spawn!"/>
+    <apply enter="only-blue" region="yellowclock" message="You may not enter here!"/>
+    <apply enter="only-blue" use="only-blue" region="bwoolrooms" message="You may not enter your wool rooms!"/>
+    <apply enter="only-yellow" region="blueclock" message="You may not enter here!"/>
+    <apply enter="only-yellow" region="yellow-iron" message="You may only enter your iron supplies room!"/>
+    <apply enter="only-yellow" region="yellowspawn" message="You may not enter the enemy spawn!"/>
+    <apply enter="only-yellow" use="only-yellow" region="ywoolrooms" message="You may not enter your wool rooms!"/>
+</regions>
+<!--Portals-->
+<portals>
+    <portal x="@-248" y="@16" z="@-433" filter="only-blue">
+        <region id="blue-port"/>
+    </portal>
+    <portal x="@-369" y="@16" z="@-385" filter="only-yellow">
+        <region id="yellow-port"/>
+    </portal>
+    <portal x="@-169" y="@19" z="@-409">
+        <region>
+            <cuboid min="-169,2,-428" max="-167,4,-429"/><!--Silver-->
+        </region>
+    </portal>
+    <portal x="@-169" y="@19" z="@-409">
+        <region>
+            <cuboid min="-169,2,-381" max="-167,4,-382"/><!--Gray-->
+        </region>
+    </portal>
+    <portal x="@-448" y="@19" z="@-409">
+        <region>
+            <cuboid min="-450,2,-390" max="-448,4,-388"/><!--Magenta-->
+        </region>
+    </portal>
+    <portal x="@-448" y="@19" z="@-409">
+        <region>
+            <cuboid min="-450,2,-435" max="-448,4,-436"/><!--Brown-->
+        </region>
+    </portal>
+</portals>
+<!--Wools-->
+<wools team="yellow-team">
+    <wool color="gray" location="-168,1,-386" craftable="false">
+        <monument>
+            <block>-478,14,-414</block>
+        </monument>
+    </wool>
+    <wool color="silver" location="-168,1,-433" craftable="false">
+        <monument>
+            <block>-480,14,-414</block>
+        </monument>
+    </wool>
+</wools>
+<wools team="blue-team">
+    <wool color="magenta" location="-449,1,-385" craftable="false">
+        <monument>
+            <block>-137,14,-404</block>
+        </monument>
+    </wool>
+    <wool color="brown" location="-449,1,-432" craftable="false">
+        <monument>
+            <block>-139,14,-404</block>
+        </monument>
+    </wool>
+</wools>
+<!--Monuments-->
+<destroyables materials="obsidian;gold block;coal block;glass" mode-changes="true" repairable="false" completion="30%">
+    <destroyable name="Silver Entrance" owner="blue-team">
+        <region id="silver"/>
+    </destroyable>
+    <destroyable name="Gray Entrance" owner="blue-team">
+        <region id="gray"/>
+    </destroyable>
+    <destroyable name="Magenta Entrance" owner="yellow-team">
+        <region id="magenta"/>
+    </destroyable>
+    <destroyable name="Brown Entrance" owner="yellow-team">
+        <region id="brown"/>
+    </destroyable>
+</destroyables>
+<modes>
+    <mode after="50s" material="gold block"/>
+    <mode after="100s" material="coal block"/>
+    <mode after="150s" material="glass"/>
+</modes>
+<renewables>
+    <renewable rate="1" grow="true" particles="true" avoid-players="2" region="iron">
+        <renew-filter>
+            <any>
+                <material>iron block</material>
+            </any>
+        </renew-filter>
+        <replace-filter>
+            <any>
+                <material>air</material>
+            </any>
+        </replace-filter>
+    </renewable>
+</renewables>
+<itemremove>
+    <item>arrow</item>
+    <item>cobblestone</item>
+    <item>cooked beef</item>
+    <item>obsidian</item>
+    <item>stained clay</item>
+    <item>wood</item>
+    <item>gold block</item>
+    <item>coal block</item>
+    <item>glass</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron axe</tool>
+    <tool>diamond pickaxe</tool>
+</toolrepair>
+<maxbuildheight>36</maxbuildheight>
+</map>
