@@ -1,7 +1,7 @@
-<map proto="1.4.2">
+<map proto="1.4.0">
 <name>Crazy's Cannon Duel</name>
-<version>1.0.0</version>
-<objective>Kill the other team before they kill you</objective>
+<version>1.0.1</version>
+<objective>Kill the other team before they kill you!</objective>
 <authors>
     <author uuid="a9f11454-beac-4cc3-a138-1780802c8794"/> <!-- Crazy_ -->
 </authors>
@@ -10,8 +10,8 @@
     <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="Made original map"/> <!-- ElectroidFilms -->
 </contributors>
 <teams>
-    <team id="red" color="dark red" max="1" max-overfill="1">Red</team>
     <team id="blue" color="blue" max="1" max-overfill="1">Blue</team>
+    <team id="red" color="dark red" max="1" max-overfill="1">Red</team>
 </teams>
 <kits>
     <!-- kit given to everyone, including observers -->
@@ -57,16 +57,6 @@
         <potion duration="35" amplifier="5">damage resistance</potion>
         <potion duration="35" amplifier="5">heal</potion>
     </kit>
-    <kit id="red-gear" parents="team">
-        <item slot="12" damage="14" amount="64">stained glass</item>
-        <item slot="21" damage="14" amount="64">stained clay</item>
-        <item slot="30" damage="14" amount="64">stained clay</item>
-        <item slot="3" damage="14" amount="64">stained clay</item>
-        <helmet locked="true" color="dd5566" enchantment="water worker:3" unbreakable="true">leather helmet</helmet>
-        <chestplate locked="true" color="dd5566" unbreakable="true">leather chestplate</chestplate>
-        <leggings locked="true" color="dd5566" unbreakable="true">leather leggings</leggings>
-        <boots locked="true" color="dd5566" unbreakable="true">leather boots</boots>
-    </kit>
     <kit id="blue-gear" parents="team">
         <item slot="12" damage="11" amount="64">stained glass</item>
         <item slot="21" damage="11" amount="64">stained clay</item>
@@ -77,23 +67,33 @@
         <leggings locked="true" color="5e55dd" unbreakable="true">leather leggings</leggings>
         <boots locked="true" color="5e55dd" unbreakable="true">leather boots</boots>
     </kit>
+    <kit id="red-gear" parents="team">
+        <item slot="12" damage="14" amount="64">stained glass</item>
+        <item slot="21" damage="14" amount="64">stained clay</item>
+        <item slot="30" damage="14" amount="64">stained clay</item>
+        <item slot="3" damage="14" amount="64">stained clay</item>
+        <helmet locked="true" color="dd5566" enchantment="water worker:3" unbreakable="true">leather helmet</helmet>
+        <chestplate locked="true" color="dd5566" unbreakable="true">leather chestplate</chestplate>
+        <leggings locked="true" color="dd5566" unbreakable="true">leather leggings</leggings>
+        <boots locked="true" color="dd5566" unbreakable="true">leather boots</boots>
+    </kit>
 </kits>
 <spawns>
-    <spawn team="red" kit="red-gear" yaw="0">
-        <region>
-            <point>178.5,51.5,170.5</point>
-        </region>
-    </spawn>
-    <spawn team="blue" kit="blue-gear" yaw="180">
-        <region>
-            <point>178.5,51.5,220.5</point>
-        </region>
-    </spawn>
     <default kit="all" yaw="-90">
         <region>
             <point>178.5,57.5,195.5</point>
         </region>
     </default>
+    <spawn team="blue" kit="blue-gear" yaw="180">
+        <region>
+            <point>178.5,51.5,220.5</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="red-gear" yaw="0">
+        <region>
+            <point>178.5,51.5,170.5</point>
+        </region>
+    </spawn>
 </spawns>
 <regions>
     <negative id="cant-build">
@@ -104,24 +104,30 @@
     </negative>
     <cuboid id="map" min="172,0,164" max="185,55,227"/>
     <cuboid id="bridge" min="179,25,216" max="178,27,175"/>
+    <union id="drops">
+        <cuboid id="red-drop" min="182,51,217" max="175,50,224"/>
+        <cuboid id="blue-drop" min="175,51,174" max="182,50,167"/>
+    </union>
     <!-- Applicators -->
     <apply block="never" region="cant-build" message="You may not place or break blocks outside the build zone"/>
-    <union id="drops">
-        <cuboid id="red-drop" min="182,51,174" max="181,51,223"/>
-        <cuboid id="blue-drop" min="175,51,217" max="175,51,167"/>
-    </union>
 </regions>
 <!-- Destroyables are impossible to break as they are in a deny-all region -->
 <!-- Used to make the glass starting platforms disappear and the bridge to appear -->
-<destroyables name="glass" show="false" required="false" mode-changes="true" materials="stained glass:15">
-    <destroyable id="red-drop" owner="red">
-        <region id="red-drop"/>
+<destroyables name="glass" show="false" required="false" mode-changes="true" material="stained glass:15;air">
+    <destroyable id="blue-drop-floor" owner="blue">
+        <region>
+            <region id="blue-drop"/>
+        </region>
     </destroyable>
-    <destroyable id="blue-drop" owner="blue">
-        <region id="blue-drop"/>
+    <destroyable id="red-drop-floor" owner="red">
+        <region>
+            <region id="red-drop"/>
+        </region>
     </destroyable>
     <destroyable owner="red">
-        <region id="bridge"/>
+        <region>
+            <region id="bridge"/>
+        </region>
     </destroyable>
 </destroyables>
 <!-- Changes the state of the selectd regions referended by the <destroyables> element -->
