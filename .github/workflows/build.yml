@@ -50,7 +50,7 @@ jobs:
             out=out/$map
             mkdir -p $out
             mc-ovw --rendermodes=smooth-lighting $map $out || true
-            if [[ $map == "maps/decay_5x5" ]]; then
+            if [[ $map == "maps/mistforge" ]]; then
               break
             fi
           done
