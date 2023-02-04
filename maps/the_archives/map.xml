@@ -1,0 +1,89 @@
+<map proto="1.4.0">
+<name>The Archives</name>
+<version>1.0.11</version>
+<objective>Be the team with the most amount of kills after 10 minutes.</objective>
+<authors>
+    <author uuid="e1e9e6af-f826-44ce-b1e2-5efb4e5c5d9e" contribution="Overall Map Design and XML Code"/> <!-- zemphon -->
+</authors>
+<contributors>
+    <contributor uuid="b1752e32-f2c9-4edf-9515-11db4bffd593" contribution="Passages and Feedback"/> <!-- viper077 -->
+    <contributor uuid="459fd919-0d58-401a-9601-6cab1eb721ab" contribution="Map Building and Feedback"/> <!-- Reshif -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="20">Blue</team>
+    <team id="green" color="green" max="20">Green</team>
+    <team id="red" color="dark red" max="20">Red</team>
+    <team id="yellow" color="yellow" max="20">Yellow</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="16" material="arrow"/>
+        <helmet team-color="true" unbreakable="true" material="leather helmet"/>
+        <chestplate team-color="true" unbreakable="true" material="leather chestplate"/>
+		<leggings unbreakable="true" enchantment="protection projectile:3" material="chainmail leggings"/>
+        <boots unbreakable="true" material="iron boots">
+            <enchantment level="2">feather_falling</enchantment>
+        </boots>
+        <game-mode>adventure</game-mode>
+    </kit>
+</kits>
+<spawns>
+    <default yaw="90">
+        <region>
+            <cuboid min="-1,41,-1" max="2,41,2"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit" yaw="225">
+        <region>
+            <cuboid min="-48,8,45" max="-44,8,49"/>
+        </region>
+    </spawn>
+    <spawn team="green" kit="spawn-kit" yaw="45">
+        <region>
+            <cuboid min="44,8,-48" max="49,8,-43"/>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit" yaw="-45">
+        <region>
+            <cuboid min="-48,8,-48" max="-43,8,-43"/>
+        </region>
+    </spawn>
+    <spawn team="yellow" kit="spawn-kit" yaw="135">
+        <region>
+            <cuboid min="44,8,44" max="49,8,49"/>
+        </region>
+    </spawn>
+</spawns>
+<regions>
+    <apply block="never"/>
+</regions>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>arrow</item>
+    <item>golden apple</item>
+</itemkeep>
+<kill-reward>
+    <item amount="8" material="arrow"/>
+    <item material="golden apple"/>
+</kill-reward>
+<score>
+    <kills>1</kills>
+</score>
+<time result="score">10m</time>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
